@@ -1,0 +1,9 @@
+*~
+*DS_Store
+*.aux
+*.out
+*.dvi
+*.log
+*.pdf
+*.ps
+*.hg*
