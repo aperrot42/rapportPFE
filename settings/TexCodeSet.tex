@@ -1,0 +1,35 @@
+% For code snippets style definition
+
+\usepackage{color}
+\usepackage{listings}
+
+
+\lstloadlanguages{[ISO]C++,C}
+% set up listing environment with C syntax hightlight
+\definecolor{stringcolor}{rgb}{0.20,0.50,0.20}
+\definecolor{commentcolor}{rgb}{0.40,0.40,0.40}
+\definecolor{keywordcolor}{rgb}{0.50,0.10,0.10}
+\definecolor{idcolor}{rgb}{0.10,0.10,0.50}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+% with \lstset one can predefine parameters for listings
+\lstset{language=[ISO]C++,basicstyle=\small,keywordstyle=\color{keywordcolor},
+        commentstyle={\color{commentcolor}\itshape},
+        stringstyle={\color{stringcolor}},
+        identifierstyle=\color{idcolor},numbers=left,
+       % xleftmargin=2em,framerule=0.8pt,
+        stepnumber=1,frame=single,showstringspaces=false,
+        firstnumber=1,numberstyle=\ttfamily,backgroundcolor=\color{bg}}
+        
+        
+% Definition of \C++ to be eye candy :
+\usepackage{relsize}
+\usepackage{lipsum}
+%c from texinfo.tex
+\def\ifmonospace{\ifdim\fontdimen3\font=0pt }
+\def\C++{%
+\ifmonospace%
+    C++%
+\else%
+    C\kern-.1667em\raise.30ex\hbox{\smaller{++}}%
+\fi%
+\spacefactor1000 }

@@ -1,0 +1,88 @@
+% Chapitre sur le rapport de recherche :
+
+
+\chapter{Rapport de recherche} 
+
+\section{Introduction}
+
+
+  
+ 
+\section{Segmentation de la paroi cellulaire par ensembles de niveaux}
+
+Le but initial du PFE etait la segmentation de la paroi cellulaire. il s'agit d'une fine membrane séparant les multiples cellules. Elle s'étend sur tout le spécimen a analyser. Il s'agit donc d'un volume important et complexe.
+
+\subsection{Analyse des donnees}
+Les images sont acquises a travers un système optique. L'excitation par un laser entraine la fluorescence de certaines parties de la cellule, marquées par une molécule émettant de la lumière dans un certain spectre.
+
+Le système a donc une réponse impulsionelle bien visible dans les données. Un point correspond grossierement a une gaussienne etalee dans les trois dimensions de l'espace, et plus particulierement selon l'axe perpendiculaire au plan de focalisation.
+
+Il existe aussi un bruit du au dispositif electronique d'acquisition. De plus, la fluorescence n'etant pas repartie de maniere homogene, il existe des "trous" et de la saturation dans les donnees.
+
+J'ai choisi de me focaliser sur trois difficultés afin de trouver des solutions :
+\begin{description}
+  \item [problème du bruit] : quel filtrage ?
+  \item [problème de l'absence de données] : comment introduire des a priori pour palier a l'absence d'information ?
+  \item [problème de la non homogénéité des intensités]  : comment segmenter des régions en limitant l'intervention des autres zones de l'image et des autres instants d'acquisition ?
+\end{description}
+
+
+\subsection{Utilisation de la théorie des ensembles de niveaux}
+
+L'outil choisi pour segmenter la paroi cellulaire, est base sur les ensembles de niveaux (levels-sets). Cette théorie consiste en l'évolution d'un front. Cette évolution est représentée par une fonction implicite qui évolue iterativement. Le front (bords de la zone segmentee) est souvent represente par le niveau zero de cette fonction implicite.
+Les Level sets, au travers de leur critere d'evolution, permettent d'avoir une grande flexibilite quand aux mesures a considerer lors de l'evolution du front. Cette evolution est representee par un critere d'energie, le probleme de segmentation par level set est donc un probleme d'optimisation.
+
+La theorie des ensembles de niveau apparue
+\subsection{des idees}
+Afin d'eliminer le bruit sans deteriorer la membrane, le principe de l'erosion dilatation a ete mis en oeuvre. Il s'agit d'une methode rapide qui donne de bons resultats
+
+
+idee de la mediane
+idee morphologie
+idee localisation
+\subsection{resultats}
+idee mediane
+idee morphologie
+idee localisation
+\subsection{travail futur}
+rapidite
+
+
+
+\section{Detection et localisation des cellules}
+
+Nous basons nos méthodes de segmentation sur une initialisation au centre des cellules. Nous avons donc besoin de détecter un maximum de cellules afin de trouver un point a l'intérieur de ces dernières. Des methodes ont ete proposees, cependant, chacune est adaptee a un type d'image particulier.
+Cels algorithmes de détection sont aussi souvent appelles algorithmes de "seeding" car ils permettent d'obtenir des points a partir desquels une segmentation peut etre initialisee, afin de delimiter les bordures des noyaux, ou les membranes cellulaires.
+
+\subsection{demarche}
+
+Nous avons developpe une methode combinant l'information provenant des noyaux et de la membrane des cellules. Cette methode doit etre evaluee, donc comparee a d'autres methodes existantes. Ce processus d'evaluation nous permettra aussi de trouver les points forts et les points faibles des algorithmes. Nous pourrons ainsi eventuellement utiliser des techniques de fusion d'information pour combiner les resultats de differents algorithmes.
+Le processus de creation d'un "framework" d'evaluation passe donc par plusieurs etapes : l'implementation des algorithmes existants, afin de les tester sur des images synthetiques, puis reelles. La creation de criteres d'evaluation appropories, et l'observation des resultats. Nous avons aussi initié un travail afin de proposer une nouvelle methode de detection de cellules basee sur la decomposition en ondelettes.
+
+
+\subsection {implementation d'un algorithme recent}
+
+Nous avons decide d'implementer l'algorithme presente dand \cite{al2009improved}. La methode utilisee est celle du Laplacien de la Gaussienne. Une methode eprouveee qui s'est montree tres robuste dans d'autres applications telles la detection de points de reperes pour le recallage photographique.
+d'utiliser la librairie ITK pour implementer l'algorithme presente dans .
+
+\subsection {evaluation}
+
+
+
+\subsection {conclusion}
+
+
+\subsection {proposition}
+
+
+
+\subsection {planning}
+
+
+\subsection{resultats}
+
+\subsection{proposition}
+
+
+
+

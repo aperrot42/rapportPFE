@@ -1,0 +1,21 @@
+\documentclass[]{report}   % list options between brackets
+
+
+% Latex Police and file encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}  % for character encoding 
+\usepackage{lmodern}  % Police setting
+\usepackage[frenchb]{babel}
+% Graphics inclusion
+\usepackage{graphicx}
+
+% Code Formating
+\input{settings/TexCodeSet}
+
+%TODO macro
+\newcommand{\TODO}[1] {\marginpar{\colorbox{red}{\Huge \textbf{TODO :} } \colorbox{green}{\normalsize #1  } } }
+
+% Hypertext links
+\usepackage[colorlinks=true,breaklinks=true,dvips,ps2pdf]{hyperref}
+\urlstyle{sf}
+

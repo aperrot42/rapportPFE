@@ -1,0 +1,205 @@
+% Chapitre sur le rapport d ingenierie :
+
+
+\chapter{Rapport d'ingénierie} 
+
+
+\TODO {ADD definitions to glossary !!!!}
+
+
+
+
+\section{Introduction}
+
+Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur.
+ 
+ 
+ 
+\section{Création d'un debugger graphique pour ITK}
+
+\subsection{motivations}
+
+
+
+
+
+\subsection{La librairie "Insight ToolKit"}
+L'Insight ToolKit (ITK) est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT).
+
+La librairie Insight ToolKit est un projet open source initié par la "US National Library of Medicine" en 1999. Un consortium composé de grands noms de l'imagerie (General Electrics research, Kitware...) et d'universites (University of North Carolina, University of Tenessee, Unervisity of Pensyvania) a ensuite ete crée pour financer son développement.
+
+Depuis, cette collection d'algorithmes ne cesse de s'agrandir grâce à la philosophie open-source. Le spectre des applications d'ITK inclut entre autres exemples:  
+\begin{itemize}
+  \item l'imagerie medicale, avec 3DSlicer (\url{http://www.slicer.org/}),
+  \item l'imagerie biologique, avec Gofigure2(\url{http://gofigure2.sourceforge.net/}),
+  \item et l'imagerie satellite, avec l'Orfeo ToolBox (\url{http://www.orfeo-toolbox.org/otb/}).
+\end{itemize}
+
+Le modèle de programmation est relativement complexe et nécessite de un long apprentissage, et de l'expérience. A cette fin, de nombreux outils d'information sont mis a la disponibilité du nouvel utilisateur :
+\begin{itemize}
+  \item des listes de diffusions d'Emails ont été créées pour mettre en contact les nouveaux utilisateurs d'ITK et les programmeurs et utilisateurs avancés. Un systeme d'entraide est ainsi mis en place. 
+  \item Il existe aussi un wiki (\url{http://www.vtk.org/Wiki/ITK}), qui donne quelques informations quand à la mise en place d'un environnement de développement utilisant ITK. 
+  \item La ressource principale pour le débutant, après être parvenu a mettre en place les différents composants nécessaires a la programmation et l'utilisation d'ITK, est le guide d'utilisteur : The ITK Software Guide, écris par \href{http://www.kitware.com/company/team/ibanez.html}{Luis Ibáñez} (leader technique d'ITK). Cependant, ce guide est basé sur la version 2.4 d'ITK tandis que la derniere version publiée d'ITK est 3.20.  
+    \TODO {reference ITK software guide}
+  \item la documentation Doxygen est enfin plus ou moins utile dans une utilisation courante de la librairie. Cette documentation, presentee sous forme de site internet, est directement compilee a partir du code source. Elle est donc plus ou moins complete selon les fichiers. Afin de pouvoir naviguer dans cette derniere, il est indispensable de connaitre la structure du projet.
+\end{itemize}
+
+Luis Ibáñez, a dit cette année : "La courbe d'apprentissage d'ITK en \C++ est bien trop raide, et nous allons nous efforcer dans les futures version, de rendre la librairie plus accessible.". La prochaine version d'ITK (version 4) sera donc surement plus facile a utiliser et prendre en main.
+
+
+
+\subsection{La librairie VTK}
+
+La librairie VTK est developpee par Kitware, Il s'agit d'une librairie \C++ utilisee pour la visualisation de donnees. Elle est open source et cross-platform. Elle utilise des outils similaires a ceux utilises pour ITK (CMake)
+Elle utilise aussi un systeme de "pipeline" (flux de donnees) similaire a celui d'ITK pour traiter les donnees a visualiser. Elle est developpee conjointement avec ITK, et il est possible plus ou moins facilement de connecter les filtres de traitement d'image d'ITK avec les filtres de visualisation de VTK.
+
+
+
+\subsection{La librairie Qt}
+
+Si VTK permet la visualisation de donnees, cette librairie ne permet pas une gestion avancee et multi plateforme de l'interface utilisateur. Qt permet cela en proposant une Graphical User Interface open source et cross-platform. Cette librairie a ete developpee initialement par TrollTech, pour ensuite etre racheteee par Nokia. Cependant, les memes developpeurs passionnes travaillent toujours sur le projet. 
+Elle etend aussi les fonctionnalites du langage \C++ en proposant une nouvelle architecture pour le systeme de callbacks, un nouveau modele d'objet, et d'heritage. Cependant, ces modifications sont facilement integrees par le developpeur debutant, grace a une aide abondante composee d'un systeme de tutoriels, d'exemples fortement documentes, et d'une liste de diffusion tres active.
+
+
+\TODO{DEFINIR CALLBACK}
+
+\subsection{outils necessaires}
+
+
+\TODO{
+CMake
+shell scripts
+automatic builds 
+Python ? }
+
+
+
+\subsection{resultats}
+
+\TODO {include screenshots include code snapshots}
+\subsection{travail futur}
+
+
+
+
+
+\section{Amélioration des techniques d'imagerie}
+
+
+acquisitions :
+belles
+artifacts, bruits
+deplacements violents
+
+remedier a ce probleme
+
+\subsection{Stabilisation de l'acquisition}
+
+\subsubsection{Principe}
+
+
+\subsubsection{Code}
+
+demarche : evaluation de la metrique
+optimisation tps calcul
+developpement en visualbasic (windows emule)
+
+\subsubsection{Tests et travaux futurs}
+test sur objet inanime
+test sur poisson en developpement
+developpements futurs :
+metrique non rigide ?
+tps de calcul ?
+wavelets pour downsample ?
+
+
+\section{Définition de protocoles}
+
+Une partie de mon travail a consiste en la définition de protocoles afin d'effectuer certaines taches d'une manière organisée et répétable. Il s'agit d'un travail de recherche, d'apprentissage et d'expression. J'ai travaille sur l'élaboration d'un workflow pour l'équipe de programmateurs, et une méthode de partage de données avec d'autres laboratoires, pour l'ensemble du laboratoire.
+
+\subsection{GIT workflow}
+
+GIT est un programme très a la mode, de nombreux projets open source l'utilisent pour la gestion de leur code. Comme Gofigure2 adopte une philosophie open source, il se doit d'utiliser les outils favoris de la communauté.
+Je suis donc passé par une phase d'apprentissage pour ensuite écrire un tutoriel afin d'expliquer le fonctionnement de GIT a l'équipe informatique. J'ai ensuite propose un workflow, qui est celui utilise par les développeurs du projet VTK.
+
+\subsubsection{Fonctionnement de GIT}
+
+GIT est un programme de gestion de sources invente par le créateur de Linux  (Linus Torvalds). Ce programme de contrôle de version est utilisé pour le développement du noyau de Linux, il est donc très performant, mais aussi très complexe.
+Le principe du programme de contrôle de version est de permettre a plusieurs développeurs de travailler sur un même projet. Le programme gardant en mémoire qui a apporté telle modification au code, et quand. Cela permet a chaque programmeur de travailler sur des fonctionnalités différentes et de fusionner leurs changements.
+Le code source est souvent stocké sur un serveur en ligne. GIT fait une copie de l'historique du code source sur l'ordinateur de l'utilisateur. Il est donc possible de réarranger cet historique, d'ajouter des modifications, sans etre connecte a internet, une fois le projet copie ("clone" dans le langage de GIT) sans être connecte a internet. L'utilisateur peut, des qu'il bénéficie d'une connexion internet partager ("pousser") tous les changements qu'il a apporte au code source, en une seule fois. En ce sens, GIT diffère d'une partie des logiciels concurrent qui nécessitent une connexion internet presque permanente.
+
+
+\subsubsection{Écriture du tutoriel}
+
+Le tutoriel a été écris sur le wiki de Gofigure2. Il s'agit de l'emplacement de prédilection pour les informations concernant la programmation et l'utilisation de Gofigure2. Le système du wiki, en plus de proposer une syntaxe simple pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
+
+L'écriture d'un tel tutoriel se fait souvent dans un registre proche du langage familier, le but étant de simuler des instruction données par un collègue ou un ami. Les instruction se doivent d'être relativement brèves, bien souvent le lecteur veut juste appliquer certaines fonctionnalités proposées par GIT sans toujours vraiment chercher a comprendre ce qu'il fait. Il existe d'autres sources d'informations pour apprendre complètement le fonctionnement de l'application.
+Le tutoriel ne se veut donc pas exhaustif, il propose juste une manière qui fonctionne d'utiliser GIT, a la manière d'un travail dirigé. Il a été écrit pendant ma phase d'apprentissage de GIT. Il détaille les principales difficultés et écueils rencontrés. 
+
+Le tutoriel est présent a cette adresse : \\
+\url{}
+
+\subsubsection{Workflow propose}
+Il a enfin fallu proposer un workflow (protocole de travail), qui définit la manière dont les programmateurs doivent apporter des modifications au code source. Il s'agit de proposer un protocole qui :
+\begin{enumerate}
+  \item n'augmente pas trop la charge de travail,
+  \item permette de bien suivre les modifications apportes par chacun. 
+  \item permette au responsable du projet de corriger ou supprimer les changements apportes par les développeurs.
+  \item corresponde a un standard.
+\end{enumerate}
+Le workflow propose a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/git-model}{blog}. Ce protocole découle assez naturellement de l'apprentissage de GIT, il est donc simple.
+
+Ce workflow, en plus d'etre precisement detaille, est techniquement viable :
+Les travaux et modifications de chacun sont stockés dans des branches annexes durant tout leur développement. Il est ainsi facile de corriger un bug introduit par une certaine fonction. La branche principale (master) contient en permanence une version stable du projet.
+Le serveur central (en ligne) contient deux branches :
+\begin{description}
+  \item [master] qui contient la version courante stable du projet,
+  \item [develop] qui contient les nouvelles fonctionnalités depuis la dernière version stable du projet. Cette branche est celle dont on teste la robustesse.
+\end{description}
+Les informations les plus importantes du projet sont donc sauvegardes sur le cerveur central en plus de sur toutes les machines utilisées par les programmeurs. 
+
+
+\subsubsection{Planning et avancement}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Projet professionnel}
+
+Ce PFE s'inscrit dans un projet professionnel construit durant ma scolarité a l'INSA de Lyon.
+Mon inscription a l'INSa de Lyon a été grandement motivée par l'ouverture de l'école a l'international. J'ai ainsi effectue mon stage ouvrier en Afrique du Sud. Profitant d'une première expérience professionnelle a l'international.
+
+Lors de ma seconde année a l'INSA de Lyon, j'ai choisi l'option SCiences et ANglais (SCAN). Cette filière regroupe les élèves ayant un niveau suffisant pour pouvoir suivre la formation généraliste en anglais. Elle s'accompagne d'une bourse pour un bref séjour linguistique dans une université étrangère. J'ai profite de ce financement pour aller au Trinity College en Irelande ou j'ai pu avoir ma première expérience académique a l'étranger.
+
+J'ai ensuite choisi le département Génie Électrique qui permet de bénéficier d'un grand panel de compétences, notamment dans des domaines rattaches a l'électronique et l'informatique.
+
+Continuant l'expérience internationale, j'ai effectué mon stage industriel au Fraunhofer Institute, Center for Manufacturing Innovation, aux États Unis. Ce stage m'a énormément apporte en plus de l'expérience technique. Il s'agissait d'une première immersion dans la culture américaine. C'est après ce stage que j'ai passe le test TOEIC validant un très bon niveau d'expression et de compréhension en anglais, avec un score de neuf cent quatre-vingt sur neuf cent quatre-vingt dix.
+
+Le PFE au Megason lab possède des attraits indéniables : il s'agit d'un stage de recherche perfectionnant mes connaissances en traitement de l'image. Il s'agit aussi d'une expérience internationale dans une université renommée : Harvard Medical School. Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte a de nombreuses opportunités professionnelles.
+
+Comme je suis intéressé par les domaines techniques, je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées, au cours d'une thèse élaborée en collaboration avec le laboratoire CREATIS (INSA Lyon) et le laboratoire Megason (Harvard Medical School). Cette incroyable opportunité professionnelle est financée en partie par Harvard Medical School et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitie aux États Unis.
+En plus de pouvoir travailler sur un domaine passionnant, je pourrai ainsi bénéficier d'une équivalence avec un PhD () (diplôme très reconnu a l'international). 
+
+Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte international, dans des domaine a haute technicité pour travailler dans le secteur privé. Je pourrai mettre en avant mes capacités en traitement du signal pour travailler dans le médical ou l'aéronautique.
+
+Mon ambition est de migrer vers des responsabilités manageriales après avoir une très bonne maitrise de la technique.
+
+
+\TODO{
+definir Templates
+definir cross platform
+definir idiomes \C++
+definir SVN
+definir GIT
+definir wiki
+definir GUI Graphical User Interface
+definir Callback}
