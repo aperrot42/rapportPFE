@@ -57,16 +57,37 @@ Cels algorithmes de détection sont aussi souvent appelles algorithmes de "seedi
 \subsection{demarche}
 
 Nous avons developpe une methode combinant l'information provenant des noyaux et de la membrane des cellules. Cette methode doit etre evaluee, donc comparee a d'autres methodes existantes. Ce processus d'evaluation nous permettra aussi de trouver les points forts et les points faibles des algorithmes. Nous pourrons ainsi eventuellement utiliser des techniques de fusion d'information pour combiner les resultats de differents algorithmes.
-Le processus de creation d'un "framework" d'evaluation passe donc par plusieurs etapes : l'implementation des algorithmes existants, afin de les tester sur des images synthetiques, puis reelles. La creation de criteres d'evaluation appropories, et l'observation des resultats. Nous avons aussi initié un travail afin de proposer une nouvelle methode de detection de cellules basee sur la decomposition en ondelettes.
+La creation d'un "framework" d'evaluation passe donc par plusieurs etapes : l'implementation des algorithmes existants, afin de les tester sur des images synthetiques puis reelles, la creation de criteres d'evaluation appropories, et l'observation des resultats. Nous avons aussi initié un travail afin de proposer une nouvelle methode de detection de cellules basee sur la decomposition en ondelettes.
 
 
-\subsection {implementation d'un algorithme recent}
+\subsection {description des algorithmes evalues}
 
-Nous avons decide d'implementer l'algorithme presente dand \cite{al2009improved}. La methode utilisee est celle du Laplacien de la Gaussienne. Une methode eprouveee qui s'est montree tres robuste dans d'autres applications telles la detection de points de reperes pour le recallage photographique.
-d'utiliser la librairie ITK pour implementer l'algorithme presente dans .
+
+
+\subsubsection{chaine de traitement de l'image}
+
+partie commune
+Nous nous focalisons sur une classe d'algorithmes traitant l'information issue de l'image des noyaux cellulaires, apres une detection des zones d'interet (binarisation de l'image). Ces algorithmes fonctionnent aussi souvent avec une extraction de maxima locaux en dernier traitement.
+Nous choisissons d'utiliser la même binarisation, et la meme methode d'extraction de maximas locaux pour les deux algorithmes afin de focaliser l'etude sur la technique de detection des centres des noyaux.
+
+\subsubsection{description des algorithmes}
+\paragraph{le Laplacien de la Gaussienne ameliore}
+Nous avons decide d'implementer l'algorithme presente dans \cite{al2009improved}. La methode utilisee est celle du Laplacien de la Gaussienne (LoG). Une methode eprouveee qui s'est montree tres robuste dans d'autres applications telles la detection de points de reperes pour le recallage photographique.
+
+
+
+\paragraph{Kishore}
+
+\TODO{Ask Kishore more infos}
+
 
 \subsection {evaluation}
-
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline  & Matching & UnMatching & Missed & Accuracy \\ 
+%\hline A1 & 10 & 3 & 1 & 71% \\ 
+%\hline A2 & 9 & 2 & 3 & 64% \\ 
+%\hline 
+%\end{tabular} 
 
 
 \subsection {conclusion}

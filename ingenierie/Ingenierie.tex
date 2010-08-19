@@ -9,68 +9,88 @@
 
 
 
+
+
+
+
+
 \section{Introduction}
 
-Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur.
+Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur. Les laboratoires aux États-Unis ont besoin de l'expertise d'ingénieurs pour résoudre des problème techniques. Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
  
- 
- 
-\section{Création d'un debugger graphique pour ITK}
-
-\subsection{motivations}
+\section{Objectifs}
 
 
 
 
 
-\subsection{La librairie "Insight ToolKit"}
-L'Insight ToolKit (ITK) est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT).
+\section{Création d'un debugger graphique}
 
-La librairie Insight ToolKit est un projet open source initié par la "US National Library of Medicine" en 1999. Un consortium composé de grands noms de l'imagerie (General Electrics research, Kitware...) et d'universites (University of North Carolina, University of Tenessee, Unervisity of Pensyvania) a ensuite ete crée pour financer son développement.
+L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieurs travaillent sous la direction d'un docteur sur la création de l'outil de visualisation d'images microscopiques (GoFigure2), tandis qu'un autre docteur travaille sur des algorithmes de traitement d'image. Afin de travailler pour l'ensemble des informaticiens, le projet devait
+\begin{inparaenum}[(i)]
+  \item faciliter le travail de developpement d'algorithmes de traitement de l'image, et 
+  \item s'integrer au developpement de GofiGure2.
+\end{inparaenum}
 
-Depuis, cette collection d'algorithmes ne cesse de s'agrandir grâce à la philosophie open-source. Le spectre des applications d'ITK inclut entre autres exemples:  
+La création d'un debugger graphique atteint ces deux buts : Il s'agit d'un programme utilisant le code source du projet Gofigure2, qui sera utilise pour le developpement des plugins de Gofigure2.
+Ce programme permet aussi de visualiser les traitements appliques aux données lors de l'execution d'un algorithme de traitement d'image sous un environnement de debugging
+
+\subsection{les outils utilises}
+
+\subsubsection{Les librairies \C++}
+
+Il existe un grand nombre de fonctions déjà codées en {\C++}. Dans une optique de standardisation et d'efficacité, il est important d'apprendre a utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
+
+\paragraph{La librairie "Insight ToolKit" (ITK)} est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT). 
+Cette collection d'algorithmes ne cesse de s'agrandir grâce à la philosophie open-source. Le spectre des applications d'ITK inclut entre autres exemples:  
 \begin{itemize}
-  \item l'imagerie medicale, avec 3DSlicer (\url{http://www.slicer.org/}),
-  \item l'imagerie biologique, avec Gofigure2(\url{http://gofigure2.sourceforge.net/}),
-  \item et l'imagerie satellite, avec l'Orfeo ToolBox (\url{http://www.orfeo-toolbox.org/otb/}).
+  \item l'imagerie medicale, avec \href{http://www.slicer.org/}{3DSlicer},
+  \item l'imagerie biologique, avec \href{http://gofigure2.sourceforge.net/}{Gofigure2},
+  \item et l'imagerie satellite, avec l'\href{http://www.orfeo-toolbox.org/otb/}{Orfeo ToolBox}.
 \end{itemize}
-
 Le modèle de programmation est relativement complexe et nécessite de un long apprentissage, et de l'expérience. A cette fin, de nombreux outils d'information sont mis a la disponibilité du nouvel utilisateur :
 \begin{itemize}
-  \item des listes de diffusions d'Emails ont été créées pour mettre en contact les nouveaux utilisateurs d'ITK et les programmeurs et utilisateurs avancés. Un systeme d'entraide est ainsi mis en place. 
-  \item Il existe aussi un wiki (\url{http://www.vtk.org/Wiki/ITK}), qui donne quelques informations quand à la mise en place d'un environnement de développement utilisant ITK. 
-  \item La ressource principale pour le débutant, après être parvenu a mettre en place les différents composants nécessaires a la programmation et l'utilisation d'ITK, est le guide d'utilisteur : The ITK Software Guide, écris par \href{http://www.kitware.com/company/team/ibanez.html}{Luis Ibáñez} (leader technique d'ITK). Cependant, ce guide est basé sur la version 2.4 d'ITK tandis que la derniere version publiée d'ITK est 3.20.  
+  \item des listes de diffusions d'Emails, pour mettre en contact les nouveaux utilisateurs d'ITK et les programmeurs et utilisateurs avancés;
+  \item un wiki (\url{http://www.vtk.org/Wiki/ITK}), qui donne quelques informations quand à la mise en place d'un environnement de développement utilisant ITK.;
+  \item un guide d'utilisateur très bien expliqué, mais basé sur la version 2.4 d'ITK tandis que la dernière version publiée est la 3.20;
     \TODO {reference ITK software guide}
-  \item la documentation Doxygen est enfin plus ou moins utile dans une utilisation courante de la librairie. Cette documentation, presentee sous forme de site internet, est directement compilee a partir du code source. Elle est donc plus ou moins complete selon les fichiers. Afin de pouvoir naviguer dans cette derniere, il est indispensable de connaitre la structure du projet.
+  \item la documentation Doxygen présentée sous forme de site internet, est directement compilée a partir du code source. Elle est donc plus ou moins complète selon les fichiers. Afin de pouvoir naviguer dans cette dernière, il est indispensable de connaitre la structure du projet.
 \end{itemize}
-
 Luis Ibáñez, a dit cette année : "La courbe d'apprentissage d'ITK en \C++ est bien trop raide, et nous allons nous efforcer dans les futures version, de rendre la librairie plus accessible.". La prochaine version d'ITK (version 4) sera donc surement plus facile a utiliser et prendre en main.
 
-
-
-\subsection{La librairie VTK}
-
-La librairie VTK est developpee par Kitware, Il s'agit d'une librairie \C++ utilisee pour la visualisation de donnees. Elle est open source et cross-platform. Elle utilise des outils similaires a ceux utilises pour ITK (CMake)
+\paragraph{La librairie VTK} est développée par Kitware, Il s'agit d'une librairie \C++ utilisee pour la visualisation de données. Elle est open source et cross-platform. Elle utilise des outils similaires a ceux utilises pour ITK (CMake)
 Elle utilise aussi un systeme de "pipeline" (flux de donnees) similaire a celui d'ITK pour traiter les donnees a visualiser. Elle est developpee conjointement avec ITK, et il est possible plus ou moins facilement de connecter les filtres de traitement d'image d'ITK avec les filtres de visualisation de VTK.
 
+\paragraph{La librairie Qt} permet une gestion avancée et multi plateforme de l'interface utilisateur, en proposant une interface graphique open source et cross-platform.
+Elle étend aussi les fonctionnalités du langage \C++ en proposant une nouvelle architecture pour le système de callbacks, un nouveau modèle d'objet, et d'héritage. Cependant, ces modifications sont facilement intégrées par le développeur débutant, grâce a une aide abondante composée d'un ensemble de tutoriels, d'exemples fortement documentes, et d'une liste de diffusion très active.
 
 
-\subsection{La librairie Qt}
+\TODO{DEFINIR CALLBACK, GUI}
 
-Si VTK permet la visualisation de donnees, cette librairie ne permet pas une gestion avancee et multi plateforme de l'interface utilisateur. Qt permet cela en proposant une Graphical User Interface open source et cross-platform. Cette librairie a ete developpee initialement par TrollTech, pour ensuite etre racheteee par Nokia. Cependant, les memes developpeurs passionnes travaillent toujours sur le projet. 
-Elle etend aussi les fonctionnalites du langage \C++ en proposant une nouvelle architecture pour le systeme de callbacks, un nouveau modele d'objet, et d'heritage. Cependant, ces modifications sont facilement integrees par le developpeur debutant, grace a une aide abondante composee d'un systeme de tutoriels, d'exemples fortement documentes, et d'une liste de diffusion tres active.
+\subsubsection{Les outils de programmation}
+
+A partir d'un certain niveau, en {\C++}, il est indispensable de maitriser certains outils complexes. Ceux-la, après un long apprentissage, augmentent grandement la productivité.
+
+\paragraph{Unix Shell}
+La plupart des informaticiens travaillent sur Linux, car ce système inclut un grand nombre d'utilitaires standard pour un développement en {\C++}. Les outils de contrôle de version (SVN, GIT), les outils de connexion réseau (ssh), des compilateurs pour les principaux langages sont installes par défaut sur la plupart des distributions Linux.
+Afin de pouvoir bénéficier au maximum de ce système, il est important de maitriser l'invite de commande.
+
+\paragraph{CMake: Make multi-plateforme}
+Au Megason Lab, nous utilisons CMake, ce programme permet definir des regles de compilation permettant a un projet de compiler sur differents systemes d'exploitation (Nous programmons des application fonctionnant sur Windows, Linux et MacOs).
+
+\paragraph{CTest: Un utilitaire de contrôle de qualité}
+Lorsque l'on travaille sur un projet volumineux, il est facile de "casser" le code. L'ajout de certaines fonctionnalités peut modifier le comportement d'autres parties du programme d'une manière imprévue. L'outil CTest est utilisé au Kegason Lab, pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de test des fonctionnalités du programme.
+
+\paragraph{svn: Le contrôle de version pour un travail collaboratif}
+Gofigure2 est developpe par un groupe d'informaticiens. Ces derniers travaillent sur les meme fichiers simultanement. Dans ce cadre, il est important de garder une trace des modifications apportees par chacun. Il faut aussi combiner ces changements, et sauvegarder le projet sur un serveur accessible a tous. svn est un utilitaire qui remplis toutes ces fonctions.
 
 
-\TODO{DEFINIR CALLBACK}
-
-\subsection{outils necessaires}
 
 
-\TODO{
-CMake
-shell scripts
-automatic builds 
-Python ? }
+\TODO{definir SVN GIT}
+
+
+\subsection{AGENDA ?????}
 
 
 
@@ -92,6 +112,9 @@ artifacts, bruits
 deplacements violents
 
 remedier a ce probleme
+
+
+Il est aussi important de noter qu'acquérir une image de qualité facilite grandement le travail de reconnaissance de formes et d'objets, en réduisant les près-traitements.
 
 \subsection{Stabilisation de l'acquisition}
 
