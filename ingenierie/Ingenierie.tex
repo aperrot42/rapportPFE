@@ -11,97 +11,288 @@
 
 
 
-
-
-
 \section{Introduction}
 
-Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur. Les laboratoires aux États-Unis ont besoin de l'expertise d'ingénieurs pour résoudre des problème techniques. Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
+Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. 
+Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur. Les laboratoires aux 
+États-Unis ont besoin de l'expertise d'ingénieurs pour résoudre des problème techniques. 
+Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. 
+Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
  
 \section{Objectifs}
 
+Les objectifs initialement proposés contenaient une très forte composante recherche.
+Cependant, le Megason lab cherche au maximum a intégrer les avancées en traitement de l'image aux outils qu'il conçoit,
+ notamment au programme Gofigure2. Cela entraine des contraintes vis à vis des outils de développements. 
+ Il a donc fallu me former afin que je devienne un programmeur avancé en {\C++}. 
+ 
+J'ai ainsi commencé mon PFE en tant que membre de l'équipe de développement de Gofigure2.
+ Les objectifs étant d'apprendre les différentes librairies utilisées par le programme, pour mettre au point un système de plugins. 
+ Ma mission était de créer une librairie de comparaison d'images, afin d'inclure aux plugins, un aperçu à la Photoshop.
+
+Dans le cadre de ma participation au développement de Gofigure2,
+ j'ai aussi proposé un protocole de travail avec un nouveau programme de contrôle de version : GIT.
+ Il s'agissait tout d'abord d'apprendre à utiliser GIT, pour ensuite transmettre ce savoir et enfin proposer une méthode de travail.
+
+Mon PFE étant motivé par des objectifs de traitement de l'image, j'ai aussi travaillé sur l'amélioration
+ des techniques d'acquisitions de données microscopiques.
 
 
 
 
-\section{Création d'un debugger graphique}
 
-L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieurs travaillent sous la direction d'un docteur sur la création de l'outil de visualisation d'images microscopiques (GoFigure2), tandis qu'un autre docteur travaille sur des algorithmes de traitement d'image. Afin de travailler pour l'ensemble des informaticiens, le projet devait
+%--------------------------------------------------
+%             COMPARAISON
+%--------------------------------------------------
+
+
+\section{Création d'une librairie de comparaison d'images}
+
+L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieurs travaillent sous la direction d'un docteur sur la
+ création de l'outil de visualisation d'images microscopiques (GoFigure2), tandis qu'un autre docteur travaille sur
+ des algorithmes de traitement d'image. Afin de travailler pour l'ensemble des informaticiens, le projet devait
 \begin{inparaenum}[(i)]
-  \item faciliter le travail de developpement d'algorithmes de traitement de l'image, et 
-  \item s'integrer au developpement de GofiGure2.
+  \item faciliter le travail de développement d'algorithmes de traitement de l'image, et 
+  \item s'intégrer au développement de GofiGure2.
 \end{inparaenum}
 
-La création d'un debugger graphique atteint ces deux buts : Il s'agit d'un programme utilisant le code source du projet Gofigure2, qui sera utilise pour le developpement des plugins de Gofigure2.
-Ce programme permet aussi de visualiser les traitements appliques aux données lors de l'execution d'un algorithme de traitement d'image sous un environnement de debugging
+La création de la librairie de comparaison d'images atteint ces deux buts : Il s'agit d'un programme utilisant le code source du projet Gofigure2, qui sera utilisé pour le développement des plugins de Gofigure2.
+Cette librairie a enfin était spécifiquement développée pour compléter le projet de débugger graphique de Matt McCornicc \TODO{inserer reference Matt}afin de rendre cette librairie particulièrement utile aux traiteurs d'image développant sous ITK. Ce programme permet aussi de visualiser les traitements appliques aux données lors de l'exécution d'un algorithme de traitement d'image sous un environnement de debugging (gdb\TODO{definir GDB}).
 
-\subsection{les outils utilises}
+
+\subsection{cahier des charges}
+
+Des objectifs généraux définis en introduction, nous pouvons dégager les fonctions principales de la librairie :
+\begin{itemize}
+  \item compatible avec ITK
+  \item compatible avec VTK
+  \item compatible avec Qt
+  \item Inclure des classes de Gofigure2
+  \item facile a utiliser
+  \item bien documentée.
+\end{itemize}
+
+
+\subsection{les outils utilisés}
 
 \subsubsection{Les librairies \C++}
-
 Il existe un grand nombre de fonctions déjà codées en {\C++}. Dans une optique de standardisation et d'efficacité, il est important d'apprendre a utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
 
-\paragraph{La librairie "Insight ToolKit" (ITK)} est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT). 
-Cette collection d'algorithmes ne cesse de s'agrandir grâce à la philosophie open-source. Le spectre des applications d'ITK inclut entre autres exemples:  
-\begin{itemize}
-  \item l'imagerie medicale, avec \href{http://www.slicer.org/}{3DSlicer},
-  \item l'imagerie biologique, avec \href{http://gofigure2.sourceforge.net/}{Gofigure2},
-  \item et l'imagerie satellite, avec l'\href{http://www.orfeo-toolbox.org/otb/}{Orfeo ToolBox}.
-\end{itemize}
-Le modèle de programmation est relativement complexe et nécessite de un long apprentissage, et de l'expérience. A cette fin, de nombreux outils d'information sont mis a la disponibilité du nouvel utilisateur :
-\begin{itemize}
-  \item des listes de diffusions d'Emails, pour mettre en contact les nouveaux utilisateurs d'ITK et les programmeurs et utilisateurs avancés;
-  \item un wiki (\url{http://www.vtk.org/Wiki/ITK}), qui donne quelques informations quand à la mise en place d'un environnement de développement utilisant ITK.;
-  \item un guide d'utilisateur très bien expliqué, mais basé sur la version 2.4 d'ITK tandis que la dernière version publiée est la 3.20;
-    \TODO {reference ITK software guide}
-  \item la documentation Doxygen présentée sous forme de site internet, est directement compilée a partir du code source. Elle est donc plus ou moins complète selon les fichiers. Afin de pouvoir naviguer dans cette dernière, il est indispensable de connaitre la structure du projet.
-\end{itemize}
-Luis Ibáñez, a dit cette année : "La courbe d'apprentissage d'ITK en \C++ est bien trop raide, et nous allons nous efforcer dans les futures version, de rendre la librairie plus accessible.". La prochaine version d'ITK (version 4) sera donc surement plus facile a utiliser et prendre en main.
+Le projet utilise trois grandes librairies :
+\begin{description}
+  \item[Insight ToolKit (ITK)] qui est spécialisée dans le traitement d'image. Nous utilisons cette librairie, 
+  afin de supporter le type de données qu'elle stocke en mémoire.
+  \item[Visualization ToolKit (VTK)] qui est spécialisé dans la visualisation d'images. 
+  Nous utilisons cette librairie afin de supporter le type de données qu'elle stocke en mémoire,
+  et aussi pour visualiser les données acquises par la librairie.
+  \item[Qt] qui est spécialisée dans la création d'interface graphiques. 
+  Nous avons rendu notre travail directement compatible avec cette librairie
+  pour permettre aux utilisateurs de l'intégrer dans n'importe quelle application développée avec Qt.
+\end{description}
+Une description détaillée de ces librairies est présentée en annexe.
 
-\paragraph{La librairie VTK} est développée par Kitware, Il s'agit d'une librairie \C++ utilisee pour la visualisation de données. Elle est open source et cross-platform. Elle utilise des outils similaires a ceux utilises pour ITK (CMake)
-Elle utilise aussi un systeme de "pipeline" (flux de donnees) similaire a celui d'ITK pour traiter les donnees a visualiser. Elle est developpee conjointement avec ITK, et il est possible plus ou moins facilement de connecter les filtres de traitement d'image d'ITK avec les filtres de visualisation de VTK.
-
-\paragraph{La librairie Qt} permet une gestion avancée et multi plateforme de l'interface utilisateur, en proposant une interface graphique open source et cross-platform.
-Elle étend aussi les fonctionnalités du langage \C++ en proposant une nouvelle architecture pour le système de callbacks, un nouveau modèle d'objet, et d'héritage. Cependant, ces modifications sont facilement intégrées par le développeur débutant, grâce a une aide abondante composée d'un ensemble de tutoriels, d'exemples fortement documentes, et d'une liste de diffusion très active.
-
-
-\TODO{DEFINIR CALLBACK, GUI}
+\TODO{Annexe avec description pipelines etc... vtk itk qt}
 
 \subsubsection{Les outils de programmation}
+A partir d'un certain niveau, en {\C++}, il est indispensable de maitriser certains outils complexes. Ceux-la, après un temps
+ d'apprentissage, augmentent grandement la productivité.
+Les outils utilisés quotidiennement, dans le processus de développement d'applications au Megason lab sont :
 
-A partir d'un certain niveau, en {\C++}, il est indispensable de maitriser certains outils complexes. Ceux-la, après un long apprentissage, augmentent grandement la productivité.
-
-\paragraph{Unix Shell}
-La plupart des informaticiens travaillent sur Linux, car ce système inclut un grand nombre d'utilitaires standard pour un développement en {\C++}. Les outils de contrôle de version (SVN, GIT), les outils de connexion réseau (ssh), des compilateurs pour les principaux langages sont installes par défaut sur la plupart des distributions Linux.
-Afin de pouvoir bénéficier au maximum de ce système, il est important de maitriser l'invite de commande.
-
-\paragraph{CMake: Make multi-plateforme}
-Au Megason Lab, nous utilisons CMake, ce programme permet definir des regles de compilation permettant a un projet de compiler sur differents systemes d'exploitation (Nous programmons des application fonctionnant sur Windows, Linux et MacOs).
-
-\paragraph{CTest: Un utilitaire de contrôle de qualité}
-Lorsque l'on travaille sur un projet volumineux, il est facile de "casser" le code. L'ajout de certaines fonctionnalités peut modifier le comportement d'autres parties du programme d'une manière imprévue. L'outil CTest est utilisé au Kegason Lab, pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de test des fonctionnalités du programme.
-
-\paragraph{svn: Le contrôle de version pour un travail collaboratif}
-Gofigure2 est developpe par un groupe d'informaticiens. Ces derniers travaillent sur les meme fichiers simultanement. Dans ce cadre, il est important de garder une trace des modifications apportees par chacun. Il faut aussi combiner ces changements, et sauvegarder le projet sur un serveur accessible a tous. svn est un utilitaire qui remplis toutes ces fonctions.
-
-
-
-
-\TODO{definir SVN GIT}
-
-
-\subsection{AGENDA ?????}
+\begin{description}
+  \item[l'Unix Shell] : pratiquement tous les développeurs travaillent sur Linux car ce système inclut un grand nombre d'utilitaires
+  standard pour un développement en {\C++}. Les outils de contrôle de version (SVN, GIT), les outils de connexion réseau (ssh), des
+  compilateurs pour les principaux langages sont installes par défaut sur la plupart des distributions Linux.
+  Afin de pouvoir bénéficier au maximum de ce système, il est important de maitriser l'invite de commande.
+  \item[CMake] : ce programme permet de définir des règles de compilation pour différents compilateurs, afin qu'un projet puisse
+   compiler sur différents systèmes d'exploitation (Nous programmons des application fonctionnant sur Windows, Linux et MacOs).
+  \item[CTest] : Lorsque l'on travaille sur un projet volumineux, il est facile de "casser" le code. L'ajout de certaines fonctionnalités 
+  peut modifier le comportement d'autres parties du programme d'une manière imprévue. L'outil CTest est utilisé au Kegason Lab, 
+  pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de test 
+  des fonctionnalités du programme.
+  \item[SVN] Gofigure2 les développeurs de Gofigure2 travaillent sur les même fichiers simultanément. 
+  Dans ce cadre, il est important de garder une trace des modifications apportées par chacun. Il faut aussi combiner ces changements, 
+  et sauvegarder le projet sur un serveur accessible à tous. SVN est un programme de gestion de versions qui rempli toutes ces 
+  fonctions.
+\end{description}
 
 
+\subsection{Agenda}
 
-\subsection{resultats}
+Afin de planifier les tâches accomplies pour mener à bien ce projet, un diagramme de Gantt est présenté.
+\TODO{INSERER GANTT pour Comparer }
 
-\TODO {include screenshots include code snapshots}
-\subsection{travail futur}
+\subsection{Résultats}
+
+La librairie a été crée et est fonctionnelle. Elle rempli les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
+\TODO{insere code snapshot en annexe}
+Une interface graphique basique a été crée pour illustrer les fonctionnalités de la librairie :
+\TODO{include screenshots}
+En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples, la librairie est délivrée avec une documentation en ligne.
+\TODO{inserer exemple documentation}
+Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été crée.
+La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est en ce moment intégrée au débugger graphique proposé par Matt Mc Cornic.
+
+
+\subsection{Travail futur}
+La librairie de comparaison d'images est un très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :
+\begin{itemize}
+  \item Supporter des images vectorielles d'ITK,
+  \item intégrer des filtres simples (gradient, inverse, seuillage...),
+  \item ajouter un moteur de rendu 3D (par tracé de rayons par exemple...).
+\end{itemize}
 
 
 
 
+
+
+%--------------------------------------------------
+%             GIT
+%--------------------------------------------------
+
+
+\section{Définition d'un protocole de travail sous GIT}
+
+Une partie de mon travail a consisté en la définition de protocoles 
+afin d'effectuer certaines tâches d'une manière organisée et répétable. 
+J'ai travaillé sur l'élaboration d'un protocole de travail sur GIT pour l'équipe de programmateurs.
+
+Je suis donc passé par une phase de découverte et d'apprentissage pour ensuite écrire un tutoriel 
+afin d'expliquer le fonctionnement de GIT a l'équipe informatique. 
+J'ai ensuite propose un "workflow" utilisant GIT.
+
+\subsubsection{Le contrôle de version}
+
+Cette partie présente brièvement la gestion de version et les principales solutions existantes.
+
+\paragraph{Le contrôle de version} ou gestion de version consiste en
+la création d'un historique des modifications apportées a un projet.
+Il est nécessaire de disposer d'un programme à cet effet, surtout lorsque plusieurs personnes travaillent sur le même projet.
+Il est ainsi possible de garder trace de toutes les modifications apportées.
+Certains programmes de contrôle de version permettent de modifier l'historique en annulant l'effet d'une modification erronée par exemple.
+
+Les programmes récents de contrôle de version sont aussi utilisés pour permettre a plusieurs développeurs de travailler 
+sur le même fichier, ou sur des fonctionnalités différentes.
+Il existe un vocabulaire particulier au contrôle de version. Pour ce rapport, il est important de comprendre l'analogie de l'arbre couramment utilisée.
+Le tronc (trunc) contient généralement la dernière version commune du projet.
+De ce tronc, les programmeurs créent des branches pour apporter des changements.
+Ces branches sont des copies du tronc.
+L'action de sauvegarder dans l'historique les changements apportés au projet est "committer" (to commit).
+L'action de fusionner une branche au tronc (et ainsi rapporter tous les changements effectués sur une branche au tronc),
+s'appelle le merge.
+Dans les  "anciens" programmes de gestion de version, les changements (commits) sont souvent directement faits sur le tronc.
+Cela crée des problèmes de conflits (plusieurs utilisateurs auraient changé d'une manière différente le même fichier, par exemple).
+
+Le code source est souvent stocké sur un serveur en ligne. Ainsi, le programme de gestion de version est aussi utilisé
+pour publier le code sur internet, par l'intermédiaire de sites spécialisés (Sourceforge, Github, Gitorious, GoogleCode...).
+
+\TODO{Illustration du fonctionnement d'un programme de gestion de version :}
+
+
+
+\paragraph{Les deux philosophies de contrôle de version} sont actuellement la gestion de version centralisée et la gestion de version locale.
+
+
+
+
+Il est possible de trouver une comparaison détaillée des deux philosophies à cette adresse :
+\TODO{cite adresse \url{http://informatique.in2p3.fr/?q=node/333}}
+
+
+
+\paragraph{principales solutions}
+
+\TODO{inserer un tableau avec les principaux clients}
+
+\paragraph{Avantages de Git sur la concurrence}
+
+GIT n'est pas le seul programme de contrôle de version. Son principal concurrent est Subversion.
+Cependant il propose de nombreux avantages dont les principaux sont:
+\begin{description}
+  \item[rapidité] : GIT utilise un protocole de communication très efficace.
+  \item[économie] : GIT utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
+  \item[développement en commun] : chacun peut travailler sur une sous partie du programme. La création de "branches" est facile et
+  rapide. La mise en commun des changements est bien mieux gérée que sur des programmes concurrents comme SVN.
+  \item[développement décentralisé] : chacun possède une copie du code et peut travailler sans connexion internet. 
+  Si le serveur subit une panne ou est indisponible, tout le monde peut continuer à travailler, et la recréation d'un serveur est triviale.
+  \item[Souplesse] : GIT permet de travailler sur un projet utilisant svn en bénéficiant des avantages de la gestion de projet
+  décentralisée.
+\end{description}
+
+
+\subsection{Écriture du tutoriel}
+
+Le tutoriel a été écris sur le wiki de Gofigure2. Il s'agit de l'emplacement de prédilection pour les informations 
+concernant la programmation et l'utilisation de Gofigure2. Le système du wiki, en plus de proposer une syntaxe simple 
+pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. 
+Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
+
+L'écriture d'un tel tutoriel se fait souvent dans un registre proche du langage familier,
+le but étant de simuler des instruction données par un collègue ou un ami. 
+Les instruction se doivent d'être relativement brèves, bien souvent le lecteur veut juste appliquer certaines fonctionnalités 
+proposées par GIT sans toujours vraiment chercher a comprendre ce qu'il fait. 
+Il existe d'autres sources d'informations pour apprendre complètement le fonctionnement de l'application.
+Le tutoriel ne se veut donc pas exhaustif, il propose juste une manière qui fonctionne d'utiliser GIT,
+a la manière d'un travail dirigé. Il a été écrit pendant ma phase d'apprentissage de GIT. 
+Il détaille les principales difficultés et écueils rencontrés. 
+
+Le tutoriel est présent a cette adresse : \\
+\url{http://sourceforge.net/apps/trac/gofigure2/wiki/GIT}
+
+\subsection{Proposition d'un protocole de travail}
+Il a enfin fallu proposer un workflow (protocole de travail), qui définit la manière dont les programmeurs
+doivent apporter des modifications au code source. Il s'agit de proposer un protocole qui :
+\begin{enumerate}
+  \item n'augmente pas trop la charge de travail,
+  \item permette de bien suivre les modifications apportes par chacun. 
+  \item permette au responsable du projet de corriger ou supprimer les changements apportes par les développeurs.
+  \item corresponde a un standard.
+\end{enumerate}
+Le workflow proposé a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/git-model}{blog}. Ce protocole découle assez naturellement de l'apprentissage de GIT, il est donc simple.
+
+Ce workflow, en plus d'être précisément détaillé, est techniquement viable.
+
+\subsubsection{description du protocole}
+
+Il existe deux branches principales : 
+\begin{description}
+  \item[\emph{master}] : cette branche store les versions stables du programme.
+  \item[\emph{develop}] : cette branche contient la dernière version commune du programme, elle correspond au tronc.
+\end{description}
+Ces branches sont présentes sur le serveur central. Le développement du programme se fait sur la branche develop, et lorsqu'une version stable est sur le point d'être produite, on sauvegarde l'état d'avancement du projet dans la branche master.
+
+Il existe ensuite une série de branches de support. Ces branches ont une durée de vie limitée, et doivent fusionner avec d'autres branches pour finalement rejoindre develop (le tronc), puis master. Elles ne sont pas forcement présente sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
+\begin{description}
+  \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est crée à partir de develop, et une fois mature, refusionne avec \emph{develop}.
+  \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est crée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche develop et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
+  \item[\emph{hotfixes}] : cette branche particulière est créée à partir de la branche \emph{master}, lorsque une version publiée du programme contient un bug important qui ne peut attendre la prochaine version pour être corrigé. Elle refusionne avec la branche \emph{master} pour créer des "sous versions" (0.1.1 par exemple, est une sous version de 0.1.0). Cette branche particulière merge aussi avec la branche \emph{develop} pour appliquer la correction aux futures publications, et enfin, la branche \emph{release} si elle existe au moment de la réparation du bug.
+\end{description}
+
+Un cycle de developpement normal devient donc, pour un programmeur :
+\TODO{creer une figure}
+creation d'une branche feature a partir de develop\\
+travail sur la branche feature,\\
+fusion de feature avec develop\\
+xX\\
+creation de release\\
+travail sur release\\
+merge avec master -> RELEASE\\
+merge avec develop\\
+destruction de release\\
+xOn reboucle\\
+\\
+Oh no ! un bug :\\
+creation de hotfix\\
+correction du bug\\
+merge sur master -> SOUS RELEASE\\
+merge sur develop\\
+merge sur release (si release existe)\\
+destruction de la branche hotfixes\\
+
+
+Voici une illustration de ce protocole :
+
+\TODO{insert workflow pdf here}
 
 \section{Amélioration des techniques d'imagerie}
 
@@ -134,52 +325,6 @@ developpements futurs :
 metrique non rigide ?
 tps de calcul ?
 wavelets pour downsample ?
-
-
-\section{Définition de protocoles}
-
-Une partie de mon travail a consiste en la définition de protocoles afin d'effectuer certaines taches d'une manière organisée et répétable. Il s'agit d'un travail de recherche, d'apprentissage et d'expression. J'ai travaille sur l'élaboration d'un workflow pour l'équipe de programmateurs, et une méthode de partage de données avec d'autres laboratoires, pour l'ensemble du laboratoire.
-
-\subsection{GIT workflow}
-
-GIT est un programme très a la mode, de nombreux projets open source l'utilisent pour la gestion de leur code. Comme Gofigure2 adopte une philosophie open source, il se doit d'utiliser les outils favoris de la communauté.
-Je suis donc passé par une phase d'apprentissage pour ensuite écrire un tutoriel afin d'expliquer le fonctionnement de GIT a l'équipe informatique. J'ai ensuite propose un workflow, qui est celui utilise par les développeurs du projet VTK.
-
-\subsubsection{Fonctionnement de GIT}
-
-GIT est un programme de gestion de sources invente par le créateur de Linux  (Linus Torvalds). Ce programme de contrôle de version est utilisé pour le développement du noyau de Linux, il est donc très performant, mais aussi très complexe.
-Le principe du programme de contrôle de version est de permettre a plusieurs développeurs de travailler sur un même projet. Le programme gardant en mémoire qui a apporté telle modification au code, et quand. Cela permet a chaque programmeur de travailler sur des fonctionnalités différentes et de fusionner leurs changements.
-Le code source est souvent stocké sur un serveur en ligne. GIT fait une copie de l'historique du code source sur l'ordinateur de l'utilisateur. Il est donc possible de réarranger cet historique, d'ajouter des modifications, sans etre connecte a internet, une fois le projet copie ("clone" dans le langage de GIT) sans être connecte a internet. L'utilisateur peut, des qu'il bénéficie d'une connexion internet partager ("pousser") tous les changements qu'il a apporte au code source, en une seule fois. En ce sens, GIT diffère d'une partie des logiciels concurrent qui nécessitent une connexion internet presque permanente.
-
-
-\subsubsection{Écriture du tutoriel}
-
-Le tutoriel a été écris sur le wiki de Gofigure2. Il s'agit de l'emplacement de prédilection pour les informations concernant la programmation et l'utilisation de Gofigure2. Le système du wiki, en plus de proposer une syntaxe simple pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
-
-L'écriture d'un tel tutoriel se fait souvent dans un registre proche du langage familier, le but étant de simuler des instruction données par un collègue ou un ami. Les instruction se doivent d'être relativement brèves, bien souvent le lecteur veut juste appliquer certaines fonctionnalités proposées par GIT sans toujours vraiment chercher a comprendre ce qu'il fait. Il existe d'autres sources d'informations pour apprendre complètement le fonctionnement de l'application.
-Le tutoriel ne se veut donc pas exhaustif, il propose juste une manière qui fonctionne d'utiliser GIT, a la manière d'un travail dirigé. Il a été écrit pendant ma phase d'apprentissage de GIT. Il détaille les principales difficultés et écueils rencontrés. 
-
-Le tutoriel est présent a cette adresse : \\
-\url{}
-
-\subsubsection{Workflow propose}
-Il a enfin fallu proposer un workflow (protocole de travail), qui définit la manière dont les programmateurs doivent apporter des modifications au code source. Il s'agit de proposer un protocole qui :
-\begin{enumerate}
-  \item n'augmente pas trop la charge de travail,
-  \item permette de bien suivre les modifications apportes par chacun. 
-  \item permette au responsable du projet de corriger ou supprimer les changements apportes par les développeurs.
-  \item corresponde a un standard.
-\end{enumerate}
-Le workflow propose a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/git-model}{blog}. Ce protocole découle assez naturellement de l'apprentissage de GIT, il est donc simple.
-
-Ce workflow, en plus d'etre precisement detaille, est techniquement viable :
-Les travaux et modifications de chacun sont stockés dans des branches annexes durant tout leur développement. Il est ainsi facile de corriger un bug introduit par une certaine fonction. La branche principale (master) contient en permanence une version stable du projet.
-Le serveur central (en ligne) contient deux branches :
-\begin{description}
-  \item [master] qui contient la version courante stable du projet,
-  \item [develop] qui contient les nouvelles fonctionnalités depuis la dernière version stable du projet. Cette branche est celle dont on teste la robustesse.
-\end{description}
-Les informations les plus importantes du projet sont donc sauvegardes sur le cerveur central en plus de sur toutes les machines utilisées par les programmeurs. 
 
 
 \subsubsection{Planning et avancement}
@@ -217,12 +362,77 @@ Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte in
 Mon ambition est de migrer vers des responsabilités manageriales après avoir une très bonne maitrise de la technique.
 
 
-\TODO{
-definir Templates
-definir cross platform
-definir idiomes \C++
-definir SVN
-definir GIT
-definir wiki
-definir GUI Graphical User Interface
-definir Callback}
+
+
+
+
+
+
+\section{ANNEXES}
+
+
+
+\paragraph{La librairie "Insight ToolKit" (ITK)} est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT). 
+Cette librairies est construite sur un système de "Templates", qui lui permet de s'adapter à diverses données. Elle propose une architecture centrées sur un flux de données, traité par différents filtres que l'on connecte ensemble.
+Cette collection d'algorithmes ne cesse de s'agrandir grâce à la philosophie open-source. Le spectre des applications d'ITK inclut entre autres exemples:  
+\begin{itemize}
+  \item l'imagerie medicale, avec \href{http://www.slicer.org/}{3DSlicer},
+  \item l'imagerie biologique, avec \href{http://gofigure2.sourceforge.net/}{Gofigure2},
+  \item et l'imagerie satellite, avec l'\href{http://www.orfeo-toolbox.org/otb/}{Orfeo ToolBox}.
+\end{itemize}
+Le modèle de programmation est relativement complexe et nécessite de un long apprentissage, et de l'expérience. A cette fin, de nombreux outils d'information sont mis a la disponibilité du nouvel utilisateur :
+\begin{itemize}
+  \item des listes de diffusions d'Emails, pour mettre en contact les nouveaux utilisateurs d'ITK et les programmeurs et utilisateurs avancés;
+  \item un wiki (\url{http://www.vtk.org/Wiki/ITK}), qui donne quelques informations quand à la mise en place d'un environnement de développement utilisant ITK.;
+  \item un guide d'utilisateur très bien expliqué, mais basé sur la version 2.4 d'ITK tandis que la dernière version publiée est la 3.20;
+    \TODO {reference ITK software guide}
+  \item la documentation Doxygen présentée sous forme de site internet, est directement compilée a partir du code source. Elle est donc plus ou moins complète selon les fichiers. Afin de pouvoir naviguer dans cette dernière, il est indispensable de connaitre la structure du projet.
+\end{itemize}
+Luis Ibáñez, a dit cette année : "La courbe d'apprentissage d'ITK en \C++ est bien trop raide, et nous allons nous efforcer dans les futures version, de rendre la librairie plus accessible.". La prochaine version d'ITK (version 4) sera donc surement plus facile a utiliser et prendre en main.
+
+\paragraph{La librairie VTK} est développée par Kitware, Il s'agit d'une librairie \C++ utilisee pour la visualisation de données. Elle est open source et cross-platform. Elle utilise des outils similaires a ceux utilises pour ITK (CMake)
+Elle utilise un systeme de "pipeline" (flux de donnees) similaire a celui d'ITK pour traiter les donnees a visualiser. Elle est developpee conjointement avec ITK, et il est possible plus ou moins facilement de connecter les filtres de traitement d'image d'ITK avec les filtres de visualisation de VTK.
+
+\paragraph{La librairie Qt} permet une gestion avancée de l'interface utilisateur, en proposant une interface graphique open source et cross-platform.
+Elle étend aussi les fonctionnalités du langage \C++ en proposant une nouvelle architecture pour le système de callbacks, un nouveau modèle d'objet, et d'héritage. Cependant, ces modifications sont facilement intégrées par le développeur débutant, grâce a une aide abondante composée d'un ensemble de tutoriels, d'exemples fortement documentes, et d'une liste de diffusion très active.
+
+
+
+
+
+
+
+\section{definitions}
+
+
+
+
+Templates : En programmation informatique, les templates sont une particularité de la programmation en language C++, qui autorise l'écriture d'un code sans considération envers le type des données avec lesquelles il sera finalement utilisé. Les templates supportent la programmation générique en {\C++}.
+
+Cross-platform : Un logiciel multiplate-forme ou multiplateforme est un logiciel conçu pour fonctionner sur plusieurs plates-formes, c’est-à-dire le couple liant ordinateur et système d’exploitation. En anglais on parle souvent de "cross-platform software" ou "platform independent software" ou encore de "multi-platform software".
+
+Idiomes (programmation) :  Un idiome en programmation qualifie un code qui ajoute des fonctionnalités non existantes dans un
+langage.
+
+Wiki : Un wiki est un site web dont les pages sont modifiables par tout ou partie des visiteurs du site. Il permet ainsi l'écriture et l'illustration collaboratives de documents.
+
+Graphical User Interface (GUI) : Un environnement graphique est, en informatique, ce qui est affiché en pixels sur un moniteur
+d'ordinateur et sur lequel l'utilisateur peut agir avec différents périphériques d'entrée comme le clavier ou la souris. 
+Des images, des animations (en 2 ou 3 dimensions), et même des vidéos peuvent être rendues à l'écran.
+Ce type d'interface Homme-machine s'oppose à la notion de ligne de commande.
+
+Callback : la technique des fonctions de rappel (callback functions) permet de passer en argument d'une fonction, une autre fonction. 
+Cette technique est utilisée dans la programmation évènementielle, ou les interactions de l'utilisateur doivent entrainer l'exécution de fonctions.
+
+\subsection{biblio}
+
+Evaluation/comparaisons de GIT :
+descritpion comparaison centralisee non centralisee
+\url{http://informatique.in2p3.fr/?q=node/333}
+avantages de GIT :
+\url{http://www.whygitisbetterthanx.com/}
+\url{http://joshcarter.com/productivity/svn_hg_git_for_home_directory}
+\url{http://dev-heaven.net/wiki/20/Git_vs_SVN_comparison}
+
+Matt Mc Cornick
+
