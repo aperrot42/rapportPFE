@@ -11,7 +11,7 @@
 \begin{abstract}
   Ce rapport présente le travail effectué pendant mon Projet de Fin d'Étude au seins du Megason Lab, Harvard Medical School. Ce PFE conclut ma formation à l'Institut National des Sciences Appliquées de Lyon, au département Génie Électrique, pour acquérir le grade d'Ingénieur INSA. Il s'agit aussi d'un stage de recherche finalisant le master Génie Électrique et des Procédés, parcours Systèmes et Images à l'INSA de Lyon, l'École Centrale de Lyon, et l'Université Claude Bernard Lyon 1.
   
-  Le travail effectué est porté sur le traitement d'images biologiques. Il s'agit de vidéos tri-dimensionnelles de poisson zèbre durant sa phase de développement embryonnaire. Il s'agissait de trouver des méthodes de segmentation de la paroi cellulaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : Gofigure2. A terme, les résultats théoriques devront être intégrés à cette application.
+  Le travail effectué est porté sur le traitement d'images biologiques. Il s'agit de vidéos tri-dimensionnelles de poisson zèbre durant sa phase de développement embryonnaire. Il s'agissait de trouver des méthodes de segmentation de la paroi cellulaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : Gofigure2\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à cette application.
   
   
 \tableofcontents  
@@ -26,37 +26,105 @@
 \section{Le Megason Lab}
 
 \subsection{L'équipe du laboratoire}
-Le Megason lab est un laboratoire dont le personnel est surtout composé de chercheurs post-doctorants. Il y a clairement deux domaines d'expertise : Biologie, et Informatique. L'équipe de biologie mène des recherches sur le développement du poisson zèbre, tandis que l'équipe d'informaticiens développe un programme de visualisation, segmentation, suivi de cellules adapté aux données de microscopie.
+Le Megason lab est un laboratoire dont le personnel est surtout composé de chercheurs post-doctorants.
+Il y a clairement deux domaines d'expertise : Biologie, et Informatique.
+L'équipe de biologie mène des recherches sur le développement du poisson zèbre,
+tandis que l'équipe d'informaticiens développe un programme de visualisation,
+segmentation, suivi de cellules adapté aux données de microscopie.
 
-
-INSERER TROMBI
-
-1pr
-7postdocs
-3doc
-3 interns
-2 ingenieurs
-
+{\small \begin{tabular*}{1.2\textwidth}{@{\extracolsep{\fill}} |  p{2.5cm} |  p{2.6cm} | p{3.3cm} | c | r | }
+\hline Nom & Poste & Intérêts & Photo & Nationalité \\ 
+\hline Sean Megason & Professeur (Docteur) &  &  &  \\ 
+\hline Ramil Noche & Séjour Postdoctoral & Formation du système nerveux. &  &  \\ 
+\hline Arnaud Gelas & Ingénieur de recherche (senior) & Programmation de Gofigure2 : Management du projet. &  &  \\ 
+\hline Kishore Mosaliganti & Séjour Postdoctoral & Algorithmes de traitement de l'image, recalage et segmentation. &  &  \\ 
+\hline Fengzhu Xiong & Étudiant en thèse & Création d'un poisson ayant une couleur différente par cellule. &  &  \\ 
+\hline Nikolaus Obholzer & Séjour Postdoctoral & Développement de l'oreille et création de marqueurs génétiques fluorescents. &  &  \\ 
+\hline Lydie Souhait & Ingénieur de recherche & Programmation de Gofigure2 : interface graphique et base de donnée. &  &  \\ 
+\hline Paul Cowgill & Étudiant en thèse & Effet des drogues sur le poisson zèbre. &  &  \\ 
+\hline David Tulga & Étudiant en thèse & Développement cellulaire. &  &  \\ 
+\hline Ian Swiburne & Séjour Postdoctoral & Développement de l'oreille du poisson zèbre. &  &  \\ 
+\hline Andrea Tentner & Séjour Postdoctoral & Différenciation des cellules provenant d'un ancêtre commun. &  &  \\ 
+\hline Dante D'India & Technicien & Entretient des animaux. &  &  \\ 
+\hline Nicolas Rannou & Ingénieur de recherche & Programmation de Gofigure2 : intégration de VTK et des algorithmes ITK au programme. &  &  \\ 
+\hline Amelia Freen & Séjour Postdoctoral &  &  &  \\ 
+\hline Antonin Perrrot-Audet & Stagiaire en PFE & Traitement d'image : Segmentation des cellules; Programmation de Gofigure2 &  &  \\ 
+\hline Evan Schwab & Associe & Séquences du code génétique du poisson zèbre. &  &  \\ 
+\hline  &  &  &  &  \\ 
+\hline  &  &  &  &  \\ 
+\hline 
+\end{tabular*} }
 Il est important de noter que le Megason lab bénéficie des infrastructures et services du département Systems Biology de Harvard Medical School.
 
 
 \subsection{Les objectifs du laboratoire}
 L'objectif principal du Megason lab, est de comprendre les premières étapes du développement animal.
-L'idée étant d'interpréter le génome comme un programme informatique. En modifiant ce dernier, et en observant le développement cellulaire, les biologistes parviennent à identifier les acteurs intervenant dans le développement de l'embryon, et à comprendre leur fonction.
-Les expériences sont réalisées sur des poissons zèbres. De la même manière qu'un informaticien introduit des "breakpoints" dans un programme pour intervenir dans son exécution, les biologistes créent des poissons mutants et analysent les effets des modifications du génome sur le développement.
-L'étape suivante consistera a créer un modèle du développement du poisson zèbre. En ce moment, les centres d'intérêts de l'équipe de biologiste sont la formation du tube neural, et des oreilles.
+L'idée étant d'interpréter le génome comme un programme informatique.
+En modifiant ce dernier, et en observant le développement cellulaire,
+les biologistes parviennent à identifier les acteurs intervenant dans le développement de l'embryon, et à comprendre leur fonction.
+Les expériences sont réalisées sur des poissons zèbres.
+De la même manière qu'un informaticien introduit des "breakpoints" dans un programme pour intervenir dans son exécution,
+les biologistes créent des poissons mutants et analysent les effets des modifications du génome sur le développement.
+L'étape suivante consistera a créer un modèle du développement du poisson zèbre.
+En ce moment, les centres d'intérêts de l'équipe de biologiste sont la formation du tube neural, et des oreilles.
 
-Les biologistes recueillent d'énormes quantités de donnée correspondant a des vidéos d'embryons de poissons zèbre. Afin de pouvoir exploiter ces données, une équipe de développeurs informatiques a été formée. Cette équipe a pour objectif de développer la prochaine plateforme pour l'analyse d'images de microscopie. Il s'agit donc de créer une application extrêmement accessible ("cross-plateform"), avec un code de qualité, pour permettre l'implication de chercheurs en traitement de l'image, ou d'autres informaticiens ("open-source").
+Les biologistes recueillent d'énormes quantités de donnée correspondant a des vidéos d'embryons de poissons zèbre.
+Afin de pouvoir exploiter ces données, une équipe de développeurs informatiques a été formée.
+Cette équipe a pour objectif de développer la prochaine plateforme pour l'analyse d'images de microscopie: Gofigure2.
+Il s'agit donc de créer une application extrêmement accessible ("cross-platform"), avec un code de qualité,
+pour permettre l'implication de chercheurs en traitement de l'image, ou d'autres informaticiens ("open-source").
 
 \subsection{Le Matériel} 
-Le Megason lab dispose de moyens impressionnants, les biologistes peuvent utiliser
-Microscopes :
-confocal 2photon
-bublles ? bright field, fluorescence, inverted ? compound light microscope stage automated
-ainsi que toute 
-DNA réplication machines ...
+Le Megason lab dispose de matériel neuf, tant les outils utilises par les biologistes, que les équipements plus perfectionnes sont très récents et pris en charge par le personnel d'Harvard.
+Pour mon PFE, je me suis plutôt intéressé aux dispositifs d'acquisition et de traitement d'image : les microscopes et aux ordinateurs, 
+
+\subsubsection{Les dispositifs d'imagerie}
+Le Megason lab dipose de nombreux microscopes pour permettre aux biologistes de mener a bien leurs manipulations sur les poissons zèbre.
+L'équipe de traitement de l'image s'intéresse plutôt aux images produites par le microscope confocal deux photons avec plateau automatisé. 
+
+Les techniques d'imagerie au Megason Lab sont basés sur des marqueurs fluorescents fixés sur certaines molécules du spécimen. Ces phosphores doivent être excités afin d'émettre de la lumière.
+
+Le principe du microscope confocal est d'illuminer (exciter) seulement le point que l'on observe : la lentille d'illumination est aussi la lentille d'observation, on illumine donc le plan focal de cette lentille. Cela permet de concentrer l'énergie lumineuse sur le plan observé (plan focal). De plus, afin de limiter l'impact des plans non observés, un diaphragme est ajouté à l'objectif d'observation.
+
+Le microscope confocal dont nous disposons est un microscope deux-photons.
+Cela s'signifie que l'illumination du point observée est faite par deux rayons lumineux convergents.
+Cette technique a plusieurs avantages :
+\begin{itemize}
+  \item Le phosphore a besoin de l'énergie de deux photons pour émettre de la lumière. En dehors du point focal, il n'y a jamais assez d'énergie apportée : seul le phosphore focalisé peut émettre de la lumière. On accroit ainsi énormément la résolution.
+  \item La longueur d'onde d'excitation est approximativement deux fois plus grande que celle d'un microscope confocal traditionnel, et pénètrent donc mieux les tissus : on peut analyser des spécimens épais.
+  \item Chacun de ces deux rayon transporte moins d'énergie que si il y avait eu un seul rayon pour illuminer le point observé.
+  Ainsi, il y a moins de dommages causés au spécimen observé.
+\end{itemize}
+
+%\begin{figure}[h]
+%\begin{center}
+%\leavevmode
+%\includegraphics[width=0.95\textwidth]{pictures/ConfocalZeissPrinciple}
+%\end{center}
+%\caption{Principe du microscope confocal 2 photons utilisé (Zeiss documentation)}
+%\label{fig:ConfocalPrinciple}
+%\end{figure}
+%\TODO[fix image here]
+%
+% 
+% content section
+%\begin{wrapfigure}{r}{8cm} % "l" or "r" for the side on the page. And the width parameter for the width of the image space.
+%\centering
+%\includegraphics[height=80mm]{Abb/bluesniper.jpg}
+%\caption{Selbstgebaute „Bluesniper“ um Bluetooth-Geräte aus über 1 km Entfernung anzugreifen. (Stand: 2004)}
+%\label{bluesniper}
+%\end{wrapfigure}
+
+
+Il est pour l'instant possible d'utiliser trois canaux différents et donc d'utiliser trois marqueurs fluorescents différents.
+Ce microscope a été assemblé au Megason Lab à partir d'un microscope Zeiss 710 NLO.
+Une chambre environnementale a été créée, afin de contrôler le développement des embryons durant la capture d'informations.
+
+\TODO[check other microscope]
+Nous disposons aussi d'un microscope 
 
 \input{ingenierie/Ingenierie}
+
 
 %\input{recherche/Recherche}
 

@@ -15,10 +15,20 @@
 %Inliine listings :
 \usepackage{paralist}
 
+%figures :
+\usepackage{graphicx}
+\usepackage{float}
+\floatstyle{boxed} %border around figures
+\restylefloat{figure}
+\usepackage[format=plain,indention=.5cm,parskip=5pt,bf]{caption}
+%import section
+\usepackage{wrapfig}
+
+
 %TODO macro
 \newcommand{\TODO}[1] {\marginpar{\colorbox{red}{\Huge \textbf{TODO :} } \colorbox{green}{\normalsize #1  } } }
 
 % Hypertext links
-\usepackage[colorlinks=true,breaklinks=true,dvips,ps2pdf]{hyperref}
+\usepackage[colorlinks=true,breaklinks=false,dvips,ps2pdf]{hyperref}
 \urlstyle{sf}
 

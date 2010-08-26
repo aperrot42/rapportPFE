@@ -11,7 +11,7 @@
 
 
 
-\section{Introduction}
+\section*{Introduction}
 
 Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. 
 Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur. Les laboratoires aux 
@@ -19,7 +19,7 @@ Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiativ
 Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. 
 Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
  
-\section{Objectifs}
+\section*{Objectifs}
 
 Les objectifs initialement proposés contenaient une très forte composante recherche.
 Cependant, le Megason lab cherche au maximum a intégrer les avancées en traitement de l'image aux outils qu'il conçoit,
@@ -56,27 +56,107 @@ L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieur
   \item s'intégrer au développement de GofiGure2.
 \end{inparaenum}
 
-La création de la librairie de comparaison d'images atteint ces deux buts : Il s'agit d'un programme utilisant le code source du projet Gofigure2, qui sera utilisé pour le développement des plugins de Gofigure2.
-Cette librairie a enfin était spécifiquement développée pour compléter le projet de débugger graphique de Matt McCornicc \TODO{inserer reference Matt}afin de rendre cette librairie particulièrement utile aux traiteurs d'image développant sous ITK. Ce programme permet aussi de visualiser les traitements appliques aux données lors de l'exécution d'un algorithme de traitement d'image sous un environnement de debugging (gdb\TODO{definir GDB}).
+La création de la librairie de comparaison d'images atteint ces deux buts : 
+Il s'agit d'un programme utilisant le code source du projet Gofigure2, 
+qui sera utilisé pour le développement des plugins de Gofigure2.
+Cette librairie a enfin était spécifiquement développée pour compléter le projet de débugger graphique de 
+Matt MacCormick \cite{McCornic-VisualDebug}, afin de rendre cette librairie particulièrement utile
+aux traiteurs d'image développant sous ITK.
+Ce programme permet aussi de visualiser les traitements appliques aux données
+lors de l'exécution d'un algorithme de traitement d'image sous un environnement de debugging (gdb\TODO{definir GDB}).
 
 
 \subsection{cahier des charges}
 
-Des objectifs généraux définis en introduction, nous pouvons dégager les fonctions principales de la librairie :
+
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/CompareBAC}
+\end{center}
+\caption{Bête à cornes (méthode {APTE\textregistered}) de la librairie de comparaison d'images}
+\label{fig:BACCompare}
+\end{figure}
+
+\TODO[cooriger image]
+
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/ComparePIEUVRE}
+\end{center}
+\caption[Diagramme Pieuvre (méthode {APTE\textregistered}) de la librairie de comparaison d'images]{Diagramme Pieuvre (méthode {APTE\textregistered}) de la librairie de comparaison d'images
+\small
+\textbf{Fonction principale :}\\
+FP1 : visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt\\
+FP2 : synchroniser la visualisation de plusieurs images\\
+FP3 : debugger visuellement des pipelines ITK et VTK dans gdb\\
+\textbf{Fonctions contrainte :} \\
+FC1 : être compatible avec VTK, ITK et Qt\\
+FC2 : proposer une interface simple, une documentation, des exemples, et être facilement modifiable\\
+FC3 : être visible sur internet\\
+FC4 : être compatible avec Python pour interfacer avec gdb}
+\label{fig:PIEUVRECompare}
+\end{figure}
+
+\paragraph*{FP1} : visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt
 \begin{itemize}
-  \item compatible avec ITK
-  \item compatible avec VTK
-  \item compatible avec Qt
-  \item Inclure des classes de Gofigure2
-  \item facile a utiliser
-  \item bien documentée.
+  \item Existe pour afficher les résultats des traitements réalisés par des plugins ITK/VTK dans Gofigure2.
+  \item Existe à cause de la complexité actuelle de l'utilisation d'ITK et VTK avec Qt. 
+  \item Pourrait disparaitre si une librairie plus efficace et simple de visualisation était crée.
 \end{itemize}
 
+\paragraph*{FP2} : synchroniser la visualisation de plusieurs images
+\begin{itemize}
+  \item Existe pour comparer pixel(voxel) par pixel plusieurs images.
+  \item Existe à cause du besoin des traiteurs d'image d'une telle comparaison.
+  \item Pourrait évoluer si VTK ou le moteur 3D utilisé vtkINRIA3D\cite{vtkINRIA}
+  proposaient des solutions simple de synchronisation de visualisations.
+\end{itemize}
+
+\paragraph*{FP3} : débugger visuellement des pipelines ITK et VTK dans gdb
+\begin{itemize}
+  \item Existe pour permettre au programmeur de rapidement visualiser des images a différents points d'une pipeline ITK ou VTK.
+  \item Existe à cause du besoin de débugger les algorithmes de traitement d'image,
+  et de visualiser les images d'une manière compréhensible par un humain.
+  \item Pourrait évoluer si ITK, gdb ou Python évoluent.
+\end{itemize}
+
+\paragraph*{FC1} : être compatible avec VTK, ITK et Qt
+\begin{itemize}
+  \item Existe pour permettre a l'application de fonctionner.
+  \item Existe à cause du fait que ces 3 librairies sont complémentaires et souvent utilisées conjointement dans une même application.
+  \item Pourrait disparaitre si une librairie regroupant les fonctions d'ITK, VTK et Qt était crée, et si Gofigure2 l'utilisait.
+\end{itemize}
+
+\paragraph*{FC2} : Proposer une interface simple, une documentation, des exemples, et être facilement modifiable
+\begin{itemize}
+  \item Existe pour permettre a un utilisateur d'utiliser, comprendre et modifier la librairie.
+  \item Existe à cause du fait qu'un code mélant ITK, VTK, et Qt n'est pas trivial.
+  \item Pourrait évoluer avec la librairie.
+\end{itemize}
+
+\paragraph*{FC3} : être visible sur internet
+\begin{itemize}
+  \item Existe pour permettre a un maximum de programmeur de télécharger la librairie et l'utiliser.
+  \item Existe à cause du fait que la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
+  \item Pourrait disparaitre si la librairie venait à ne plus être publique.
+\end{itemize}
+
+\paragraph*{FC3} : être compatible avec Python pour interfacer avec gdb
+\begin{itemize}
+  \item Existe pour permettre l'intégration à gdb et le débuggage b-visuel des pipelines ITK et VTK.
+  \item Existe à cause du fait que gdb nécessite une interface python pour
+  interpréter les données en provenance des pipelines ITKet VTK dans un programme externe.
+  \item Pourrait disparaitre si gdb n'utilisait plus Python pour interfacer avec des programmes externes.
+\end{itemize}
 
 \subsection{les outils utilisés}
-
+Afin de pouvoir programmer ce projet,il a été nécessaire d'apprendre à utiliser un certain nombre d'outils, de librairies et concepts {\C++}. Cet apprentissage a été une partie importante de mon PFE, me permettant d'acquérir de nouvelles compétences de valeur en sciences informatiques.
 \subsubsection{Les librairies \C++}
-Il existe un grand nombre de fonctions déjà codées en {\C++}. Dans une optique de standardisation et d'efficacité, il est important d'apprendre a utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
+Il existe un grand nombre de fonctions déjà codées en {\C++}.
+Dans une optique de standardisation et d'efficacité, il est important d'apprendre
+a utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
 
 Le projet utilise trois grandes librairies :
 \begin{description}
@@ -85,9 +165,14 @@ Le projet utilise trois grandes librairies :
   \item[Visualization ToolKit (VTK)] qui est spécialisé dans la visualisation d'images. 
   Nous utilisons cette librairie afin de supporter le type de données qu'elle stocke en mémoire,
   et aussi pour visualiser les données acquises par la librairie.
-  \item[Qt] qui est spécialisée dans la création d'interface graphiques. 
+  \item[Qt]\cite{refQT} qui est spécialisée dans la création d'interface graphiques. 
   Nous avons rendu notre travail directement compatible avec cette librairie
   pour permettre aux utilisateurs de l'intégrer dans n'importe quelle application développée avec Qt.
+  \item[vtkINRIA3D]{\cite{vtkINRIA}} qui est le moteur 3D utilisé par Gofigure2\cite{refGofigure2},
+  le programme développé au MegasonLab.
+  Cette librairie permet d'explorer un volume tri-dimmensionnel en affichant trois coupes selon des plans perpendiculaires.
+  Simultanément, un objet tridimensionnel composé par ces trois coupes est affiché.
+  La version présente dans Gofigure2 à été grandement modifiée.
 \end{description}
 Une description détaillée de ces librairies est présentée en annexe.
 
@@ -109,7 +194,7 @@ Les outils utilisés quotidiennement, dans le processus de développement d'appl
   peut modifier le comportement d'autres parties du programme d'une manière imprévue. L'outil CTest est utilisé au Kegason Lab, 
   pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de test 
   des fonctionnalités du programme.
-  \item[SVN] Gofigure2 les développeurs de Gofigure2 travaillent sur les même fichiers simultanément. 
+  \item[SVN] : Gofigure2 les développeurs de Gofigure2 travaillent sur les même fichiers simultanément. 
   Dans ce cadre, il est important de garder une trace des modifications apportées par chacun. Il faut aussi combiner ces changements, 
   et sauvegarder le projet sur un serveur accessible à tous. SVN est un programme de gestion de versions qui rempli toutes ces 
   fonctions.
@@ -121,19 +206,18 @@ Les outils utilisés quotidiennement, dans le processus de développement d'appl
 Afin de planifier les tâches accomplies pour mener à bien ce projet, un diagramme de Gantt est présenté.
 \TODO{INSERER GANTT pour Comparer }
 
-\subsection{Résultats}
+\subsection{Résultats et travail futur}
 
-La librairie a été crée et est fonctionnelle. Elle rempli les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
+La librairie a été créée et est fonctionnelle. Elle rempli les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
 \TODO{insere code snapshot en annexe}
 Une interface graphique basique a été crée pour illustrer les fonctionnalités de la librairie :
 \TODO{include screenshots}
-En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples, la librairie est délivrée avec une documentation en ligne.
+En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples,
+la librairie est délivrée avec une documentation en ligne.
 \TODO{inserer exemple documentation}
 Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été crée.
-La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est en ce moment intégrée au débugger graphique proposé par Matt Mc Cornic.
+La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est en ce moment intégrée au débugger graphique, en collaboration avec Matt MacCormick.
 
-
-\subsection{Travail futur}
 La librairie de comparaison d'images est un très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :
 \begin{itemize}
   \item Supporter des images vectorielles d'ITK,
@@ -167,33 +251,46 @@ Cette partie présente brièvement la gestion de version et les principales solu
 
 \paragraph{Le contrôle de version} ou gestion de version consiste en
 la création d'un historique des modifications apportées a un projet.
-Il est nécessaire de disposer d'un programme à cet effet, surtout lorsque plusieurs personnes travaillent sur le même projet.
+Il est nécessaire de disposer d'un programme à cet effet,
+surtout lorsque plusieurs personnes travaillent sur le même projet.
 Il est ainsi possible de garder trace de toutes les modifications apportées.
-Certains programmes de contrôle de version permettent de modifier l'historique en annulant l'effet d'une modification erronée par exemple.
+Certains programmes de contrôle de version permettent
+de modifier l'historique en annulant l'effet d'une modification erronée par exemple.
 
-Les programmes récents de contrôle de version sont aussi utilisés pour permettre a plusieurs développeurs de travailler 
+Les programmes récents de contrôle de version sont aussi utilisés
+pour permettre a plusieurs développeurs de travailler 
 sur le même fichier, ou sur des fonctionnalités différentes.
-Il existe un vocabulaire particulier au contrôle de version. Pour ce rapport, il est important de comprendre l'analogie de l'arbre couramment utilisée.
+
+Il existe un vocabulaire particulier au contrôle de version.
+Pour ce rapport, il est important de comprendre l'analogie de l'arbre couramment utilisée.
 Le tronc (trunc) contient généralement la dernière version commune du projet.
 De ce tronc, les programmeurs créent des branches pour apporter des changements.
 Ces branches sont des copies du tronc.
 L'action de sauvegarder dans l'historique les changements apportés au projet est "committer" (to commit).
-L'action de fusionner une branche au tronc (et ainsi rapporter tous les changements effectués sur une branche au tronc),
-s'appelle le merge.
-Dans les  "anciens" programmes de gestion de version, les changements (commits) sont souvent directement faits sur le tronc.
-Cela crée des problèmes de conflits (plusieurs utilisateurs auraient changé d'une manière différente le même fichier, par exemple).
+L'action de fusionner une branche au tronc
+(et ainsi rapporter tous les changements effectués sur une branche au tronc), s'appelle le merge.
+Dans les  "anciens" programmes de gestion de version,
+les changements (commits) sont souvent directement faits sur le tronc.
+Cela crée des problèmes de conflits
+(plusieurs utilisateurs auraient changé d'une manière différente le même fichier, par exemple).
 
-Le code source est souvent stocké sur un serveur en ligne. Ainsi, le programme de gestion de version est aussi utilisé
-pour publier le code sur internet, par l'intermédiaire de sites spécialisés (Sourceforge, Github, Gitorious, GoogleCode...).
+Le code source est souvent stocké sur un serveur en ligne.
+Ainsi, le programme de gestion de version est aussi utilisé
+pour publier le code sur internet, par l'intermédiaire de sites spécialisés
+(Sourceforge, Github, Gitorious, GoogleCode...).
 
 \TODO{Illustration du fonctionnement d'un programme de gestion de version :}
 
 
-
-\paragraph{Les deux philosophies de contrôle de version} sont actuellement la gestion de version centralisée et la gestion de version locale.
-
-
-
+\paragraph{Les deux philosophies de contrôle de version} sont actuellement la gestion de version centralisée et la gestion de version décentralisée. 
+La gestion centralisée est basée sur un serveur qui contient la copie de référence des fichiers, 
+et tout l'historique du projet. 
+Les programmeurs n'ont sur leur ordinateur, que la dernière version du projet. 
+Ce mode de fonctionnement nécessite une connexion au serveur pour faire avancer le projet.
+La gestion décentralisée, par opposition, n'impose théoriquement pas de serveur central.
+Les programmeurs disposent chacun d'une copie complète du projet sur leur ordinateur
+qu'ils modifient a leur guise et synchronisent avec d'autres programmeurs.
+Ce mode de fonctionnement permet de travailler sans connexion au serveur.
 
 Il est possible de trouver une comparaison détaillée des deux philosophies à cette adresse :
 \TODO{cite adresse \url{http://informatique.in2p3.fr/?q=node/333}}
@@ -202,14 +299,24 @@ Il est possible de trouver une comparaison détaillée des deux philosophies à 
 
 \paragraph{principales solutions}
 
-\TODO{inserer un tableau avec les principaux clients}
+Il existe d'autres solutions :
+
+
+SVN GIT Hg Bazaar...
+presenter en annex comparaison.
+
+wiki liste une trentaine de clients
+
+
+\TODO{inserer un tableau avec les principaux clients, presenter comparaison en annexe}
 
 \paragraph{Avantages de Git sur la concurrence}
 
 GIT n'est pas le seul programme de contrôle de version. Son principal concurrent est Subversion.
 Cependant il propose de nombreux avantages dont les principaux sont:
 \begin{description}
-  \item[rapidité] : GIT utilise un protocole de communication très efficace.
+  \item[rapidité] : GIT utilise un protocole de communication bien plus efficace que svn (a peu pres 5 fois plus rapide). 
+  De plus, les commits peuvent être sauvegardes sans connexion au serveur central.
   \item[économie] : GIT utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
   \item[développement en commun] : chacun peut travailler sur une sous partie du programme. La création de "branches" est facile et
   rapide. La mise en commun des changements est bien mieux gérée que sur des programmes concurrents comme SVN.
@@ -259,64 +366,193 @@ Il existe deux branches principales :
   \item[\emph{master}] : cette branche store les versions stables du programme.
   \item[\emph{develop}] : cette branche contient la dernière version commune du programme, elle correspond au tronc.
 \end{description}
-Ces branches sont présentes sur le serveur central. Le développement du programme se fait sur la branche develop, et lorsqu'une version stable est sur le point d'être produite, on sauvegarde l'état d'avancement du projet dans la branche master.
+Ces branches sont présentes sur le serveur central. Le développement du programme se fait sur la branche \emph{develop}, et lorsqu'une version stable est sur le point d'être produite, on sauvegarde l'état d'avancement du projet dans la branche \emph{master}.
 
-Il existe ensuite une série de branches de support. Ces branches ont une durée de vie limitée, et doivent fusionner avec d'autres branches pour finalement rejoindre develop (le tronc), puis master. Elles ne sont pas forcement présente sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
+Il existe ensuite une série de branches de support.
+Ces branches ont une durée de vie limitée, et doivent fusionner avec d'autres branches pour finalement rejoindre \emph{develop} (le tronc), puis \emph{master}.
+Elles ne sont pas forcement présente sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
 \begin{description}
-  \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est crée à partir de develop, et une fois mature, refusionne avec \emph{develop}.
+  \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est crée à partir de \emph{develop}, et une fois mature, refusionne avec \emph{develop}.
   \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est crée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche develop et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
   \item[\emph{hotfixes}] : cette branche particulière est créée à partir de la branche \emph{master}, lorsque une version publiée du programme contient un bug important qui ne peut attendre la prochaine version pour être corrigé. Elle refusionne avec la branche \emph{master} pour créer des "sous versions" (0.1.1 par exemple, est une sous version de 0.1.0). Cette branche particulière merge aussi avec la branche \emph{develop} pour appliquer la correction aux futures publications, et enfin, la branche \emph{release} si elle existe au moment de la réparation du bug.
 \end{description}
 
-Un cycle de developpement normal devient donc, pour un programmeur :
-\TODO{creer une figure}
-creation d'une branche feature a partir de develop\\
-travail sur la branche feature,\\
-fusion de feature avec develop\\
-xX\\
-creation de release\\
-travail sur release\\
-merge avec master -> RELEASE\\
-merge avec develop\\
-destruction de release\\
-xOn reboucle\\
-\\
-Oh no ! un bug :\\
-creation de hotfix\\
-correction du bug\\
-merge sur master -> SOUS RELEASE\\
-merge sur develop\\
-merge sur release (si release existe)\\
-destruction de la branche hotfixes\\
+Un cycle de développement simplifie devient donc, pour un programmeur :
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/GIT_WorkflowSimple}
+\end{center}
+\caption{Diagramme simplifié du workflow \\ proposé pour l'équipe de Gofigure2}
+\label{fig:Workflow GIT de Gofigure2}
+\end{figure}
+
+Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses a la foi, et ce workflow permet ce genre d'organisation. 
+Une illustration plus complete de ce protocole est présentée en annexe.
+\TODO{insert workflow pdf ANNEXE}
 
 
-Voici une illustration de ce protocole :
 
-\TODO{insert workflow pdf here}
+
+
+
+%--------------------------------------------------
+%             RECALAGE
+%--------------------------------------------------
 
 \section{Amélioration des techniques d'imagerie}
 
 
-acquisitions :
-belles
-artifacts, bruits
-deplacements violents
 
-remedier a ce probleme
+\subsection{Cahier des charges}
+Le cahier des charges est présenté selon la méthode {APTE\textregistered}, Nous commençons donc par présenter la Bête à Cornes,
+pour clarifier le but principal du projet. Nous présentons ensuite le diagramme pieuvre qui permet de clarifier les fonctions du projet.
+
+\subsubsection{Contrôle de la validité du projet}
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/RecalBAC}
+\end{center}
+\caption{Bête à corne (méthode {APTE\textregistered}) du projet de recalage}
+\label{fig:BACRecal}
+\end{figure}
+
+La figure~\ref{fig:BACRecal} montre la Bête à Corne du projet de recalage d'images microscopiques.
+
+Le but de ce produit résulte d'un besoin exprimé par les biologistes et traiteurs d'images.
+Comme le spécimen change de forme durant le phase d'imagerie, il arrive qu'il ne soit plus dans le champ du microscope.
+Cela est un réel problème pour les biologistes qui doivent contrôler l'alignement du microscope toutes les heures.
+C'est aussi un problème pour les traiteurs d'image
+car il arrive qu'un biologiste déplace en un mouvement un spécimen.
+Cela invalide beaucoup de méthodes de suivi des objets imagés.
+
+Ce projet, en automatisant l'alignement du microscope permet donc aux biologistes de moins surveiller l'acquisition,
+et aux traiteurs d'images, de disposer de données exploitables.
+
+Ce projet peut évoluer en accord avec les besoins des biologistes, et suivant l'évolution des techniques de recalage d'image.
 
 
-Il est aussi important de noter qu'acquérir une image de qualité facilite grandement le travail de reconnaissance de formes et d'objets, en réduisant les près-traitements.
+\newpage
+\subsubsection{Expression fonctionnelle}
 
-\subsection{Stabilisation de l'acquisition}
+\begin{figure}[H]
+\begin{center}
+%\leavevmode
+\includegraphics[width=0.9\textwidth]{pictures/RecalPIEUVRE}
+\end{center}
+\caption[Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de recalage]{Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de recalage
+\small
+\textbf{Fonction principale :}\\
+FP1 : déplacer le microscope pendant l'acquisition en suivant le spécimen\\
+\textbf{Fonctions contrainte :} \\
+FC1 : compatible avec les logiciels utilises\\
+FC2 : robuste aux changements de forme du spécimen\\
+FC3 : contenir une interface homme machine\\
+FC4 : maintenable par l'équipe du megason lab\\
+FC5 : robuste au bruit\\
+FC6 : robuste aux changement d'illumination}
+\label{fig:PIEUVRERecal}
+\end{figure}
 
-\subsubsection{Principe}
+La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous analysons :
+\paragraph*{FP1} : déplacer le microscope pendant l'acquisition en suivant le spécimen.
+\begin{itemize}
+  \item Existe pour Créer des images exploitables d'une manière fiable.
+  \item Existe à cause de la nature du spécimen analysé, qui est vivant et en développement. 
+  Il change donc de forme, grossit et se déplace, il faut donc suivre l'organe d'interet pendant le
+  développement du spécimen.
+  \item Pourrait disparaitre si le Megason Lab arrêtait d'imager des spécimens vivants.
+  Si les microscope avaient un champ de visualisation assez grand pour englober
+  tout le spécimen et d'éventuelles marges de déplacement.
+\end{itemize}
+
+\paragraph*{FC1} : compatible avec les logiciels utilises.
+\begin{itemize}
+  \item Existe pour fonctionner avec le matériel présent au Megason Lab.
+  \item Existe à cause de la nature des logiciels utilisés au Megason Lab.
+  \item Pourrait disparaitre si le logiciel de contrôle du Megason Lab était compatible avec n'importe quel langage informatique,
+  en particulier le {\C++}.
+\end{itemize}
+
+\paragraph*{FC2} : robuste aux changements de forme du spécimen
+\begin{itemize}
+  \item Existe pour fonctionner sur différents spécimens analysés.
+  et fonctionner sur une période de temps étendue (le spécimen change de forme au cours du temps).
+  \item Existe à cause de la nature des spécimens analysés au Megason Lab.
+  \item Pourrait disparaitre si les spécimens n'évoluaient pas au cours du temps;
+  si il existait un programme spécifique à chaque partie du spécimen.
+\end{itemize}
+
+\paragraph*{FC3} : contenir une interface homme machine
+\begin{itemize}
+  \item Existe pour interagir avec l'utilisateur.
+  \item Existe à cause du besoin du programme de paramètres provenant de l'utilisateur.
+  \item Pourrait disparaitre si le programme pouvait déterminer automatiquement les meilleurs paramètres.
+\end{itemize}
+
+\paragraph*{FC4} : maintenable par l'équipe du megason lab
+\begin{itemize}
+  \item Existe pour permettre aux autres chercheurs du Megason Lab de modifier/utiliser le programme
+  \item Existe à cause du fait que le développeur de l'application ne sera pas toujours présent pour la maintenir.
+  \item Pourrait disparaitre si le programme se maintenait tout seul.
+\end{itemize}
+
+\paragraph*{FC5} : robuste au bruit
+\begin{itemize}
+  \item Existe pour permettre a l'algorithme de fonctionner en la présence de bruit
+  \item Existe à cause du fait que le microscope produit des images bruitées.
+  \item Pourrait disparaitre si le microscope produisait des images sans aucun bruit.
+\end{itemize}
 
 
-\subsubsection{Code}
+\paragraph*{FC6} : robuste aux changement d'illumination
+\begin{itemize}
+  \item Existe pour permettre a l'algorithme de fonctionner au cours du temps. 
+  \item Existe à cause du fait que la fluorescence des spécimens décroit au cours du temps (phénomène de "bleaching"),
+  et change d'une image à l'autre constante car le système d'illumination basé sur une probabilité d'absorption de photons
+  (le même phosphore n'absorbe pas toujours autant de photons avant de ré-émettre).
+  \item Pourrait disparaitre si le bleaching disparaissait 
+  et si nous contrôlions mieux l'absorption de photons par les phosphores du spécimen.
+\end{itemize}
+
+\subsection{Solutions techniques}
+
+Le principe du programme est d'estimer le déplacement de structures notables dans l'image.
+Une fois ce déplacement estimé, il s'agit de déplacer le spécimen afin de garder ces structures dans le champ du microscope.
+
+\subsubsection{Estimation du déplacement du spécimen}
+Nous utilisons une technique connue sous le nom de recalage d'image pour estimer le déplacement du spécimen entre deux acquisitions (deux images) effectuées par le microscope.
+Comme le microscope ne peut que déplacer le spécimen en translation, nous choisissons un recalage rigide qui évalue les translations selon les trois dimensions de l'espace, entre deux images.
+
+Ces techniques sont basés sur des critères d'énergies à minimiser.
+On choisit ces énergies de manière à ce que leur valeur soit élevée quand deux images sont mal alignées,
+et faibles quand elles sont alignées. Notre programme teste différentes translations jusqu'à trouver une translation
+qui donne une faible valeur du critère d'énergie.
+Bien sûr, il n'est pas possible de calculer le critère d'énergie pour toute les translations possibles.
+On choisit donc une technique qui "dirige" les estimations de manière à diminuer l'énergie (la descente de gradient est une technique classique).
+Enfin, afin que notre algorithme soit robuste vis à vis du bruit, et des changements de forme peu significatifs,
+nous moyennons les images, puis réduisons la résolution des images moyennées. Le facteur de reéduction dépend de la taille du spécimen, des structures à analyser, et de la résolution initiale des images acquises par le microscope.
+
+
+
+\subsubsection{Stabilisation de l'acquisition}
+
+\paragraph{Principe}
+
 
 demarche : evaluation de la metrique
 optimisation tps calcul
 developpement en visualbasic (windows emule)
+
+
+\subsubsection{Integration au microscope}
+
+
+
+\subsubsection{Code}
+
+
 
 \subsubsection{Tests et travaux futurs}
 test sur objet inanime
@@ -327,18 +563,19 @@ tps de calcul ?
 wavelets pour downsample ?
 
 
-\subsubsection{Planning et avancement}
+\subsection{Agenda}
 
 
 
 
 
+\subsection{Resultat}
 
 
 
 
 
-
+\section{Conclusion de la partie ingénierie du PFE}
 
 
 \section{Projet professionnel}
@@ -365,11 +602,10 @@ Mon ambition est de migrer vers des responsabilités manageriales après avoir u
 
 
 
+\appendix
 
 
-
-\section{ANNEXES}
-
+\chapter{Librairies utilisées pour le projet de Comparaison d'images}
 
 
 \paragraph{La librairie "Insight ToolKit" (ITK)} est un projet open source initialement destiné au recalage et a la segmentation d'images medicales. ITK a été programmée en \C++ , en utilisant des techniques de codage avancées (templates, modification de la syntaxe standard et ajout de fonctionnalités au langage \C++ par le biais d'idiomes) , ainsi que l'outil de développement cross-platform CMake, et communautaires (SVN, puis GIT). 
@@ -402,7 +638,7 @@ Elle étend aussi les fonctionnalités du langage \C++ en proposant une nouvelle
 
 
 
-\section{definitions}
+\chapter{Définitions}
 
 
 
@@ -424,7 +660,7 @@ Ce type d'interface Homme-machine s'oppose à la notion de ligne de commande.
 Callback : la technique des fonctions de rappel (callback functions) permet de passer en argument d'une fonction, une autre fonction. 
 Cette technique est utilisée dans la programmation évènementielle, ou les interactions de l'utilisateur doivent entrainer l'exécution de fonctions.
 
-\subsection{biblio}
+\chapter{Biblio TODO}
 
 Evaluation/comparaisons de GIT :
 descritpion comparaison centralisee non centralisee
