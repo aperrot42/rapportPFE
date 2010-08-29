@@ -12,17 +12,19 @@
 
 
 \section*{Introduction}
-
-Ce PFE conclut les cinq années d'étude a l'INSA de Lyon. 
-Il s'agit de démontrer des capacités d'adaptation, d'innovation et d'initiative propres a un ingénieur. Les laboratoires aux 
-États-Unis ont besoin de l'expertise d'ingénieurs pour résoudre des problème techniques. 
+\TODO{modifier !!!}
+Ce PFE conclut les cinq années d'étude à l'INSA de Lyon. 
+Il s'agit de démontrer des capacités d'adaptation,
+d'innovation et d'initiative propres à un ingénieur. Les laboratoires aux 
+États-Unis ont besoin de l'expertise d'ingénieurs
+pour résoudre des problème techniques. 
 Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. 
 Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
  
 \section*{Objectifs}
 
-Les objectifs initialement proposés contenaient une très forte composante recherche.
-Cependant, le Megason lab cherche au maximum a intégrer les avancées en traitement de l'image aux outils qu'il conçoit,
+Les objectifs initiaux étaient centrés principalement sur la recherche.
+Cependant, le Megason lab cherche au maximum à intégrer les avancées en traitement de l'image aux outils qu'il conçoit,
  notamment au programme Gofigure2. Cela entraine des contraintes vis à vis des outils de développements. 
  Il a donc fallu me former afin que je devienne un programmeur avancé en {\C++}. 
  
@@ -31,8 +33,8 @@ J'ai ainsi commencé mon PFE en tant que membre de l'équipe de développement d
  Ma mission était de créer une librairie de comparaison d'images, afin d'inclure aux plugins, un aperçu à la Photoshop.
 
 Dans le cadre de ma participation au développement de Gofigure2,
- j'ai aussi proposé un protocole de travail avec un nouveau programme de contrôle de version : GIT.
- Il s'agissait tout d'abord d'apprendre à utiliser GIT, pour ensuite transmettre ce savoir et enfin proposer une méthode de travail.
+ j'ai aussi proposé un protocole de travail avec un nouveau programme de gestion de versions : Git.
+ Il s'agissait tout d'abord d'apprendre à utiliser Git, pour ensuite transmettre ce savoir et enfin proposer une méthode de travail.
 
 Mon PFE étant motivé par des objectifs de traitement de l'image, j'ai aussi travaillé sur l'amélioration
  des techniques d'acquisitions de données microscopiques.
@@ -46,20 +48,20 @@ Mon PFE étant motivé par des objectifs de traitement de l'image, j'ai aussi tr
 
 L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieurs travaillent sous la direction d'un docteur sur la
  création de l'outil de visualisation d'images microscopiques (GoFigure2), tandis qu'un autre docteur travaille sur
- des algorithmes de traitement d'image. Afin de travailler pour l'ensemble des informaticiens, le projet devait
+ des algorithmes de traitement d'image. Afin de travailler pour l'ensemble des informaticiens, le projet a deux objectifs
 \begin{inparaenum}[(i)]
   \item faciliter le travail de développement d'algorithmes de traitement de l'image, et 
   \item s'intégrer au développement de GofiGure2.
 \end{inparaenum}
 
-La création de la librairie de comparaison d'images atteint ces deux buts : 
+La création de la librairie de comparaison d'images atteint ces deux buts (i) et (ii):\\ 
 Il s'agit d'un programme utilisant le code source du projet Gofigure2, 
 qui sera utilisé pour le développement des plugins de Gofigure2.
-Cette librairie a enfin était spécifiquement développée pour compléter le projet de débugueur graphique de 
+Cette librairie a enfin été spécifiquement développée pour compléter le projet de débugueur graphique de 
 Matt MacCormick \cite{McCornic-VisualDebug}, afin de rendre cette librairie particulièrement utile
 aux traiteurs d'image développant sous ITK.
-Ce programme permet aussi de visualiser les traitements appliques aux données
-lors de l'exécution d'un algorithme de traitement d'image sous un environnement de debugging (gdb
+Ce programme permet aussi de visualiser les traitements appliqués aux données
+lors de l'exécution d'un algorithme de traitement d'images sous un environnement de debugging (gdb
 \footnote{Un débogueur, débugueur ou encore debugger (de l'anglais), est un logiciel qui aide un développeur à analyser les bugs d'un programme. Pour cela, il permet d'exécuter le programme pas-à-pas, d'afficher la valeur des variables à tout moment, de mettre en place des points d'arrêt sur des conditions ou sur des lignes du programme ...\\
 Le GNU Debugger également appelé gdb est le débogueur standard du \href{http://fr.wikipedia.org/wiki/Projet_GNU}{projet GNU} } ).
 
@@ -79,26 +81,38 @@ Le GNU Debugger également appelé gdb est le débogueur standard du \href{http:
 \TODO[cooriger image]
 
 \begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=0.95\textwidth]{pictures/ComparePIEUVRE}
-\end{center}
-\caption[Diagramme Pieuvre (méthode {APTE\textregistered}) de la librairie de comparaison d'images]{Diagramme Pieuvre (méthode {APTE\textregistered}) de la librairie de comparaison d'images
-
-\small
-\textbf{Fonctions principales :}\\
-FP1 : visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt\\
-FP2 : synchroniser la visualisation de plusieurs images\\
-FP3 : debugger visuellement des pipelines ITK et VTK dans gdb\\
-\textbf{Fonctions contraintes :} \\
-FC1 : être compatible avec VTK, ITK et Qt\\
-FC2 : proposer une interface simple, une documentation, des exemples, et être facilement modifiable\\
-FC3 : être visible sur internet\\
-FC4 : être compatible avec Python pour interfacer avec gdb}
-\label{fig:PIEUVRECompare}
+  \begin{center}
+  \leavevmode
+  \includegraphics[width=0.95\textwidth]{pictures/ComparePIEUVRE}
+  \end{center}
+  \caption[Diagramme Pieuvre (méthode {APTE\textregistered}) de
+    la librairie de comparaison d'images]{Diagramme
+    Pieuvre (méthode {APTE\textregistered})
+    de la librairie de comparaison d'images
+  \small
+  \textbf{Fonctions principales :}\\
+  FP1 : visualiser des données (fichiers ou en mémoire) provenant 
+    de VTK et ITK dans Qt\\
+  FP2 : synchroniser la visualisation de plusieurs images\\
+  FP3 : debugger visuellement des pipelines ITK et VTK dans gdb\\
+    \textbf{Fonctions contraintes :} \\
+  FC1 : être compatible avec VTK, ITK et Qt\\
+  FC2 : proposer une interface simple, une documentation, des exemples, et être
+    facilement modifiable\\
+  FC3 : être visible sur internet\\
+  FC4 : être compatible avec Python pour interfacer avec gdb}
+  \label{fig:PIEUVRECompare}
 \end{figure}
 
-\paragraph*{FP1} : visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt
+Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questions de la méthode {APTE\textregistered}, pour chaque fonction :
+\begin{inparaenum}[(i)] 
+  \item dans quel but existe-t-elle ?
+  \item à cause de quoi existe-t-elle ?
+  \item pourrait-elle évoluer ou disparaitre ?
+\end{inparaenum}
+
+
+\paragraph*{FP1} :\\ visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt
 \begin{itemize}
   \item Existe pour afficher les résultats des traitements réalisés par des plugins ITK/VTK dans Gofigure2.
   \item Existe à cause de la nécessité pour l'utilisateur d'avoir une visualisation dans une interface construite.
@@ -106,7 +120,7 @@ FC4 : être compatible avec Python pour interfacer avec gdb}
   \item Pourrait disparaitre si une librairie plus efficace et simple de visualisation était crée.
 \end{itemize}
 
-\paragraph*{FP2} : synchroniser la visualisation de plusieurs images
+\paragraph*{FP2} :\\ synchroniser la visualisation de plusieurs images
 \begin{itemize}
   \item Existe pour comparer pixel(voxel) par pixel plusieurs images.
   \item Existe à cause du besoin des traiteurs d'image d'une telle comparaison.
@@ -114,63 +128,70 @@ FC4 : être compatible avec Python pour interfacer avec gdb}
   proposaient des solutions simple de synchronisation de visualisations.
 \end{itemize}
 
-\paragraph*{FP3} : débugueur visuellement des pipelines ITK et VTK dans gdb
+\paragraph*{FP3} :\\ débugueur visuellement des pipelines ITK et VTK dans gdb
 \begin{itemize}
-  \item Existe pour permettre au programmeur de rapidement visualiser des images a différents points d'une pipeline ITK ou VTK.
-  \item Existe à cause du besoin de débugueur les algorithmes de traitement d'image,
+  \item Existe pour permettre au programmeur de rapidement visualiser des images
+   à différents points d'une pipeline ITK ou VTK.
+  \item Existe à cause du besoin de débuguer les algorithmes de traitement d'image,
   et de visualiser les images d'une manière compréhensible par un humain.
   \item Pourrait évoluer si ITK, gdb ou Python évoluent.
 \end{itemize}
 
-\paragraph*{FC1} : être compatible avec VTK, ITK et Qt
+\paragraph*{FC1} :\\ être compatible avec VTK, ITK et Qt
 \begin{itemize}
-  \item Existe pour permettre a l'application de fonctionner.
+  \item Existe pour permettre à l'application de fonctionner.
   \item Existe à cause du fait que ces 3 librairies sont complémentaires et souvent utilisées conjointement dans une même application.
   \item Pourrait disparaitre si une librairie regroupant les fonctions d'ITK, VTK et Qt était crée, et si Gofigure2 l'utilisait.
 \end{itemize}
 
-\paragraph*{FC2} : Proposer une interface simple, une documentation, des exemples, et être facilement modifiable
+\paragraph*{FC2} :\\ Proposer une interface simple, une documentation, des exemples, et être facilement modifiable
 \begin{itemize}
-  \item Existe pour permettre a un utilisateur d'utiliser, comprendre et modifier la librairie.
+  \item Existe pour permettre à un utilisateur d'utiliser, comprendre et modifier la librairie.
   \item Existe à cause du fait qu'un code mélant ITK, VTK, et Qt n'est pas trivial.
   \item Pourrait évoluer avec la librairie.
 \end{itemize}
 
-\paragraph*{FC3} : être visible sur internet
+\paragraph*{FC3} :\\ être visible sur internet
 \begin{itemize}
-  \item Existe pour permettre a un maximum de programmeur de télécharger la librairie et l'utiliser.
+  \item Existe pour permettre à un maximum de programmeur de télécharger la librairie et l'utiliser.
   \item Existe à cause du fait que la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
   \item Pourrait disparaitre si la librairie venait à ne plus être publique.
 \end{itemize}
 
-\paragraph*{FC3} : être compatible avec Python pour interfacer avec gdb
+\paragraph*{FC3} :\\ être compatible avec Python pour interfacer avec gdb
 \begin{itemize}
-  \item Existe pour permettre l'intégration à gdb et le débuggage b-visuel des pipelines ITK et VTK.
-  \item Existe à cause du fait que gdb nécessite une interface python pour
-  interpréter les données en provenance des pipelines ITKet VTK dans un programme externe.
-  \item Pourrait disparaitre si gdb n'utilisait plus Python pour interfacer avec des programmes externes.
+  \item Existe pour permettre l'intégration à gdb et le débuguage visuel des pipelines ITK et VTK.
+  \item Existe à cause du fait que le débugueur gdb nécessite une interface python 
+  pour interpréter les données en provenance 
+  des pipelines ITK et VTK dans un programme externe.
+  \item Pourrait disparaitre si gdb n'utilisait plus Python 
+  pour interfacer avec des programmes externes.
 \end{itemize}
 
 \subsection{les outils utilisés}
-Afin de pouvoir programmer ce projet,il a été nécessaire d'apprendre à utiliser un certain nombre d'outils, de librairies et concepts {\C++}. Cet apprentissage a été une partie importante de mon PFE, me permettant d'acquérir de nouvelles compétences de valeur en sciences informatiques.
+Afin de pouvoir programmer ce projet,
+il a été nécessaire d'apprendre à utiliser un certain nombre d'outils,
+de librairies et concepts {\C++}. Cet apprentissage a été une
+partie importante de mon PFE, me permettant d'acquérir de
+nouvelles compétences en sciences informatiques.
 \subsubsection{Les librairies \C++}
 Il existe un grand nombre de fonctions déjà codées en {\C++}.
 Dans une optique de standardisation et d'efficacité, il est important d'apprendre
-a utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
+à utiliser des librairies contenant les fonctions utiles au programme que l'on crée.
 
 Le projet utilise trois grandes librairies :
 \begin{description}
   \item[Insight ToolKit (ITK)] qui est spécialisée dans le traitement d'image. Nous utilisons cette librairie, 
   afin de supporter le type de données qu'elle stocke en mémoire.
-  \item[Visualization ToolKit (VTK)] qui est spécialisé dans la visualisation d'images. 
+  \item[Visualization ToolKit (VTK)] qui est spécialisée dans la visualisation d'images. 
   Nous utilisons cette librairie afin de supporter le type de données qu'elle stocke en mémoire,
   et aussi pour visualiser les données acquises par la librairie.
-  \item[Qt]\cite{refQT} qui est spécialisée dans la création d'interface graphiques. 
+  \item[Qt]\cite{refQT} qui est spécialisée dans la création d'interfaces graphiques. 
   Nous avons rendu notre travail directement compatible avec cette librairie
   pour permettre aux utilisateurs de l'intégrer dans n'importe quelle application développée avec Qt.
   \item[vtkINRIA3D]{\cite{vtkINRIA}} qui est le moteur 3D utilisé par Gofigure2\cite{refGofigure2},
   le programme développé au MegasonLab.
-  Cette librairie permet d'explorer un volume tri-dimmensionnel en affichant trois coupes selon des plans perpendiculaires.
+  Cette librairie permet d'explorer un volume tri-dimensionnel en affichant trois coupes selon des plans perpendiculaires.
   Simultanément, un objet tridimensionnel composé par ces trois coupes est affiché.
   La version présente dans Gofigure2 à été grandement modifiée.
 \end{description}
@@ -184,43 +205,47 @@ A partir d'un certain niveau, en {\C++}, il est indispensable de maitriser certa
 Les outils utilisés quotidiennement, dans le processus de développement d'applications au Megason lab sont :
 
 \begin{description}
-  \item[l'Unix Shell] : pratiquement tous les développeurs travaillent sur Linux car ce système inclut un grand nombre d'utilitaires
-  standard pour un développement en {\C++}. Les outils de contrôle de version (SVN, GIT), les outils de connexion réseau (ssh), des
-  compilateurs pour les principaux langages sont installes par défaut sur la plupart des distributions Linux.
-  Afin de pouvoir bénéficier au maximum de ce système, il est important de maitriser l'invite de commande.
+  \item[l'Unix Shell] : pratiquement tous les développeurs travaillent sur Linux
+  car ce système inclut un grand nombre d'utilitaires
+  standards pour un développement en {\C++}.
+  Les outils de gestion de versions comme Subversion (SVN) ou Git, les outils de connexion réseau (ssh),
+  des compilateurs pour les principaux langages sont installés par défaut sur la
+  plupart des distributions Linux.
+  Afin de pouvoir bénéficier au maximum de ce système, il est important de maitriser
+  l'invite de commande.
   \item[CMake] : ce programme permet de définir des règles de compilation pour différents compilateurs, afin qu'un projet puisse
-   compiler sur différents systèmes d'exploitation (Nous programmons des application fonctionnant sur Windows, Linux et MacOs).
+   compiler sur différents systèmes d'exploitation (Nous programmons des applications fonctionnant sur Windows, Linux et MacOs).
   \item[CTest] : Lorsque l'on travaille sur un projet volumineux, il est facile de "casser" le code. L'ajout de certaines fonctionnalités 
   peut modifier le comportement d'autres parties du programme d'une manière imprévue. L'outil CTest est utilisé au Kegason Lab, 
-  pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de test 
+  pour tester la fiabilité du code. Ce programme télécharge régulièrement le code source, le compile, et effectue une batterie de tests
   des fonctionnalités du programme.
-  \item[SVN] : Gofigure2 les développeurs de Gofigure2 travaillent sur les même fichiers simultanément. 
+  \item[SVN] : les développeurs de Gofigure2 travaillent sur les mêmes fichiers simultanément. 
   Dans ce cadre, il est important de garder une trace des modifications apportées par chacun. Il faut aussi combiner ces changements, 
-  et sauvegarder le projet sur un serveur accessible à tous. SVN est un programme de gestion de versions qui rempli toutes ces 
+  et sauvegarder le projet sur un serveur accessible à tous. SVN est un programme de gestion de versions qui remplit toutes ces 
   fonctions.
 \end{description}
 
 
 \subsection{Agenda}
 
-Afin de planifier les tâches accomplies pour mener à bien ce projet, un diagramme de Gantt est présenté.
+Afin de planifier les tâches nécessaires pour mener à bien ce projet, un diagramme de Gantt est présenté.
 \TODO{INSERER GANTT pour Comparer }
 
 \subsection{Résultats et travail futur}
 
-La librairie a été créée et est fonctionnelle. Elle rempli les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
+La librairie créée est fonctionnelle. Elle remplit les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
 \TODO{insere code snapshot en annexe}
-Une interface graphique basique a été crée pour illustrer les fonctionnalités de la librairie :
+Une interface graphique basique a été créée pour illustrer les fonctionnalités de la librairie :
 \TODO{include screenshots}
 En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples,
 la librairie est délivrée avec une documentation en ligne.
 \TODO{inserer exemple documentation}
-Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été crée.
-La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est en ce moment intégrée au débugueur graphique, en collaboration avec Matt MacCormick.
+Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été créée.
+La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est également intégrée au débugueur graphique, en collaboration avec Matt MacCormick.
 
-La librairie de comparaison d'images est un très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :
+La librairie de comparaison d'images est une très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :
 \begin{itemize}
-  \item Supporter des images vectorielles d'ITK,
+  \item supporter des images vectorielles d'ITK,
   \item intégrer des filtres simples (gradient, inverse, seuillage...),
   \item ajouter un moteur de rendu 3D (par tracé de rayons par exemple...).
 \end{itemize}
@@ -231,11 +256,11 @@ La librairie de comparaison d'images est un très bonne base à laquelle on peut
 
 
 %--------------------------------------------------
-%             GIT
+%             Git
 %--------------------------------------------------
 
 
-\section{Migration de Gofigure de SVN à GIT}
+\section{Migration de Gofigure de SVN à Git}
 
 Le projet Gofigure, suivant la plupart des grands projets open-sources, va bientôt utiliser Git comme programme de gestion de sources.
 Plus qu'un simple transfert, il s'agit d'un changement des méthodes de travail.
@@ -243,52 +268,52 @@ Il a donc fallu définir un protocole de travail sur Git
 afin d'effectuer certaines tâches d'une manière organisée et répétable. 
 
 Je suis donc passé par une phase de découverte et d'apprentissage pour écrire un tutoriel 
-afin d'expliquer le fonctionnement de GIT a l'équipe informatique. J'ai ensuite travaillé sur la sélection et l'élaboration d'un "workflow"
+afin d'expliquer le fonctionnement de Git a l'équipe informatique. J'ai ensuite travaillé sur la sélection et l'élaboration d'un "workflow"
 pour l'équipe de programmateurs de Gofigure2.
-J'ai enfin automatisé le transfert du code de svn à Git en utilisant un serveur du Megason Lab.
+J'ai enfin automatisé le transfert du code de SVN à Git en utilisant un serveur du Megason Lab.
 
 
 
-\subsection{Le contrôle de version}
+\subsection{La gestion de versions}
 
-Cette partie présente brièvement la gestion de version et les philosophies existantes.
+Cette partie présente brièvement la gestion de versions et les philosophies existantes.
 
-\paragraph{Le contrôle de version} ou gestion de version consiste en
-la création d'un historique des modifications apportées a un projet.
+\paragraph{Le contrôle de versions} ou gestion de versions consiste en
+la création d'un historique des modifications apportées à un projet.
 Il est nécessaire de disposer d'un programme à cet effet,
 surtout lorsque plusieurs personnes travaillent sur le même projet.
 Il est ainsi possible de garder trace de toutes les modifications apportées.
-Certains programmes de contrôle de version permettent
+Certains programmes de gestion de versions permettent
 de modifier l'historique en annulant l'effet d'une modification erronée par exemple.
 
-Les programmes récents de contrôle de version sont aussi utilisés
-pour permettre a plusieurs développeurs de travailler 
+Les programmes récents de gestion de versions sont aussi utilisés
+pour permettre à plusieurs développeurs de travailler 
 sur le même fichier, ou sur des fonctionnalités différentes.
 
-Il existe un vocabulaire particulier au contrôle de version.
+Il existe un vocabulaire particulier au gestion de versions.
 Pour ce rapport, il est important de comprendre l'analogie de l'arbre couramment utilisée.
 Le tronc (trunc) contient généralement la dernière version commune du projet.
 De ce tronc, les programmeurs créent des branches pour apporter des changements.
 Ces branches sont des copies du tronc.
-L'action de sauvegarder dans l'historique les changements apportés au projet est "committer" (to commit).
+L'action de sauvegarder dans l'historique les changements apportés au projet se nomme "committer" (to commit).
 L'action de fusionner une branche au tronc
 (et ainsi rapporter tous les changements effectués sur une branche au tronc), s'appelle le merge.
-Dans les  "anciens" programmes de gestion de version,
+Dans les  "anciens" programmes de gestion de versions,
 les changements (commits) sont souvent directement faits sur le tronc.
 Cela crée des problèmes de conflits
 (plusieurs utilisateurs auraient changé d'une manière différente le même fichier, par exemple).
 
 Le code source est souvent stocké sur un serveur en ligne.
-Ainsi, le programme de gestion de version est aussi utilisé
+Ainsi, le programme de gestion de versions est aussi utilisé
 pour publier le code sur internet, par l'intermédiaire de sites spécialisés
 (Sourceforge, Github, Gitorious, GoogleCode...).
 
-\TODO{Illustration du fonctionnement d'un programme de gestion de version :}
+\TODO{Illustration du fonctionnement d'un programme de gestion de versions :}
 
 
-\subsubsection{Les deux philosophies de contrôle de version} 
+\subsubsection{Les deux philosophies de gestion de versions} 
 
-Il existe pour l'instant deux types de systèmes de gestion de version : 
+Il existe pour l'instant deux types de systèmes de gestion de versions : 
 les systèmes basés sur une architecture centralisée,
 et les systèmes basés sur une architecture décentralisée.
 
@@ -299,18 +324,18 @@ Ce mode de fonctionnement nécessite une connexion au serveur pour faire avancer
 
 La gestion décentralisée, par opposition, n'impose théoriquement pas de serveur central.
 Les programmeurs disposent chacun d'une copie complète du projet sur leur ordinateur
-qu'ils modifient a leur guise et synchronisent avec d'autres programmeurs.
+qu'ils modifient à leur guise et synchronisent avec d'autres programmeurs.
 Ce mode de fonctionnement permet de travailler sans connexion au serveur.
 
 Il est possible de trouver une comparaison détaillée des deux philosophies à cette adresse :
 \TODO{cite adresse \url{http://informatique.in2p3.fr/?q=node/333}}
 
-\paragraph{principales solutions}
+\paragraph{Principales solutions}
 
 Il existe d'autres solutions :
 
 
-SVN GIT Hg Bazaar...
+SVN Git Hg Bazaar...
 presenter en annex comparaison.
 
 wiki liste une trentaine de clients
@@ -318,26 +343,27 @@ wiki liste une trentaine de clients
 
 \TODO{inserer un tableau avec les principaux clients, presenter comparaison en annexe}
 
-\paragraph{Avantages de Git sur la concurrence}
+\subsubsection{Avantages de Git sur la concurrence}
 
-GIT n'est pas le seul programme de contrôle de version. Son principal concurrent est Subversion.
+Git n'est pas le seul programme de contrôle de version. Son principal concurrent est Subversion.
 Cependant il propose de nombreux avantages dont les principaux sont:
 \begin{description}
-  \item[rapidité] : GIT utilise un protocole de communication bien plus efficace que svn (a peu pres 5 fois plus rapide). 
-  De plus, les commits peuvent être sauvegardes sans connexion au serveur central.
-  \item[économie] : GIT utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
+  \item[rapidité] : Git utilise un protocole de communication bien plus efficace que SVN (a peu près 5 fois plus rapide). 
+  De plus, les commits peuvent être sauvegardés sans connexion au serveur central.
+  \item[économie] : Git utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
   \item[développement en commun] : chacun peut travailler sur une sous partie du programme. La création de "branches" est facile et
   rapide. La mise en commun des changements est bien mieux gérée que sur des programmes concurrents comme SVN.
   \item[développement décentralisé] : chacun possède une copie du code et peut travailler sans connexion internet. 
   Si le serveur subit une panne ou est indisponible, tout le monde peut continuer à travailler, et la recréation d'un serveur est triviale.
-  \item[Souplesse] : GIT permet de travailler sur un projet utilisant svn (contrôle de version centralisée)
-  en bénéficiant des avantages de la gestion de projet décentralisée.
+  \item[Souplesse] : Git permet de travailler sur un projet utilisant SVN (contrôle de version centralisée)
+  en bénéficiant des avantages de la gestion de versions de projet décentralisée.
 \end{description}
 
-\subsection{cahier des charges}
+\subsection{Cahier des charges}
 
-Maintenant le principe du contrôle de version présenté,
-il nous est possible de définir un cahier des charges pour le projet de migration vers Git de Gofigure2.
+Maintenant que le principe de la gestion de versions a été présenté,
+il nous est possible de définir un cahier des charges
+pour le projet de migration vers Git de Gofigure2.
 Nous utilisons une fois encore, la méthode {APTE\textregistered}.
 Nous commencerons donc par définir le but principal du projet, pour passer à une analyse fonctionnelle.
 
@@ -353,14 +379,14 @@ Nous commencerons donc par définir le but principal du projet, pour passer à u
 \end{figure}
 
 Gofigure2 est un projet qui prend de l'ampleur,
-nous souhaitons remplacer svn par Git pour les multiples avantages
+nous souhaitons remplacer SVN par Git pour les multiples avantages
 que ce dernier apporte à la gestion du projet et ainsi améliorer le protocole de travail.
 
 La migration vers Git provient d'un besoin exprimé par la communauté de développeurs libres principalement.
 Il permettra à l'équipe de Gofigure2 de travailler 
 avec un nouveau standard de développement en suivant un workflow précis, qui facilite le travail en équipe.
 
-Cette migration a été repoussé jusqu'à ce que Git soit adopté comme standard dans les communautés de développeurs.
+Cette migration a été repoussée jusqu'à ce que Git soit adopté comme standard dans les communautés de développeurs.
 Il est important de proposer un protocole de travail qui soit assez flexible pour permettre à l'équipe de le suivre,
 tout au long de l'évolution de Gofigure2.
 L'information donnée à l'équipe informatique devra évoluer en même temps que Git, et que le projet Gofigure2.
@@ -377,22 +403,22 @@ L'information donnée à l'équipe informatique devra évoluer en même temps qu
 
 \small
 \textbf{Fonctions principales :}\\
-FP1 : migrer le projet Gofigure2 de svn à git.\\
+FP1 : migrer le projet Gofigure2 de SVN à Git.\\
 FP2 : proposer un workflow aux programmeurs de l'équipe de Gofigure2.\\
 \textbf{Fonctions contraintes :} \\
 FC1 : apporter une base de connaissance sur Git aux programmeurs de Gofigure2.\\
-FC2 : rester compatible avec svn.\\
+FC2 : rester compatible avec SVN.\\
 FC3 : donner la possibilité à d'autres informaticiens de participer au projet.}
 \label{fig:PIEUVREGit}
 \end{figure}
 
 
-\paragraph*{FP1} : migrer le projet Gofigure2 de svn à git.
+\paragraph*{FP1} : migrer le projet Gofigure2 de SVN à git.
 \begin{itemize}
   \item Existe pour améliorer le travail collaboratif sur Gofigure2.
   \item Existe à cause de l'apparition de nouveaux programmes performant combinant la gestion et la distribution de sources.
   \item Pourrait disparaitre si un nouveau modèle plus performant et intéressant pour l'équipe de Gofigure2 venait à apparaitre.
-  Si la nouvelle version de svn était adoptée par la communauté des développeurs libres.
+  Si la nouvelle version de SVN était adoptée par la communauté des développeurs libres.
 \end{itemize}
 
 \paragraph*{FP2} : proposer un workflow aux programmeurs de l'équipe de Gofigure2.
@@ -408,17 +434,17 @@ FC3 : donner la possibilité à d'autres informaticiens de participer au projet.
 \begin{itemize}
   \item Existe pour permettre aux programmeurs d'utiliser Git.
   \item Existe car Git est relativement complexe à prendre en main 
-  pour un utilisateur habitué à d'autres programmes de gestion de source centralisés comme svn ou cvs.
+  pour un utilisateur habitué à d'autres programmes de gestion de source centralisés comme SVN.
   \item Pourrait disparaitre en partie si Git devenait trivial à l'usage.
   Il est important qu'une telle aide évolue avec Git, et avec le workflow de Gofigure2.
 \end{itemize}
 
-\paragraph*{FC2} : rester compatible avec svn.
+\paragraph*{FC2} : rester compatible avec SVN.
 \begin{itemize}
-  \item Existe pour permettre a un programmeur de continuer à utiliser svn, et migrer vers git progressivement.
+  \item Existe pour permettre a un programmeur de continuer à utiliser SVN, et migrer vers Git progressivement.
   Existe aussi pour ouvrir les sources de Gofigure2 à plus de développeurs potentiels.
-  \item Existe à cause du fait que tous les programmeurs n'utilisent pas (encore) git.
-  \item Pourrait disparaitre si svn disparaissait.
+  \item Existe à cause du fait que tous les programmeurs n'utilisent pas (encore) Git.
+  \item Pourrait disparaitre si SVN disparaissait.
 \end{itemize}
 
 \paragraph*{FC3} : donner la possibilité à d'autres informaticiens de participer au projet.
@@ -431,24 +457,24 @@ FC3 : donner la possibilité à d'autres informaticiens de participer au projet.
 
 \subsection{Écriture du tutoriel}
 
-Le tutoriel a été écris sur le wiki de Gofigure2. Il s'agit de l'emplacement de prédilection pour les informations 
+Le tutoriel a été écrit sur le wiki de Gofigure2. Il s'agit de l'emplacement de prédilection pour les informations 
 concernant la programmation et l'utilisation de Gofigure2. Le système du wiki, en plus de proposer une syntaxe simple 
 pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. 
 Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
 
-Ce tutoriel remplis les fonction FC1 et FC3, présentées dans le diagramme Pieuvre\ref{fig:PIEUVREGit}
+Ce tutoriel remplit les fonction FC1 et FC3, présentées dans le diagramme Pieuvre\ref{fig:PIEUVREGit}
 
 L'écriture d'un tel tutoriel se fait souvent dans un registre proche du langage familier,
 le but étant de simuler des instruction données par un collègue ou un ami. 
-Les instruction se doivent d'être relativement brèves, bien souvent le lecteur veut juste appliquer certaines fonctionnalités 
-proposées par GIT sans toujours vraiment chercher a comprendre ce qu'il fait. 
+Les instructions se doivent d'être relativement brèves, bien souvent le lecteur veut juste appliquer certaines fonctionnalités 
+proposées par Git sans toujours vraiment chercher à comprendre ce qu'il fait. 
 Il existe d'autres sources d'informations pour apprendre complètement le fonctionnement de l'application.
-Le tutoriel ne se veut donc pas exhaustif, il propose juste une manière qui fonctionne d'utiliser GIT,
-a la manière d'un travail dirigé. Il a été écrit pendant ma phase d'apprentissage de GIT. 
+Le tutoriel ne se veut donc pas exhaustif, il propose juste une manière qui fonctionne d'utiliser Git,
+à la manière d'un travail dirigé. Il a été écrit pendant ma phase d'apprentissage de Git. 
 Il détaille les principales difficultés et écueils rencontrés. 
 
-Le tutoriel est présent a cette adresse : \\
-\url{http://sourceforge.net/apps/trac/gofigure2/wiki/GIT}
+Le tutoriel est présent à cette adresse : \\
+\url{http://sourceforge.net/apps/trac/gofigure2/wiki/Git}
 
 \subsection{Proposition d'un protocole de travail}
 Il a enfin fallu proposer un workflow (protocole de travail) 
@@ -457,12 +483,13 @@ doivent apporter des modifications au code source.
 Afin de répondre aux fonctions FP2, FC2 et FC3 du diagramme pieuvre du cahier des charges, il fallait proposer un protocole qui :
 \begin{enumerate}
   \item n'augmente pas trop la charge de travail,
-  \item permette de bien suivre les modifications apportes par chacun. 
-  \item permette au responsable du projet de corriger ou supprimer les changements apportes par les développeurs.
-  \item corresponde a un standard.
+  \item permette de bien suivre les modifications apportées par chacun. 
+  \item permette au responsable du projet de corriger ou supprimer les changements apportés par les développeurs.
+  \item corresponde à un standard.
 \end{enumerate}
-Le workflow proposé a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/git-model}{blog}.
-Ce protocole découle assez naturellement de l'apprentissage de GIT, il est donc simple.
+
+Le workflow proposé a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/Git-model}{blog}.
+Ce protocole découle assez naturellement de l'apprentissage de Git, il est donc simple.
 
 
 Ce workflow, en plus d'être précisément détaillé, est techniquement viable. 
@@ -470,53 +497,53 @@ Voici le détail de l'organisation du projet Gofigure2 sous ce protocole.
 
 Il existe deux branches principales : 
 \begin{description}
-  \item[\emph{master}] : cette branche store les versions stables du programme.
+  \item[\emph{master}] : cette branche stocke les versions stables du programme.
   \item[\emph{develop}] : cette branche contient la dernière version commune du programme, elle correspond au tronc.
 \end{description}
 Ces branches sont présentes sur le serveur central. Le développement du programme se fait sur la branche \emph{develop}, et lorsqu'une version stable est sur le point d'être produite, on sauvegarde l'état d'avancement du projet dans la branche \emph{master}.
 
 Il existe ensuite une série de branches de support.
 Ces branches ont une durée de vie limitée, et doivent fusionner avec d'autres branches pour finalement rejoindre \emph{develop} (le tronc), puis \emph{master}.
-Elles ne sont pas forcement présente sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
+Elles ne sont pas forcément présentes sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
 \begin{description}
-  \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est crée à partir de \emph{develop}, et une fois mature, refusionne avec \emph{develop}.
-  \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est crée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche develop et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
-  \item[\emph{hotfixes}] : cette branche particulière est créée à partir de la branche \emph{master}, lorsque une version publiée du programme contient un bug important qui ne peut attendre la prochaine version pour être corrigé. Elle refusionne avec la branche \emph{master} pour créer des "sous versions" (0.1.1 par exemple, est une sous version de 0.1.0). Cette branche particulière merge aussi avec la branche \emph{develop} pour appliquer la correction aux futures publications, et enfin, la branche \emph{release} si elle existe au moment de la réparation du bug.
+  \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est créée à partir de \emph{develop}, et une fois mature, refusionne avec \emph{develop}.
+  \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est créée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche develop et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
+  \item[\emph{hotfixes}] : cette branche particulière est créée à partir de la branche \emph{master}, lorsqu'une version publiée du programme contient un bug important qui ne peut attendre la prochaine version pour être corrigée. Elle refusionne avec la branche \emph{master} pour créer des "sous versions" (0.1.1 par exemple, est une sous version de 0.1.0). Cette branche particulière merge aussi avec la branche \emph{develop} pour appliquer la correction aux futures publications, et enfin, la branche \emph{release} si elle existe au moment de la réparation du bug.
 \end{description}
 
-Un cycle de développement simplifie devient donc, pour un programmeur :
+Un cycle de développement simplifié devient donc, pour un programmeur :
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=0.95\textwidth]{pictures/GIT_WorkflowSimple}
+\includegraphics[width=0.95\textwidth]{pictures/Git_WorkflowSimple}
 \end{center}
 \caption{Diagramme simplifié du workflow proposé pour l'équipe de Gofigure2}
-\label{fig:Workflow GIT de Gofigure2}
+\label{fig:Workflow Git de Gofigure2}
 \end{figure}
 
-Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses a la foi, et ce workflow permet ce genre d'organisation. 
-Une illustration plus complete de ce protocole est présentée en annexe.
+Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses à la fois, et ce workflow permet ce genre d'organisation. 
+Une illustration plus complète de ce protocole est présentée en annexe.
 \TODO{insert workflow pdf ANNEXE}
 
 
-\subsection{mise en ouvre de la Migration vers Git}
+\subsection{Mise en ouvre de la Migration vers Git}
 
-Maintenant le worklflow définit, et l'aide mise en place, il faut mettre en œuvre la migration vers git du projet. Nous devons choisir une plateforme pour héberger le projet, et mettre en place des liens entre le serveur svn et le serveur Git.
+Maintenant le worklflow définit, et l'aide mise en place, il faut mettre en œuvre la migration vers Git du projet. Nous devons choisir une plateforme pour héberger le projet, et mettre en place des liens entre le serveur SVN et le serveur Git.
 
 \subsubsection{Github : une plateforme de travail collaboratif}
 
-Github propose d'héberger gratuitement les projets open-sources. Les serveurs github sont administrable par un site
-internet : \url{http://github.com/}. L'originalité de l'interface réside dans le réseau social proposé par le site. Il est possible de consulter les profils des programmeurs, de voir en temps réel l'avancement des projets sur lesquels ils travaillent. Le "fork" (copie d'un projet open source en vu de le modifier/l'améliorer) se fait en un click. Les collaborations se mettent en place d'un manière totalement transparente.
+Github propose d'héberger gratuitement les projets open-sources. Les serveurs github sont administrables par un site
+internet : \url{http://github.com/}. L'originalité de l'interface réside dans le réseau social proposé par le site. Il est possible de consulter les profils des programmeurs, de voir en temps réel l'avancement des projets sur lesquels ils travaillent. Le "fork" (copie d'un projet open source en vue de le modifier/l'améliorer) se fait en un click. Les collaborations se mettent en place d'un manière totalement transparente.
 
-Nous avons donc opté pour cette plateforme, qui est une autre raison de la montée de Git comme programme de gestion de sources. Les connections sur ce site sont sécurisées par un protocole crypté (ssh)... Il est donc nécessaire d'effectuer certaines opérations de configuration avant de pouvoir utiliser les serveurs git de Github. Les détails de la création d'un compte ont étés repris dans le tutoriel à destination de l'équipe de Gofigure2.
+Nous avons donc opté pour cette plateforme, qui est une autre raison de la montée de Git comme programme de gestion de sources. Les connections sur ce site sont sécurisées par un protocole crypté (ssh)... Il est donc nécessaire d'effectuer certaines opérations de configuration avant de pouvoir utiliser les serveurs Git de Github. Les détails de la création d'un compte ont été repris dans le tutoriel à destination de l'équipe de Gofigure2.
 
 \subsubsection{Automatisation de la migration vers Git}
 
 Une fois l'organisation Gofigure2 créée sur Github, et les comptes des développeurs configurés, nous avons pu passer à la migration à proprement parler du projet.
-Nous avons ensuite copié le contenu du serveur svn de Gofigure2,
+Nous avons ensuite copié le contenu du serveur SVN de Gofigure2,
 pour le traduire en un projet Git, en respectant le workflow proposé.
 
-Voici un schéma résumant la mise à jour du serveur git avec les informations du serveur svn.
+Voici un schéma résumant la mise à jour du serveur Git avec les informations du serveur SVN.
 Pour l'instant cette mise a jour est journalière.
 Nous pourrions aussi envisager une mise à jour automatique à chaque modification du projet.
 Un cycle de développement simplifie devient donc, pour un programmeur :
@@ -525,14 +552,14 @@ Un cycle de développement simplifie devient donc, pour un programmeur :
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/GitTransfert}
 \end{center}
-\caption{Migration automatique de svn vers git via un serveur installé au Megason Lab}
+\caption{Migration automatique de SVN vers Git via un serveur installé au Megason Lab}
 \label{fig:MigrationGit}
 \end{figure}
-Le serveur du Megason Lab copie donc tous les jours les informations du serveur svn.
-Il transforme ces informations pour qu'elles soient compatibles avec le protocole de git,
+Le serveur du Megason Lab copie donc tous les jours les informations du serveur SVN.
+Il transforme ces informations pour qu'elles soient compatibles avec le protocole de Git,
 et conforme au protocole de travail proposé, puis les envoie sur le serveur de github.
-Pour l'instant, le modifications provenant du serveur de Github (flèches pointillées)
-sont manuellement intégrés au projet. Cependant, on peut facilement automatiser cette fusion des projets git et svn.
+Pour l'instant, les modifications provenant du serveur de Github (flèches pointillées)
+sont manuellement intégrées au projet. Cependant, on peut facilement automatiser cette fusion des projets Git et SVN.
 
 
 
@@ -544,15 +571,17 @@ sont manuellement intégrés au projet. Cependant, on peut facilement automatise
 
 \section{Amélioration des techniques d'imagerie}
 
-Ce projet part d'une initiative personnelle : ayant appris qu'il m'était possible de continuer à travailler au Megason Lab, sur des images acquises par le microscope confocal, je décidais d'améliorer la qualité des images acquises. En effet, ces donnéees formeront la base de mes futures recherches, et trouver un moyent de les améliorer facilerterait d'autant mon travail.
+Ce projet part d'une initiative personnelle : ayant appris qu'il m'était possible de continuer à travailler au Megason Lab, sur des images acquises par le microscope confocal, je décidai d'améliorer la qualité des images acquises. En effet, ces données formeront la base de mes futures recherches, et trouver un moyen de les améliorer faciliterait d'autant mon travail.
 
 J'ai donc adressé un problème très courant dans ce type d'imagerie : 
 celui du mouvement incontrôlé du spécimen.
 Cela a des conséquences catastrophiques sur la qualité des images : 
-la région étudiée du spécimen peut être en dehors du champ du microscope après quelques heures d'acquisition,
+la région étudiée du spécimen peut être en dehors 
+du champ microscopique\footnote{Un champ microscopique ou champ d'observation est la zone d'observation éclairée qui apparait au manipulateur lors d'une observation au microscope}
+après quelques heures d'acquisition,
 cela conduit aussi à des "sauts" violents causés par la remise en place manuelle de l'objectif.
 
-Je vais tout d'abord prouver la validité d'un tel projet, pour ensuite détailler la réalisation technique qu'il a engendré.
+Je vais tout d'abord prouver la validité d'un tel projet, pour ensuite détailler la réalisation technique qu'il a engendrée.
 \subsection{Cahier des charges}
 Nous commençons par présenter la Bête à Cornes,
 pour clarifier le but principal du projet. Nous présentons ensuite le diagramme pieuvre qui permet de détailler les fonctions du projet.
@@ -563,23 +592,22 @@ pour clarifier le but principal du projet. Nous présentons ensuite le diagramme
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/RecalBAC}
 \end{center}
-\caption{Bête à corne (méthode {APTE\textregistered}) du projet de recalage}
+\caption{Bête à cornes (méthode {APTE\textregistered}) du projet de recalage}
 \label{fig:BACRecal}
 \end{figure}
 
-La figure~\ref{fig:BACRecal} montre la Bête à Corne du projet de recalage d'images microscopiques.
+La figure~\ref{fig:BACRecal} montre la Bête à cornes du projet de recalage d'images microscopiques.
 
 La réalisation de ce produit résulte d'un besoin exprimé par les biologistes et traiteurs d'images.
-Comme le spécimen change de forme durant le phase d'imagerie, il arrive qu'il ne soit plus dans le champ du microscope.
-Cela est un réel problème pour les biologistes qui doivent contrôler l'alignement du microscope toutes les heures.
-C'est aussi un problème pour les traiteurs d'image
+Comme le spécimen change de forme durant la phase d'imagerie, il arrive qu'il ne soit plus dans le champ d'observation, ce qui est un réel problème pour les biologistes qui doivent contrôler l'alignement du microscope toutes les heures.
+C'est aussi un problème pour les traiteurs d'images
 car il arrive qu'un biologiste déplace en un mouvement un spécimen.
 Cela invalide beaucoup de méthodes de suivi des objets imagés.
 
 Ce projet, en automatisant l'alignement du microscope permet donc aux biologistes de moins surveiller l'acquisition,
 et aux traiteurs d'images, de disposer de données exploitables.
 
-Ce projet peut évoluer en accord avec les besoins des biologistes, et suivant l'évolution des techniques de recalage d'image.
+Ce projet peut évoluer en accord avec les besoins des biologistes, et suivant l'évolution des techniques de recalage d'images.
 
 
 \newpage
@@ -596,28 +624,28 @@ Ce projet peut évoluer en accord avec les besoins des biologistes, et suivant l
 \textbf{Fonction principale :}\\
 FP1 : déplacer le microscope pendant l'acquisition en suivant le spécimen\\
 \textbf{Fonctions contraintes :} \\
-FC1 : compatible avec les logiciels utilises\\
+FC1 : compatible avec les logiciels utilisés\\
 FC2 : robuste aux changements de forme du spécimen\\
 FC3 : contenir une interface homme machine\\
-FC4 : maintenable par l'équipe du megason lab\\
+FC4 : maintenable par l'équipe du Megason Lab\\
 FC5 : robuste au bruit\\
-FC6 : robuste aux changement d'illumination}
+FC6 : robuste aux changements d'illumination}
 \label{fig:PIEUVRERecal}
 \end{figure}
 
 La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous analysons :
 \paragraph*{FP1} : déplacer le microscope pendant l'acquisition en suivant le spécimen.
 \begin{itemize}
-  \item Existe pour Créer des images exploitables d'une manière fiable.
+  \item Existe pour créer des images exploitables d'une manière fiable.
   \item Existe à cause de la nature du spécimen analysé, qui est vivant et en développement. 
-  Il change donc de forme, grossit et se déplace, il faut donc suivre l'organe d'interet pendant le
+  Il change donc de forme, grossit et se déplace, il faut donc suivre l'organe d'intérêt pendant le
   développement du spécimen.
   \item Pourrait disparaitre si le Megason Lab arrêtait d'imager des spécimens vivants.
-  Si les microscope avaient un champ de visualisation assez grand pour englober
+  Si les microscopes avaient un champ de visualisation assez grand pour englober
   tout le spécimen et d'éventuelles marges de déplacement.
 \end{itemize}
 
-\paragraph*{FC1} : compatible avec les logiciels utilises.
+\paragraph*{FC1} : compatible avec les logiciels utilisés.
 \begin{itemize}
   \item Existe pour fonctionner avec le matériel présent au Megason Lab.
   \item Existe à cause de la nature des logiciels utilisés au Megason Lab.
@@ -627,8 +655,8 @@ La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous an
 
 \paragraph*{FC2} : robuste aux changements de forme du spécimen
 \begin{itemize}
-  \item Existe pour fonctionner sur différents spécimens analysés.
-  et fonctionner sur une période de temps étendue (le spécimen change de forme au cours du temps).
+  \item Existe pour fonctionner sur différents spécimens analysés,
+  et sur une période de temps étendue (le spécimen change de forme au cours du temps).
   \item Existe à cause de la nature des spécimens analysés au Megason Lab.
   \item Pourrait disparaitre si les spécimens n'évoluaient pas au cours du temps;
   si il existait un programme spécifique à chaque partie du spécimen.
@@ -641,16 +669,16 @@ La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous an
   \item Pourrait disparaitre si le programme pouvait déterminer automatiquement les meilleurs paramètres.
 \end{itemize}
 
-\paragraph*{FC4} : maintenable par l'équipe du megason lab
+\paragraph*{FC4} : maintenable par l'équipe du Megason Lab
 \begin{itemize}
-  \item Existe pour permettre aux autres chercheurs du Megason Lab de modifier/utiliser le programme
+  \item Existe pour permettre aux autres chercheurs du Megason Lab de modifier/utiliser le programme.
   \item Existe à cause du fait que le développeur de l'application ne sera pas toujours présent pour la maintenir.
   \item Pourrait disparaitre si le programme se maintenait tout seul.
 \end{itemize}
 
 \paragraph*{FC5} : robuste au bruit
 \begin{itemize}
-  \item Existe pour permettre a l'algorithme de fonctionner en la présence de bruit
+  \item Existe pour permettre à l'algorithme de fonctionner en la présence de bruit
   \item Existe à cause du fait que le microscope produit des images bruitées.
   \item Pourrait disparaitre si le microscope produisait des images sans aucun bruit.
 \end{itemize}
@@ -658,9 +686,9 @@ La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous an
 
 \paragraph*{FC6} : robuste aux changement d'illumination
 \begin{itemize}
-  \item Existe pour permettre a l'algorithme de fonctionner au cours du temps. 
+  \item Existe pour permettre à l'algorithme de fonctionner au cours du temps. 
   \item Existe à cause du fait que la fluorescence des spécimens décroit au cours du temps (phénomène de "bleaching"),
-  et change d'une image à l'autre constante car le système d'illumination basé sur une probabilité d'absorption de photons
+  et change d'une image à l'autre car le système d'illumination basé sur une probabilité d'absorption de photons.
   (le même phosphore n'absorbe pas toujours autant de photons avant de ré-émettre).
   \item Pourrait disparaitre si le bleaching disparaissait 
   et si nous contrôlions mieux l'absorption de photons par les phosphores du spécimen.
@@ -672,7 +700,7 @@ Le principe du programme est d'estimer le déplacement de structures notables da
 Une fois ce déplacement estimé, il s'agit de déplacer le spécimen afin de garder ces structures dans le champ du microscope.
 
 \subsubsection{Estimation du déplacement du spécimen}
-Nous utilisons une technique connue sous le nom de recalage d'image pour estimer le déplacement du spécimen entre deux acquisitions (deux images) effectuées par le microscope.
+Nous utilisons une technique connue sous le nom de recalage d'images pour estimer le déplacement du spécimen entre deux acquisitions (deux images) effectuées par le microscope.
 Comme le microscope ne peut que déplacer le spécimen en translation, nous choisissons un recalage rigide qui évalue les translations selon les trois dimensions de l'espace, entre deux images.
 
 Ces techniques sont basés sur des critères d'énergies à minimiser.
@@ -801,15 +829,15 @@ et du traitement de l'image.
 
 Cela m'a permis d'acquérir une base solide pour mener des recherches dans ce domaine.
 Après une importante phase d'apprentissage, je maitrise maintenant des librairies de renom
-(ITK, VTK,Qt), les systèmes unix, et la gestion de version.
+(ITK, VTK,Qt), les systèmes unix, et la gestion de versions.
 
 J'ai pu aussi établir des contacts dans la communauté des traiteurs d'image par le biais de collaborations
-(Matt MacCornick), ou de conférences internationales (participation à la NAMIC summer project week, au MIT). 
+(Matt MacCornick), ou de conférences internationales (participation à la NAMIC summer project week, au MIT).
 
 \section{Projet professionnel}
 
-Ce PFE s'inscrit dans un projet professionnel construit durant ma scolarité a l'INSA de Lyon.
-Mon inscription a l'INSa de Lyon a été grandement motivée par l'ouverture de l'école a l'international. J'ai ainsi effectue mon stage ouvrier en Afrique du Sud. Profitant d'une première expérience professionnelle a l'international.
+Ce PFE s'inscrit dans un projet professionnel construit durant ma scolarité à l'INSA de Lyon.
+Mon inscription à l'INSA de Lyon a été grandement motivée par l'ouverture de l'école à l'international. J'ai ainsi effectue mon stage ouvrier en Afrique du Sud. Profitant d'une première expérience professionnelle à l'international.
 
 Lors de ma seconde année a l'INSA de Lyon, j'ai choisi l'option SCiences et ANglais (SCAN).
 Cette filière regroupe les élèves ayant un niveau suffisant pour pouvoir suivre la formation généraliste en anglais.
@@ -818,32 +846,32 @@ J'ai profite de ce financement pour aller au Trinity College en Irelande où
 j'ai pu avoir ma première expérience académique a l'étranger.
 
 J'ai ensuite choisi le département Génie Électrique qui permet de bénéficier d'un grand panel de compétences,
-notamment dans des domaines rattaches a l'électronique et l'informatique.
+notamment dans des domaines rattaches à l'électronique et l'informatique.
 
 Continuant l'expérience internationale, j'ai effectué mon stage industriel au
 Fraunhofer Institute, Center for Manufacturing Innovation, aux États Unis.
-Ce stage m'a énormément apporte en plus de l'expérience technique.
+Ce stage m'a énormément apporté en plus de l'expérience technique.
 Il s'agissait d'une première immersion dans la culture américaine.
-C'est après ce stage que j'ai passe le test TOEIC validant un très bon niveau d'expression et de compréhension en anglais,
+C'est après ce stage que j'ai passé le test TOEIC validant un très bon niveau d'expression et de compréhension en anglais,
 avec un score de neuf cent quatre-vingt sur neuf cent quatre-vingt dix.
 
-Le PFE au Megason lab possède des attraits indéniables :
+Le PFE au Megason Lab possède des attraits indéniables :
 il s'agit d'un stage de recherche perfectionnant mes connaissances en traitement de l'image.
 Il s'agit aussi d'une expérience internationale dans une université renommée : Harvard Medical School.
-Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte a de nombreuses opportunités professionnelles.
+Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte à de nombreuses opportunités professionnelles.
 
 Comme je suis intéressé par les domaines techniques,
 je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées,
 au cours d'une thèse élaborée en collaboration avec le laboratoire CREATIS (INSA Lyon)
 et le laboratoire Megason (Harvard Medical School).
-Cette incroyable opportunité professionnelle est financée en partie par Harvard Medical School
-et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitie aux États Unis.
+Cette exceptionnelle opportunité professionnelle est financée en partie par Harvard Medical School
+et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitié aux États Unis.
 En plus de pouvoir travailler sur un domaine passionnant,
-je pourrai ainsi bénéficier d'une équivalence avec un PhD (diplôme très reconnu a l'international). 
+je pourrai ainsi bénéficier d'une équivalence avec un PhD (diplôme très reconnu à l'international). 
 
 Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte international,
-dans des domaine a haute technicité pour trouver un emploi dans le secteur privé.
+dans des domaine à haute technicité pour trouver un emploi  dans le secteur privé.
 Je pourrai mettre en avant mes capacités en traitement du signal pour travailler dans le médical ou l'aéronautique.
 
-Mon ambition est de migrer vers des responsabilités manageriales après avoir une très bonne maitrise de la technique.
+Mon ambition est de migrer vers des responsabilités managériales après avoir une très bonne maitrise de la technique.
 
