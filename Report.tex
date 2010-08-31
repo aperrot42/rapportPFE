@@ -10,8 +10,8 @@
 
 \begin{abstract}
   Ce rapport présente le travail effectué pendant mon Projet de Fin d'Étude (PFE) au sein du Megason Lab, Harvard Medical School. Ce PFE conclut ma formation à l'Institut National des Sciences Appliquées de Lyon, au département Génie Électrique, pour acquérir le grade d'Ingénieur INSA. Il s'agit aussi d'un stage de recherche finalisant le master Génie Électrique et des Procédés, parcours Systèmes et Images à l'INSA de Lyon, l'École Centrale de Lyon, et l'Université Claude Bernard Lyon 1.
-  
-  Le travail à pour thème le traitement d'images microscopiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : Gofigure2\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
+
+  Le travail à pour thème le traitement d'images microscopiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : {\gofigure}\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
   
   
 \tableofcontents  
@@ -45,11 +45,11 @@ segmentation, suivi de cellules adapté aux données de la microscopie.
 \hline Amelia Green & Séjour Postdoctoral & Formation des oreilles du poisson zèbre. & Angleterre \\ 
 \hline Evan Schwab & Associe & Séquences du code génétique du poisson zèbre. & USA \\ 
 \hline Dante D'India & Technicien & Entretient des animaux. & USA \\ 
-\hline Arnaud Gelas & Ingénieur de recherche (senior) & Programmation de Gofigure2 : Management du projet. &  France \\
+\hline Arnaud Gelas & Ingénieur de recherche (senior) & Programmation de {\gofigure} : Management du projet. &  France \\
 \hline Kishore Mosaliganti & Séjour Postdoctoral & Algorithmes de traitement de l'image, recalage et segmentation. & Inde \\ 
-\hline Lydie Souhait & Ingénieur de recherche & Programmation de Gofigure2 : interface graphique et base de donnée. & France \\
-\hline Nicolas Rannou & Ingénieur de recherche & Programmation de Gofigure2 : intégration de VTK et des algorithmes ITK au programme. & France \\
-\hline Antonin Perrrot-Audet & Stagiaire en PFE & Traitement d'image : Segmentation des cellules; Programmation de Gofigure2 & France \\
+\hline Lydie Souhait & Ingénieur de recherche & Programmation de {\gofigure} : Responsable de la base de donnees (design, connexion, requetes), et GUI & France \\
+\hline Nicolas Rannou & Ingénieur de recherche & Programmation de {\gofigure} : Responsable de la visualisation dans {\gofigure} & France \\
+\hline Antonin Perrrot-Audet & Stagiaire en PFE & Traitement d'image : Segmentation des cellules; Programmation de {\gofigure} & France \\
 \hline 
 \end{tabular*} }
 
@@ -66,14 +66,14 @@ Les expériences sont réalisées sur des poissons zèbres.
 De la même manière qu'un informaticien introduit des "breakpoints" dans un programme pour intervenir dans son exécution,
 les biologistes créent des poissons mutants et analysent les effets des modifications du génome sur le développement.
 L'étape suivante consistera a créer un modèle du développement du poisson zèbre.
-En ce moment, les centres d'intérêts de l'équipe de biologiste sont la formation du tube neural, et des oreilles.
+En ce moment, les centres d'intérêts de l'équipe de biologiste sont la formation du système nerveux, et des oreilles.
 
 Les biologistes recueillent d'énormes quantités de données
-correspondant à des vidéos d'embryons de poissons zèbres.
+correspondant à des vidéos d'embryons de poissons zèbres (typiquement, 150Giga bytes par vidéo).
 Afin de pouvoir exploiter ces données,
 une équipe de développeurs informatiques a été formée.
 Cette équipe a pour objectif de développer la prochaine plateforme
-pour l'analyse d'images de microscopie: Gofigure2.
+pour l'analyse d'images de microscopie: {\gofigure}.
 Il s'agit donc de créer une application extrêmement accessible ("cross-platform
 \footnote{Un logiciel multiplate-forme ou multiplateforme est un logiciel conçu pour fonctionner sur plusieurs plates-formes, c'est-à-dire le couple liant ordinateur et système d'exploitation. En anglais on parle souvent de "cross-platform software" ou "platform independent software" ou encore de "multi-platform software".}
 "), 
@@ -85,7 +85,7 @@ pour permettre l'implication aisée de nouveaux chercheurs
 en traitements de l'images et d'informaticiens.
 
 \subsection{Le Matériel} 
-Le Megason lab dispose de matériels neufs, d'équipements récents et perfectionnés, tant dans le domaine de la biologie que de l'informatique. Le personnel d'Harvard assure sa prise en charge et son entretien.
+Le Megason lab dispose d'équipements récents et perfectionnés, tant dans le domaine de la biologie que de l'informatique. Le personnel d'Harvard assure sa prise en charge et son entretien.
 Pour mon PFE, je me suis plutôt intéressé aux dispositifs d'acquisition et de traitement d'image : les microscopes et les ordinateurs.
 
 \subsubsection{Les dispositifs d'imagerie}
@@ -109,7 +109,7 @@ Cette technique a plusieurs avantages :
   Ainsi, il y a moins de dommages causés au spécimen observé.
 \end{itemize}
 
-Il est pour l'instant possible d'utiliser trois canaux différents et donc d'utiliser trois marqueurs fluorescents différents.
+Il est pour l'instant possible d'utiliser trois marqueurs fluorescents différents à la fois, que l'on stocke dans une image multicolore.
 Ce microscope a été assemblé au Megason Lab à partir d'un microscope Zeiss 710 NLO.
 Une chambre environnementale a été créée, afin de contrôler le développement des embryons durant la capture d'informations.
 
@@ -173,8 +173,7 @@ Comme je suis intéressé par les domaines techniques,
 je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées,
 au cours d'une thèse élaborée en collaboration avec le laboratoire CREATIS (INSA Lyon)
 et le laboratoire Megason (Harvard Medical School).
-Cette exceptionnelle opportunité professionnelle est financée en partie par Harvard Medical School
-et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitié aux États Unis.
+Je passerai ainsi la moitié de mon temps en France, et l'autre moitié aux États Unis.
 En plus de pouvoir travailler sur un domaine passionnant,
 je pourrai ainsi bénéficier d'une équivalence avec un PhD (diplôme très reconnu à l'international). 
 
@@ -182,7 +181,7 @@ Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte in
 dans des domaine à haute technicité pour trouver un emploi  dans le secteur privé.
 Je pourrai mettre en avant mes capacités en traitement du signal pour travailler dans le médical ou l'aéronautique.
 
-Mon ambition est de migrer vers des responsabilités managériales après avoir une très bonne maitrise de la technique.
+Mon ambition à long terme est de migrer vers des responsabilités managériales après avoir une très bonne maitrise de la technique.
 
 
 
