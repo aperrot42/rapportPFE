@@ -6,14 +6,14 @@
 \section*{Introduction}
 
 \subsection*{}
-Je présente deux dans cette partie, la démarche recherche que j'ai eue pendant le PFE. Il s'agit tout d'abord de bien prendre connaissance du sujet. Cette prise de connaissance permet de voir quels problèmes persistent. Il faut ensuite trouver une solution à ces problèmes, afin de pouvoir avancer dans sa résolution.
+Je présente dans cette partie, la démarche recherche que j'ai eue pendant le PFE. Il s'agit tout d'abord de bien prendre connaissance du sujet. Cette prise de connaissance permet de voir quels problèmes restent à résoudre. Il faut ensuite trouver une solution à ces problèmes, afin de pouvoir avancer dans leur résolution.
 
-La difficulté en recherche, est que bien souvent, il n'existe pas de solution dans le domaine étudié.
+La difficulté en recherche, est que bien souvent, il n'existe pas encore de solution dans le domaine étudié.
 Il faut donc passer par une phase de bibliographie, pour étudier l'état de l'art,
 et éventuellement apprendre de nouvelles théories.
 Le domaine du traitement de l'image est une science particulière car beaucoup d'algorithmes sont inventés,
 mais très peu sont diffusés ou applicable a divers types d'images.
-Il faut donc reprogrammer les algorithmes présentés dans les publications scientifiques et vérifier leur performance.
+Il faut donc reprogrammer les algorithmes présentés dans les publications scientifiques et vérifier leurs performances.
 Il faut enfin trouver des idées innovantes pour résoudre les problèmes posés, et expérimenter.
 
 \subsection*{}
@@ -24,9 +24,9 @@ Ce modèle fait l'objet d'une proposition de thèse : Modèle numérique cellula
 
 Avant d'arriver au Laboratoire, j'ai travaillé sur la membrane cellulaire. J'ai ensuite concentré mes recherches sur la détection et la localisation de noyaux.
 
-\section{Segmentation de la paroi cellulaire par ensembles de niveaux}
+\section{Segmentation de la membrane cellulaire par ensembles de niveaux}
 
-Le but initial du PFE etait la segmentation de la paroi cellulaire. il s'agit d'une fine membrane séparant les multiples cellules. Elle s'étend sur tout le spécimen a analyser. Il s'agit donc d'un volume important et complexe.
+Le but initial du PFE etait la segmentation de la membrane cellulaire. il s'agit d'une fine membrane séparant les multiples cellules. Elle s'étend sur tout le spécimen à analyser. Il s'agit donc d'un volume important et complexe.
 
 \subsection{Étude du problème}
 
@@ -37,7 +37,7 @@ Les images sont acquises a travers un système optique. L'excitation par un lase
 
 Le système a donc une réponse impulsionelle bien visible dans les données. Un point correspond grossièrement a une gaussienne étalée dans les trois dimensions de l'espace, et plus particulièrement selon l'axe perpendiculaire au plan de focalisation.
 
-Il existe aussi un bruit du au dispositif électronique d'acquisition. De plus, la fluorescence n'étant pas repartie de manière homogène, il existe des "trous" et de la saturation dans les données.
+Il existe aussi un bruit dû au dispositif électronique d'acquisition. De plus, la fluorescence n'étant pas répartie de manière homogène, il existe des "trous" et de la saturation dans les données.
 \TODO{inserer des images illustrant les problemes}
 
 
@@ -51,7 +51,14 @@ J'ai choisi de me focaliser sur trois difficultés afin de trouver des solutions
 \end{description}
 
 
-\subsection{Utilisation de la théorie des ensembles de niveaux}
+\subsection{Débruitage des données}
+Le bruit présent sur les images n'est pas gaussien. Il n'est pas répartis de la même manière dans toute l'image non plus. Je me suis donc focalisé sur des techniques de débruitage telles que le filtre médian, et plus généralement des filtres morphologiques.
+
+Le filtre médian donne de bons résultats
+
+\subsection{Segmentation de la membrane}
+
+\subsubsection{Utilisation de la théorie des ensembles de niveaux}
 
 L'outil choisi pour segmenter la paroi cellulaire, est base sur les ensembles de niveaux (levels-sets). Cette théorie consiste en l'évolution d'un front. Cette évolution est représentée par une fonction implicite qui évolue itérativement. Le front (bords de la zone segmentée) est souvent représenté par le niveau zéro de cette fonction implicite.
 Les Level sets, au travers de leur critère d'évolution, permettent d'avoir une grande flexibilité quand aux mesures a considerer lors de l'evolution du front. Cette évolution est représentée par un critère d'énergie, le problème de segmentation par level set est donc un problème d'optimisation.
@@ -60,7 +67,7 @@ Les Level sets, au travers de leur critère d'évolution, permettent d'avoir une
 
 
 
-Afin d'éliminer le bruit sans détériorer la membrane, le principe de l'érosion dilatation a été mis en oeuvre. Il s'agit d'une methode rapide qui donne de bons resultats
+
 
 
 idee de la mediane

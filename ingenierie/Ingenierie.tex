@@ -4,20 +4,13 @@
 \chapter{Rapport d'ingénierie} 
 
 
-\TODO {ADD definitions to glossary !!!!}
-
-
-
-
-
-
 \section*{Introduction}
-\TODO{modifier !!!}
 Ce PFE conclut les cinq années d'étude à l'INSA de Lyon. 
 Il s'agit de démontrer des capacités d'adaptation,
-d'innovation et d'initiative propres à un ingénieur. Les laboratoires aux 
-États-Unis ont besoin de l'expertise d'ingénieurs
-pour résoudre des problème techniques. 
+d'innovation et d'initiative propres à un ingénieur.
+
+Les laboratoires ont besoin de l'expertise d'ingénieurs
+pour résoudre des problème techniques, qui se posent du fait de l'utilisation de matériel hautement sophistiqué.
 Notamment, au Megason Lab, ce sont principalement des ingénieurs qui développent le programme de visualisation de données. 
 Les problèmes d'acquisitions d'images biologiques révèlent aussi des défis techniques.
  
@@ -29,7 +22,8 @@ Cependant, le Megason lab cherche au maximum à intégrer les avancées en trait
  Il a donc fallu me former afin que je devienne un programmeur avancé en {\C++}. 
  
 J'ai ainsi commencé mon PFE en tant que membre de l'équipe de développement de Gofigure2.
- Les objectifs étant d'apprendre les différentes librairies utilisées par le programme, pour mettre au point un système de plugins. 
+ Les objectifs étant d'apprendre les différentes librairies utilisées par le programme, pour mettre au point un système de plugins
+ \footnote{En informatique, un plugin ou plug-in (aussi nommé module d'extension, greffon ou plugiciel au Québec) est un logiciel qui complète un logiciel hôte pour lui apporter de nouvelles fonctionnalités. Notamment, pour le logiciel Gofigure2, les plugins seront des algorithmes de traitement d'images.}. 
  Ma mission était de créer une librairie de comparaison d'images, afin d'inclure aux plugins, un aperçu à la Photoshop.
 
 Dans le cadre de ma participation au développement de Gofigure2,
@@ -38,6 +32,20 @@ Dans le cadre de ma participation au développement de Gofigure2,
 
 Mon PFE étant motivé par des objectifs de traitement de l'image, j'ai aussi travaillé sur l'amélioration
  des techniques d'acquisitions de données microscopiques.
+ 
+ 
+\section*{Planning} 
+ 
+Des objectifs, nous pouvons dégager des taches, que nous plaçons dans un diagramme de Gantt. Le diagramme présenté figure~\ref{fig:GanttPFEInge}, ne concerne que les tâches d'ingénierie, or le PFE était aussi un stage master avec des objectifs recherche. Le diagramme de Gantt général du PFE est donc présenté en annexe \ref{AnnexeGanttGlobal}.
+ 
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[angle=-90, width=0.95\textwidth]{pictures/GanttPFEInge}
+\end{center}
+\caption{Gantt de la partie ingénierie du PFE}
+\label{fig:GanttPFEInge}
+\end{figure}
 
 %--------------------------------------------------
 %             COMPARAISON
@@ -63,13 +71,14 @@ aux traiteurs d'image développant sous ITK.
 Ce programme permet aussi de visualiser les traitements appliqués aux données
 lors de l'exécution d'un algorithme de traitement d'images sous un environnement de debugging (gdb
 \footnote{Un débogueur, débugueur ou encore debugger (de l'anglais), est un logiciel qui aide un développeur à analyser les bugs d'un programme. Pour cela, il permet d'exécuter le programme pas-à-pas, d'afficher la valeur des variables à tout moment, de mettre en place des points d'arrêt sur des conditions ou sur des lignes du programme ...\\
-Le GNU Debugger également appelé gdb est le débogueur standard du \href{http://fr.wikipedia.org/wiki/Projet_GNU}{projet GNU} } ).
+Le GNU Debugger également appelé gdb est le débogueur standard du \href{http://fr.wikipedia.org/wiki/Projet_GNU}{projet GNU}.} ).
 
 
-\subsection{cahier des charges}
+\subsection{Cahier des charges}
 
+Nous spécifions l'ensemble des tâches réalisées au cours du PFE avec la méthode APTE. Celle ci nous permet de définir les fonctions à remplir pour parvenir à un objectif. L'objectif est spécifié par le diagramme Bête à cornes (figure~\ref{fig:BACCompare}), tandis que les fonctions sont décrites dans l'analyse du diagramme pieuvre(figure~\ref{fig:PIEUVRECompare}).
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/CompareBAC}
@@ -78,9 +87,30 @@ Le GNU Debugger également appelé gdb est le débogueur standard du \href{http:
 \label{fig:BACCompare}
 \end{figure}
 
-\TODO[cooriger image]
+L'analyse de la Bête à cornes consiste en répondre aux questions :
+\begin{inparaenum}[(i)] 
+  \item pourquoi cherche-t'on à atteindre ce but ?
+  \item et qu'est ce qui pourrait faire disparaitre ou évoluer le projet ?
+\end{inparaenum}
 
-\begin{figure}[H]
+Le programme Gofigure2 va bientôt disposer d'une interface pour créer des plugins afin de traiter des images microscopiques.
+Le développement d'une librairie de visualisation et de comparaison est donc nécessaire
+pour contrôler les paramètres des algorithmes inclut dans les plugins.
+
+De plus, lors du développement d'algorithmes,
+il est souvent nécessaire, lors de la phase de test et d'évaluation,
+de visualiser l'état des données traitées, pendant l'exécution du programme.
+Les algorithmes sont la plupart du temps prototypés en \C++ au Megason Lab, et la visualisation de données n'est pas triviale.
+Il faut souvent ajouter une dizaine de lignes de codes pour pouvoir sauvegarder une image.
+Une telle tâche est fastidieuse, et ce projet permettrait de visualiser
+des données lors de l'exécution du programme, sans rajouter de code ni le recompiler !\\
+
+De par mon implication dans l'équipe de Gofigure2 et
+comme je vais être amené à développer des algorithmes en {\C++},
+coder une librairie de comparaison d'images me permettra de me former aux outils utilisés au Megason Lab,
+tout en créant un outil indispensable pour mes travaux futurs.
+
+\begin{figure}[h]
   \begin{center}
   \leavevmode
   \includegraphics[width=0.95\textwidth]{pictures/ComparePIEUVRE}
@@ -94,7 +124,7 @@ Le GNU Debugger également appelé gdb est le débogueur standard du \href{http:
   FP1 : visualiser des données (fichiers ou en mémoire) provenant 
     de VTK et ITK dans Qt\\
   FP2 : synchroniser la visualisation de plusieurs images\\
-  FP3 : debugger visuellement des pipelines ITK et VTK dans gdb\\
+  FP3 : débuguer visuellement des pipelines ITK et VTK dans gdb\\
     \textbf{Fonctions contraintes :} \\
   FC1 : être compatible avec VTK, ITK et Qt\\
   FC2 : proposer une interface simple, une documentation, des exemples, et être
@@ -103,6 +133,10 @@ Le GNU Debugger également appelé gdb est le débogueur standard du \href{http:
   FC4 : être compatible avec Python pour interfacer avec gdb}
   \label{fig:PIEUVRECompare}
 \end{figure}
+
+
+\clearpage
+
 
 Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questions de la méthode {APTE\textregistered}, pour chaque fonction :
 \begin{inparaenum}[(i)] 
@@ -128,7 +162,7 @@ Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questi
   proposaient des solutions simple de synchronisation de visualisations.
 \end{itemize}
 
-\paragraph*{FP3} :\\ débugueur visuellement des pipelines ITK et VTK dans gdb
+\paragraph*{FP3} :\\ débuguer visuellement des pipelines ITK et VTK dans gdb
 \begin{itemize}
   \item Existe pour permettre au programmeur de rapidement visualiser des images
    à différents points d'une pipeline ITK ou VTK.
@@ -140,7 +174,7 @@ Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questi
 \paragraph*{FC1} :\\ être compatible avec VTK, ITK et Qt
 \begin{itemize}
   \item Existe pour permettre à l'application de fonctionner.
-  \item Existe à cause du fait que ces 3 librairies sont complémentaires et souvent utilisées conjointement dans une même application.
+  \item Existe car ces 3 librairies sont complémentaires et souvent utilisées conjointement dans une même application.
   \item Pourrait disparaitre si une librairie regroupant les fonctions d'ITK, VTK et Qt était crée, et si Gofigure2 l'utilisait.
 \end{itemize}
 
@@ -154,21 +188,21 @@ Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questi
 \paragraph*{FC3} :\\ être visible sur internet
 \begin{itemize}
   \item Existe pour permettre à un maximum de programmeur de télécharger la librairie et l'utiliser.
-  \item Existe à cause du fait que la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
+  \item Existe car la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
   \item Pourrait disparaitre si la librairie venait à ne plus être publique.
 \end{itemize}
 
-\paragraph*{FC3} :\\ être compatible avec Python pour interfacer avec gdb
+\paragraph*{FC4} :\\ être compatible avec Python pour interfacer avec gdb
 \begin{itemize}
   \item Existe pour permettre l'intégration à gdb et le débuguage visuel des pipelines ITK et VTK.
-  \item Existe à cause du fait que le débugueur gdb nécessite une interface python 
+  \item Existe car le débugueur gdb nécessite une interface python 
   pour interpréter les données en provenance 
   des pipelines ITK et VTK dans un programme externe.
   \item Pourrait disparaitre si gdb n'utilisait plus Python 
   pour interfacer avec des programmes externes.
 \end{itemize}
 
-\subsection{les outils utilisés}
+\subsection{Les outils utilisés}
 Afin de pouvoir programmer ce projet,
 il a été nécessaire d'apprendre à utiliser un certain nombre d'outils,
 de librairies et concepts {\C++}. Cet apprentissage a été une
@@ -195,9 +229,8 @@ Le projet utilise trois grandes librairies :
   Simultanément, un objet tridimensionnel composé par ces trois coupes est affiché.
   La version présente dans Gofigure2 à été grandement modifiée.
 \end{description}
-Une description détaillée de ces librairies est présentée en annexe.
+Une description détaillée de ces librairies est présentée en annexe \label{AnnexeDescriptionITKVTKQT}.
 
-\TODO{Annexe avec description pipelines etc... vtk itk qt}
 
 \subsubsection{Les outils de programmation}
 A partir d'un certain niveau, en {\C++}, il est indispensable de maitriser certains outils complexes. Ceux-la, après un temps
@@ -226,22 +259,82 @@ Les outils utilisés quotidiennement, dans le processus de développement d'appl
 \end{description}
 
 
-\subsection{Agenda}
-
-Afin de planifier les tâches nécessaires pour mener à bien ce projet, un diagramme de Gantt est présenté.
-\TODO{INSERER GANTT pour Comparer }
-
 \subsection{Résultats et travail futur}
 
-La librairie créée est fonctionnelle. Elle remplit les fonctions présentées en introduction. Un exemple de code est donné en annexe, illustrant l'extrême simplicité d'utilisation de la librairie.
-\TODO{insere code snapshot en annexe}
-Une interface graphique basique a été créée pour illustrer les fonctionnalités de la librairie :
-\TODO{include screenshots}
+La librairie créée est fonctionnelle. Elle remplit les fonctions présentées en introduction. Un exemple de code est donné, illustrant l'extrême simplicité d'utilisation de la librairie :\\
+Ce code permet d'ouvrir deux images : l'une provenant de la librairie ITK, et l'autre de VTK, et de synchroniser leur visualisation.
+\large
+  \begin{lstlisting}[title={Utilisation simple de la librairie de comparaison d'images}]{CompareCodeSimple}
+#include "itkImageFileReader.h"
+#include "vtkMetaImageReader.h"
+#include "QGoSynchronizedViewManager.h"
+#include <QApplication>
+
+int main(int argc, char** argv)
+{
+  QApplication app(argc, argv);
+
+  // ITK
+  typedef double InputPixelType;
+  typedef itk::Image<InputPixelType, 3> InputImage3DType;
+  typedef InputImage3DType::Pointer InputImage3DPointer;
+  typedef itk::ImageFileReader<InputImage3DType> itkReaderType;
+  itkReaderType::Pointer itkReader = itkReaderType::New();
+  itkReader->SetFileName("image3DA.mha");
+  itkReader->Update();
+  // ==========================
+
+  // VTK
+  vtkSmartPointer<vtkMetaImageReader> reader3D = 
+    vtkSmartPointer<vtkMetaImageReader>::New();
+  reader3D->SetFileName(image3DB.mha);
+  reader3D->Update();
+  // ==========================
+
+  //Librairie creee
+  QGoSynchronizedViewManager* syncViewManage =
+    new QGoSynchronizedViewManager();
+
+  syncViewManage->newSynchronizedView
+    ("VisualisationA", filter13D->GetOutput());
+
+  syncViewManage->newSynchronizedView<InputPixelType>
+    ( "VisualisationB", itkReader->GetOutput() );
+    
+  syncViewManage->Update();
+  syncViewManage->show();
+  syncViewManage->synchronizeOpenSynchronizedViews();
+  // ==========================
+
+
+  //Qt
+  app.processEvents();
+  int output = app.exec();
+  // ==========================
+  
+  delete syncViewManage;
+  return output;
+}
+  \end{lstlisting}
+\normalsize
+
+La librairie permet de charger une image en une ligne de code,
+et prend trois lignes pour afficher les images chargées d'une manière synchronisée.
+Cela passe simplement par la création d'un QObjet : le QGoSynchronizedViewManager !\\
+
+Une interface graphique basique a été créée pour illustrer les fonctionnalités de la librairie. La figure~\ref{fig:CompareQuad} est une capture d'écran de cet example.\\
+\begin{figure}[h]
+\center
+\includegraphics[width=1\textwidth]{pictures/CompareQuad}
+\caption{Example "compareguiexample" sur MacOsX 10.6. Ce programe utilise la librairie graphique créée pendant le PFE. Ici, l'utilisateur compare deux jeux de données 3D.}
+\label{fig:CompareQuad}
+\end{figure}
+
 En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples,
-la librairie est délivrée avec une documentation en ligne.
-\TODO{inserer exemple documentation}
+la librairie est délivrée avec une documentation en ligne.\\
+
 Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été créée.
-La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est également intégrée au débugueur graphique, en collaboration avec Matt MacCormick.
+La librairie a été intégrée au code de Gofigure2, au seins de se librairie graphique (QGoGUI), et est également intégrée au débugueur graphique, en collaboration avec Matt MacCormick.\\
 
 La librairie de comparaison d'images est une très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :
 \begin{itemize}
@@ -308,8 +401,6 @@ Ainsi, le programme de gestion de versions est aussi utilisé
 pour publier le code sur internet, par l'intermédiaire de sites spécialisés
 (Sourceforge, Github, Gitorious, GoogleCode...).
 
-\TODO{Illustration du fonctionnement d'un programme de gestion de versions :}
-
 
 \subsubsection{Les deux philosophies de gestion de versions} 
 
@@ -327,26 +418,19 @@ Les programmeurs disposent chacun d'une copie complète du projet sur leur ordin
 qu'ils modifient à leur guise et synchronisent avec d'autres programmeurs.
 Ce mode de fonctionnement permet de travailler sans connexion au serveur.
 
-Il est possible de trouver une comparaison détaillée des deux philosophies à cette adresse :
-\TODO{cite adresse \url{http://informatique.in2p3.fr/?q=node/333}}
+Il est possible de trouver une comparaison détaillée des deux philosophies sur
+\href{http://informatique.in2p3.fr/?q=node/333}{le site de l'IN2P3}.
 
-\paragraph{Principales solutions}
-
-Il existe d'autres solutions :
-
-
-SVN Git Hg Bazaar...
-presenter en annex comparaison.
-
-wiki liste une trentaine de clients
-
-
-\TODO{inserer un tableau avec les principaux clients, presenter comparaison en annexe}
 
 \subsubsection{Avantages de Git sur la concurrence}
 
-Git n'est pas le seul programme de contrôle de version. Son principal concurrent est Subversion.
-Cependant il propose de nombreux avantages dont les principaux sont:
+Git n'est pas le seul programme de contrôle de version,
+\href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Wikipédia} en liste plus d'une trentaine !
+Son principal concurrent est Mercurial, qui est aussi un programme de gestion de versions décentralisé,
+plus simple mais disposant de moins de fonctionnalités, et Subversion, qui adopte la philosophie centralisée.
+
+Cependant, en plus d'être l'un des programme de gestion de versions les plus utilisé,
+ il possède de nombreux avantages dont les principaux sont:
 \begin{description}
   \item[rapidité] : Git utilise un protocole de communication bien plus efficace que SVN (a peu près 5 fois plus rapide). 
   De plus, les commits peuvent être sauvegardés sans connexion au serveur central.
@@ -369,7 +453,7 @@ Nous commencerons donc par définir le but principal du projet, pour passer à u
 
 \subsubsection*{Bête à corne de la migration vers Git}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/GitBAC}
@@ -394,7 +478,7 @@ L'information donnée à l'équipe informatique devra évoluer en même temps qu
 
 \subsubsection*{Diagramme pieuvre de la migration vers Git}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/GitPIEUVRE}
@@ -412,6 +496,9 @@ FC3 : donner la possibilité à d'autres informaticiens de participer au projet.
 \label{fig:PIEUVREGit}
 \end{figure}
 
+\clearpage
+
+Voici l'analyse du diagramme pieuvre du projet de migration de Gofigure2 vers Git :
 
 \paragraph*{FP1} : migrer le projet Gofigure2 de SVN à git.
 \begin{itemize}
@@ -443,14 +530,14 @@ FC3 : donner la possibilité à d'autres informaticiens de participer au projet.
 \begin{itemize}
   \item Existe pour permettre a un programmeur de continuer à utiliser SVN, et migrer vers Git progressivement.
   Existe aussi pour ouvrir les sources de Gofigure2 à plus de développeurs potentiels.
-  \item Existe à cause du fait que tous les programmeurs n'utilisent pas (encore) Git.
+  \item Existe car tous les programmeurs n'utilisent pas (encore) Git.
   \item Pourrait disparaitre si SVN disparaissait.
 \end{itemize}
 
 \paragraph*{FC3} : donner la possibilité à d'autres informaticiens de participer au projet.
 \begin{itemize}
   \item Existe pour permettre a un maximum de programmeur de télécharger Gofigure2, l'utiliser et participer à son développement.
-  \item Existe à cause du fait que la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
+  \item Existe car la librairie est open-source et s'améliore avec les contributions d'autres utilisateurs.
   \item Pourrait disparaitre si le protocole de travail n'était pas adapté à l'adjonction de code produit par un développeur tierce.
 \end{itemize}
 
@@ -462,7 +549,7 @@ concernant la programmation et l'utilisation de Gofigure2. Le système du wiki, 
 pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. 
 Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
 
-Ce tutoriel remplit les fonction FC1 et FC3, présentées dans le diagramme Pieuvre\ref{fig:PIEUVREGit}
+Ce tutoriel remplit les fonction FC1 et FC3, présentées dans le diagramme Pieuvre(figure~\ref{fig:PIEUVREGit})
 
 L'écriture d'un tel tutoriel se fait souvent dans un registre proche du langage familier,
 le but étant de simuler des instruction données par un collègue ou un ami. 
@@ -512,7 +599,7 @@ Elles ne sont pas forcément présentes sur le serveur central, cela dépend des
 \end{description}
 
 Un cycle de développement simplifié devient donc, pour un programmeur :
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/Git_WorkflowSimple}
@@ -521,10 +608,8 @@ Un cycle de développement simplifié devient donc, pour un programmeur :
 \label{fig:Workflow Git de Gofigure2}
 \end{figure}
 
-Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses à la fois, et ce workflow permet ce genre d'organisation. 
-Une illustration plus complète de ce protocole est présentée en annexe.
-\TODO{insert workflow pdf ANNEXE}
-
+Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses à la fois,
+et ce workflow permet ce genre d'organisation. 
 
 \subsection{Mise en ouvre de la Migration vers Git}
 
@@ -543,11 +628,11 @@ Une fois l'organisation Gofigure2 créée sur Github, et les comptes des dévelo
 Nous avons ensuite copié le contenu du serveur SVN de Gofigure2,
 pour le traduire en un projet Git, en respectant le workflow proposé.
 
-Voici un schéma résumant la mise à jour du serveur Git avec les informations du serveur SVN.
+La figure~\ref{fig:MigrationGit} schématise la mise à jour du serveur Git avec les informations du serveur SVN.
 Pour l'instant cette mise a jour est journalière.
 Nous pourrions aussi envisager une mise à jour automatique à chaque modification du projet.
 Un cycle de développement simplifie devient donc, pour un programmeur :
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/GitTransfert}
@@ -561,8 +646,8 @@ et conforme au protocole de travail proposé, puis les envoie sur le serveur de 
 Pour l'instant, les modifications provenant du serveur de Github (flèches pointillées)
 sont manuellement intégrées au projet. Cependant, on peut facilement automatiser cette fusion des projets Git et SVN.
 
-
-
+%for big figures in this chapter
+\clearpage
 
 
 %--------------------------------------------------
@@ -581,7 +666,7 @@ du champ microscopique\footnote{Un champ microscopique ou champ d'observation es
 après quelques heures d'acquisition,
 cela conduit aussi à des "sauts" violents causés par la remise en place manuelle de l'objectif.
 
-Je vais tout d'abord prouver la validité d'un tel projet, pour ensuite détailler la réalisation technique qu'il a engendrée.
+Je vais tout d'abord prouver la validité d'un tel projet (projet de recalage), pour ensuite détailler la réalisation technique qu'il a engendrée.
 \subsection{Cahier des charges}
 Nous commençons par présenter la Bête à Cornes,
 pour clarifier le but principal du projet. Nous présentons ensuite le diagramme pieuvre qui permet de détailler les fonctions du projet.
@@ -592,7 +677,7 @@ pour clarifier le but principal du projet. Nous présentons ensuite le diagramme
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/RecalBAC}
 \end{center}
-\caption{Bête à cornes (méthode {APTE\textregistered}) du projet de recalage}
+\caption{Bête à cornes (méthode {APTE\textregistered}) du projet de suivi de spécimen}
 \label{fig:BACRecal}
 \end{figure}
 
@@ -609,16 +694,14 @@ et aux traiteurs d'images, de disposer de données exploitables.
 
 Ce projet peut évoluer en accord avec les besoins des biologistes, et suivant l'évolution des techniques de recalage d'images.
 
-
-\newpage
 \subsubsection{Expression fonctionnelle}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 %\leavevmode
 \includegraphics[width=0.9\textwidth]{pictures/RecalPIEUVRE}
 \end{center}
-\caption[Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de recalage]{Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de recalage
+\caption[Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de suivi de spécimen]{Diagramme Pieuvre (méthode {APTE\textregistered}) du projet de suivi de spécimen
 
 \small
 \textbf{Fonction principale :}\\
@@ -629,11 +712,15 @@ FC2 : robuste aux changements de forme du spécimen\\
 FC3 : contenir une interface homme machine\\
 FC4 : maintenable par l'équipe du Megason Lab\\
 FC5 : robuste au bruit\\
-FC6 : robuste aux changements d'illumination}
+FC6 : robuste aux changements d'illumination\\
+FC7 : rapide}
 \label{fig:PIEUVRERecal}
 \end{figure}
 
+\clearpage
+
 La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous analysons :
+
 \paragraph*{FP1} : déplacer le microscope pendant l'acquisition en suivant le spécimen.
 \begin{itemize}
   \item Existe pour créer des images exploitables d'une manière fiable.
@@ -672,14 +759,14 @@ La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous an
 \paragraph*{FC4} : maintenable par l'équipe du Megason Lab
 \begin{itemize}
   \item Existe pour permettre aux autres chercheurs du Megason Lab de modifier/utiliser le programme.
-  \item Existe à cause du fait que le développeur de l'application ne sera pas toujours présent pour la maintenir.
+  \item Existe car le développeur de l'application ne sera pas toujours présent pour la maintenir.
   \item Pourrait disparaitre si le programme se maintenait tout seul.
 \end{itemize}
 
 \paragraph*{FC5} : robuste au bruit
 \begin{itemize}
   \item Existe pour permettre à l'algorithme de fonctionner en la présence de bruit
-  \item Existe à cause du fait que le microscope produit des images bruitées.
+  \item Existe car le microscope produit des images bruitées.
   \item Pourrait disparaitre si le microscope produisait des images sans aucun bruit.
 \end{itemize}
 
@@ -687,11 +774,19 @@ La figure~\ref{fig:PIEUVRERecal} est le diagramme pieuvre du projet, que nous an
 \paragraph*{FC6} : robuste aux changement d'illumination
 \begin{itemize}
   \item Existe pour permettre à l'algorithme de fonctionner au cours du temps. 
-  \item Existe à cause du fait que la fluorescence des spécimens décroit au cours du temps (phénomène de "bleaching"),
+  \item Existe car la fluorescence des spécimens décroit au cours du temps (phénomène de "bleaching"),
   et change d'une image à l'autre car le système d'illumination basé sur une probabilité d'absorption de photons.
   (le même phosphore n'absorbe pas toujours autant de photons avant de ré-émettre).
   \item Pourrait disparaitre si le bleaching disparaissait 
   et si nous contrôlions mieux l'absorption de photons par les phosphores du spécimen.
+\end{itemize}
+
+\paragraph*{FC7} : rapide
+\begin{itemize}
+  \item Existe pour permettre au microscope de faire des acquisitions peu espacées dans le temps
+  \item Existe car l'alignement du microscope doit être fait avant l'acquisition.
+  \item Pourrait disparaitre ou évoluer si nous intégrions une prédiction
+  des déplacements futurs en fonction des déplacements précédents.
 \end{itemize}
 
 \subsection{Solutions techniques}
@@ -700,83 +795,66 @@ Le principe du programme est d'estimer le déplacement de structures notables da
 Une fois ce déplacement estimé, il s'agit de déplacer le spécimen afin de garder ces structures dans le champ du microscope.
 
 \subsubsection{Estimation du déplacement du spécimen}
-Nous utilisons une technique connue sous le nom de recalage d'images pour estimer le déplacement du spécimen entre deux acquisitions (deux images) effectuées par le microscope.
+Nous utilisons une technique connue sous le nom de recalage d'images
+\footnote{Le recalage d'images est une technique utilisée en traitement d'image pour mettre en correspondance les informations
+provenant de deux images différentes. Afin d'aligner les images, une transformation géométrique est recherchée.
+Cette transformation est choisie de manière à minimiser un critère de différence entre les images.
+Le choix de la transformation et du critère de différence sont donc primordiaux.}
+ pour estimer le déplacement du spécimen entre deux acquisitions (deux images) effectuées par le microscope : si nous trouvons une translation qui permette de passer d'une acquisition à l'autre, nous pouvons estimer le déplacement du spécimen.
 Comme le microscope ne peut que déplacer le spécimen en translation, nous choisissons un recalage rigide qui évalue les translations selon les trois dimensions de l'espace, entre deux images.
 
-Ces techniques sont basés sur des critères d'énergies à minimiser.
-On choisit ces énergies de manière à ce que leur valeur soit élevée quand deux images sont mal alignées,
+Les techniques de recalage sont basées sur des critères de différence à minimiser.
+On choisit ces critères de manière à ce que leur valeur soit élevée quand deux images sont mal alignées,
 et faibles quand elles sont alignées. Notre programme teste différentes translations jusqu'à trouver une translation
 qui donne une faible valeur du critère d'énergie.
-Bien sûr, il n'est pas possible de calculer le critère d'énergie pour toute les translations possibles.
+Bien sûr, il n'est pas possible de calculer le critère de différence pour toute les translations possibles car cela prendrait trop de temps.
 On choisit donc une technique qui "dirige" les estimations de manière à diminuer l'énergie
 (la descente de gradient est une technique classique).
 Enfin, afin que notre algorithme soit robuste vis à vis du bruit, et des changements de forme peu significatifs,
 nous moyennons les images, puis réduisons la résolution des images moyennées.
 Le facteur de réduction dépend de la taille du spécimen, des structures à analyser,
 et de la résolution initiale des images acquises par le microscope.
-
+\\
 Le choix de la métrique est basé sur plusieurs critères : la simplicité d'utilisation (peu de paramètres),
-la robustesse au bruit et aux changements d'illumination, et la robustesse aux changements de forme. Il faut enfin que cet algorithme soit rapide : le déplacement est calculé entre chaque acquisition, et doit prendre moins d'une minute au total.
+la robustesse au bruit et aux changements d'illumination, et la robustesse aux changements de forme. Il faut enfin que cet algorithme soit rapide : le déplacement est calculé entre chaque acquisition, et doit prendre moins d'une minute au total. Ce choix est donc dicté par les contraintes FC2 à FC7 du diagramme pieuvre (figure\ref{fig:PIEUVRERecal}) !
 
-Plusieurs essais ont étés effectués, tout d'abord avec des déplacements simulés,
+Afin de sélectionner une métrique, plusieurs essais ont étés effectués, tout d'abord avec des déplacements simulés,
 puis avec de réelles séquences d'images microscopiques.
 
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricMSSynthe}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère moindre carrés(z) selon la translation en x ou en y de l'image mobile}
-%\label{fig:RecalMetricMSSynthe}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricMattSynthe}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère d'information mutuelle(z) selon la translation en x ou en y de l'image mobile}
-%\label{fig:RecalMetricMattSynthe}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricCorrSynthe}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère de corrélation normalisée(z) selon la translation en x ou en y de l'image mobile.}
-%\label{fig:RecalMetricCorrSynthe}
-%\end{figure}
-%
-%Nous nous rendons compte sur les simulations, que le critère des moindres carrés estime mieux la différence entre les deux images.
-%
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricMSReel}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère moindre carrés(z) selon la translation en x ou en y de l'image mobile}
-%\label{fig:RecalMetricMSSynthe}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricMattReel}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère d'information mutuelle(z) selon la translation en x ou en y de l'image mobile}
-%\label{fig:RecalMetricMattSynthe}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/RecalMetricCorrReel}
-%\end{center}
-%\caption{Simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y. Valeur du critère de corrélation normalisée(z) selon la translation en x ou en y de l'image mobile.}
-%\label{fig:RecalMetricCorrSynthe}
-%\end{figure}
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/Recal3DmetricsCMSArtificial}
+\end{center}
+\caption{Critères de différence pour une simulation de déplacement}{Valeur du critère de différence pour une simulation de déplacement du spécimen de 5 pixels en x et 5 pixels en y.\\
+De gauche à droite :\\
+critère de \href{http://www.itk.org/Doxygen/html/classitk_1_1NormalizedCorrelationImageToImageMetric.html}{corrélation normalisé};\\
+critère d'information mutuelle de \href{http://www.itk.org/Doxygen/html/classitk_1_1MattesMutualInformationImageToImageMetric.html}{Mattes};\\
+critère des \href{http://www.itk.org/Doxygen/html/classitk_1_1MeanSquaresImageToImageMetric.html}{moindres carrés}. }
+\label{fig:RecalMetricSynthe}
+\end{figure}
 
+
+La figure~\ref{fig:RecalMetricSynthe} montre que le critère d'information mutuelle de Mattes semble être très précis : il présente un relief presque plat avec un pic correspondant à la translation synthétisée. Cependant, pour cette même raison, ce critère ne peut facilement recaler des images très différentes.
+Le critère des moindres carrés, et le critère de corrélation normalisé donnent des résultats à peu près similaires. Il est important de noter que le critère des moindres carrés prend plus de temps à calculer, car il est évalué sur toute l'image (contrairement au critère d'information mutuelle de Mattes qui n'est évalué qu'en certains points aléatoires).
+
+
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/Recal3DmetricsCMSReal}
+\end{center}
+\caption{Critères de différence pour une simulation de déplacement}{Valeur du critère de différence pour un déplacement réel entre deux images acquises à des instants différents.\\
+De gauche à droite :\\
+critère de \href{http://www.itk.org/Doxygen/html/classitk_1_1NormalizedCorrelationImageToImageMetric.html}{corrélation normalisé};\\
+critère d'information mutuelle de \href{http://www.itk.org/Doxygen/html/classitk_1_1MattesMutualInformationImageToImageMetric.html}{Mattes};\\
+critère des \href{http://www.itk.org/Doxygen/html/classitk_1_1MeanSquaresImageToImageMetric.html}{moindres carrés}. }
+\label{fig:RecalMetricReal}
+\end{figure}
+
+
+La figure~\ref{fig:RecalMetricReal} montre que finalement, sur un essai réel, les trois critères présentent plusieurs minima locaux.
+Nous utilisons pour l'instant le critère des moindres carrés pour sa simplicité théorique, mais nous envisageons d'utiliser d'autres critères si les expériences le mettent à défaut.
 
 
 \subsubsection{Stabilisation de l'acquisition}
@@ -790,7 +868,8 @@ des vidéos tri-dimensionnelles de spécimen vivant.
 Il a donc fallut intégrer la nouvelle fonctionnalité à Megacapture. Le programme de recalage a été codé en {\C++},
 or Megacapture est une macro Visual Basic. il a donc fallu créer une interface.
 J'ai travaillé avec Paul Cowgill pour créer une interface générique afin de connecter
-Megacapture avec des programmes extérieurs.
+Megacapture avec des programmes extérieurs. Cela permettant de respecter FC1 du diagramme pieuvre
+(figure\ref{fig:PIEUVRERecal}).
 
 \subsubsection{Avancement}
 
@@ -827,51 +906,18 @@ J'ai eu l'occasion d'apprendre énormément,
 notamment dans le domaine des sciences informatiques,
 et du traitement de l'image.
 
+J'ai aussi découvert le milieu de la recherche, dont l'organisation est
+totalement différente de celle du milieu industriel.
+La hiérarchie, et les intérêts de chaque scientifique sont moins apparents que dans une entreprise et ce PFE a été riche en enseignements sur ce plan.
+Je suis parvenu à très bien m'intégrer dans l'équipe du Megason Lab en général,
+et à établir de bonnes relations de travail avec les divers scientifiques
+impliqués dans le projets sur lesquels j'ai travaillé, en particulier.
+
 Cela m'a permis d'acquérir une base solide pour mener des recherches dans ce domaine.
 Après une importante phase d'apprentissage, je maitrise maintenant des librairies de renom
 (ITK, VTK,Qt), les systèmes unix, et la gestion de versions.
 
-J'ai pu aussi établir des contacts dans la communauté des traiteurs d'image par le biais de collaborations
-(Matt MacCornick), ou de conférences internationales (participation à la NAMIC summer project week, au MIT).
-
-\section{Projet professionnel}
-
-Ce PFE s'inscrit dans un projet professionnel construit durant ma scolarité à l'INSA de Lyon.
-Mon inscription à l'INSA de Lyon a été grandement motivée par l'ouverture de l'école à l'international. J'ai ainsi effectue mon stage ouvrier en Afrique du Sud. Profitant d'une première expérience professionnelle à l'international.
-
-Lors de ma seconde année a l'INSA de Lyon, j'ai choisi l'option SCiences et ANglais (SCAN).
-Cette filière regroupe les élèves ayant un niveau suffisant pour pouvoir suivre la formation généraliste en anglais.
-Elle s'accompagne d'une bourse pour un bref séjour linguistique dans une université étrangère.
-J'ai profite de ce financement pour aller au Trinity College en Irelande où
-j'ai pu avoir ma première expérience académique a l'étranger.
-
-J'ai ensuite choisi le département Génie Électrique qui permet de bénéficier d'un grand panel de compétences,
-notamment dans des domaines rattaches à l'électronique et l'informatique.
-
-Continuant l'expérience internationale, j'ai effectué mon stage industriel au
-Fraunhofer Institute, Center for Manufacturing Innovation, aux États Unis.
-Ce stage m'a énormément apporté en plus de l'expérience technique.
-Il s'agissait d'une première immersion dans la culture américaine.
-C'est après ce stage que j'ai passé le test TOEIC validant un très bon niveau d'expression et de compréhension en anglais,
-avec un score de neuf cent quatre-vingt sur neuf cent quatre-vingt dix.
-
-Le PFE au Megason Lab possède des attraits indéniables :
-il s'agit d'un stage de recherche perfectionnant mes connaissances en traitement de l'image.
-Il s'agit aussi d'une expérience internationale dans une université renommée : Harvard Medical School.
-Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte à de nombreuses opportunités professionnelles.
-
-Comme je suis intéressé par les domaines techniques,
-je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées,
-au cours d'une thèse élaborée en collaboration avec le laboratoire CREATIS (INSA Lyon)
-et le laboratoire Megason (Harvard Medical School).
-Cette exceptionnelle opportunité professionnelle est financée en partie par Harvard Medical School
-et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitié aux États Unis.
-En plus de pouvoir travailler sur un domaine passionnant,
-je pourrai ainsi bénéficier d'une équivalence avec un PhD (diplôme très reconnu à l'international). 
-
-Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte international,
-dans des domaine à haute technicité pour trouver un emploi  dans le secteur privé.
-Je pourrai mettre en avant mes capacités en traitement du signal pour travailler dans le médical ou l'aéronautique.
-
-Mon ambition est de migrer vers des responsabilités managériales après avoir une très bonne maitrise de la technique.
-
+J'ai pu aussi établir des contacts dans la communauté
+des traiteurs d'image par le biais de collaborations
+(Matt MacCormick), ou de conférences internationales
+(participation à la NAMIC summer project week, au MIT).

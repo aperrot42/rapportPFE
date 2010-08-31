@@ -11,7 +11,7 @@
 \begin{abstract}
   Ce rapport présente le travail effectué pendant mon Projet de Fin d'Étude (PFE) au sein du Megason Lab, Harvard Medical School. Ce PFE conclut ma formation à l'Institut National des Sciences Appliquées de Lyon, au département Génie Électrique, pour acquérir le grade d'Ingénieur INSA. Il s'agit aussi d'un stage de recherche finalisant le master Génie Électrique et des Procédés, parcours Systèmes et Images à l'INSA de Lyon, l'École Centrale de Lyon, et l'Université Claude Bernard Lyon 1.
   
-  Le travail à pour thème le traitement d'images biologiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Il s'agit de trouver des méthodes de détection de la membrane cellulaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : Gofigure2\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
+  Le travail à pour thème le traitement d'images microscopiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : Gofigure2\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
   
   
 \tableofcontents  
@@ -32,26 +32,24 @@ L'équipe de biologistes mène des recherches sur le développement du poisson z
 tandis que l'équipe d'informaticiens développe un programme de visualisation,
 segmentation, suivi de cellules adapté aux données de la microscopie.
 
-{\small \begin{tabular*}{1.2\textwidth}{@{\extracolsep{\fill}} |  p{2.5cm} |  p{2.6cm} | p{3.3cm} | c | r | }
-\hline Nom & Poste & Intérêts & Photo & Nationalité \\ 
-\hline Sean Megason & Professeur (Docteur) &  &  &  \\ 
-\hline Ramil Noche & Séjour Postdoctoral & Formation du système nerveux. &  &  \\ 
-\hline Arnaud Gelas & Ingénieur de recherche (senior) & Programmation de Gofigure2 : Management du projet. &  &  \\ 
-\hline Kishore Mosaliganti & Séjour Postdoctoral & Algorithmes de traitement de l'image, recalage et segmentation. &  &  \\ 
-\hline Fengzhu Xiong & Étudiant en thèse & Création d'un poisson ayant une couleur différente par cellule. &  &  \\ 
-\hline Nikolaus Obholzer & Séjour Postdoctoral & Développement de l'oreille et création de marqueurs génétiques fluorescents. &  &  \\ 
-\hline Lydie Souhait & Ingénieur de recherche & Programmation de Gofigure2 : interface graphique et base de donnée. &  &  \\ 
-\hline Paul Cowgill & Étudiant en thèse & Effet des drogues sur le poisson zèbre. &  &  \\ 
-\hline David Tulga & Étudiant en thèse & Développement cellulaire. &  &  \\ 
-\hline Ian Swiburne & Séjour Postdoctoral & Développement de l'oreille du poisson zèbre. &  &  \\ 
-\hline Andrea Tentner & Séjour Postdoctoral & Différenciation des cellules provenant d'un ancêtre commun. &  &  \\ 
-\hline Dante D'India & Technicien & Entretient des animaux. &  &  \\ 
-\hline Nicolas Rannou & Ingénieur de recherche & Programmation de Gofigure2 : intégration de VTK et des algorithmes ITK au programme. &  &  \\ 
-\hline Amelia Freen & Séjour Postdoctoral &  &  &  \\ 
-\hline Antonin Perrrot-Audet & Stagiaire en PFE & Traitement d'image : Segmentation des cellules; Programmation de Gofigure2 &  &  \\ 
-\hline Evan Schwab & Associe & Séquences du code génétique du poisson zèbre. &  &  \\ 
-\hline  &  &  &  &  \\ 
-\hline  &  &  &  &  \\ 
+{\small \begin{tabular*}{1.0\textwidth}{@{\extracolsep{\fill}} |  p{2.5cm} |  p{3.cm} | p{3.5cm} | c | }
+\hline Nom & Poste & Intérêts & Nationalité \\ 
+\hline Sean Megason & Professeur (Docteur) & Financement et management du laboratoire. & USA \\ 
+\hline Ramil Noche & Séjour Postdoctoral & Formation du système nerveux. & Philipines \\ 
+\hline Fengzhu Xiong & Étudiant en thèse & Création d'un poisson ayant une couleur différente par cellule. & Chine \\ 
+\hline Nikolaus Obholzer & Séjour Postdoctoral & Développement de l'oreille et création de marqueurs génétiques fluorescents. &  Allemange \\ 
+\hline Paul Cowgill & Étudiant en thèse & Effet des drogues sur le poisson zèbre. & USA \\ 
+\hline David Tulga & Étudiant en thèse & Développement cellulaire. &  USA \\ 
+\hline Ian Swiburne & Séjour Postdoctoral & Développement de l'oreille du poisson zèbre. & USA \\ 
+\hline Andrea Tentner & Séjour Postdoctoral & Différenciation des cellules provenant d'un ancêtre commun. & USA \\ 
+\hline Amelia Green & Séjour Postdoctoral & Formation des oreilles du poisson zèbre. & Angleterre \\ 
+\hline Evan Schwab & Associe & Séquences du code génétique du poisson zèbre. & USA \\ 
+\hline Dante D'India & Technicien & Entretient des animaux. & USA \\ 
+\hline Arnaud Gelas & Ingénieur de recherche (senior) & Programmation de Gofigure2 : Management du projet. &  France \\
+\hline Kishore Mosaliganti & Séjour Postdoctoral & Algorithmes de traitement de l'image, recalage et segmentation. & Inde \\ 
+\hline Lydie Souhait & Ingénieur de recherche & Programmation de Gofigure2 : interface graphique et base de donnée. & France \\
+\hline Nicolas Rannou & Ingénieur de recherche & Programmation de Gofigure2 : intégration de VTK et des algorithmes ITK au programme. & France \\
+\hline Antonin Perrrot-Audet & Stagiaire en PFE & Traitement d'image : Segmentation des cellules; Programmation de Gofigure2 & France \\
 \hline 
 \end{tabular*} }
 
@@ -91,14 +89,17 @@ Le Megason lab dispose de matériels neufs, d'équipements récents et perfectio
 Pour mon PFE, je me suis plutôt intéressé aux dispositifs d'acquisition et de traitement d'image : les microscopes et les ordinateurs.
 
 \subsubsection{Les dispositifs d'imagerie}
+
+
 Le Megason lab dipose de nombreux microscopes pour permettre aux biologistes de mener a bien leurs manipulations sur les poissons zèbres.
 L'équipe de traitement de l'image s'intéresse plutôt aux images produites par le microscope confocal deux photons à plateau automatisé. 
 
 Les techniques d'imagerie au Megason Lab sont basées sur des marqueurs fluorescents fixés sur certaines molécules du spécimen (l'embryon de poisson zèbre à différentes étapes de son développement). Les atomes de ces phosphores doivent être excités afin d'émettre de la lumière.
 
-Le principe du microscope confocal est d'illuminer (exciter) seulement le point que l'on observe : la lentille d'illumination est aussi la lentille d'observation, on illumine donc le plan focal de cette lentille. Cela permet de concentrer l'énergie lumineuse sur le plan observé (plan focal). De plus, afin de limiter l'impact des plans non observés, un diaphragme est ajouté à l'objectif d'observation.
 
-Le microscope confocal dont nous disposons est un microscope deux-photons.
+Le principe du microscope confocal (illustré par la figure~\ref{fig:ConfocalPrinciple}) est d'illuminer (exciter) seulement le point que l'on observe : la lentille d'illumination est aussi la lentille d'observation, on illumine donc le plan focal de cette lentille. Cela permet de concentrer l'énergie lumineuse sur le plan observé (plan focal). De plus, afin de limiter l'impact des plans non observés, un diaphragme est ajouté à l'objectif d'observation.
+
+Le microscope confocal dont nous disposons est un microscope deux-photons (figure~\ref{fig:Confocal2photonsPrinciple}).
 Cela s'signifie que l'illumination du point observé est faite par deux rayons lumineux convergents.
 Cette technique a plusieurs avantages :
 \begin{itemize}
@@ -107,38 +108,84 @@ Cette technique a plusieurs avantages :
   \item Chacun de ces deux rayons transporte moins d'énergie que si il y avait eu un seul rayon pour illuminer le point observé.
   Ainsi, il y a moins de dommages causés au spécimen observé.
 \end{itemize}
-\TODO[add schema]
-%\begin{figure}[h]
-%\begin{center}
-%\leavevmode
-%\includegraphics[width=0.95\textwidth]{pictures/ConfocalZeissPrinciple}
-%\end{center}
-%\caption{Principe du microscope confocal 2 photons utilisé (Zeiss documentation)}
-%\label{fig:ConfocalPrinciple}
-%\end{figure}
-%\TODO[fix image here]
-%
-% 
-% content section
-%\begin{wrapfigure}{r}{8cm} % "l" or "r" for the side on the page. And the width parameter for the width of the image space.
-%\centering
-%\includegraphics[height=80mm]{Abb/bluesniper.jpg}
-%\caption{Selbstgebaute „Bluesniper“ um Bluetooth-Geräte aus über 1 km Entfernung anzugreifen. (Stand: 2004)}
-%\label{bluesniper}
-%\end{wrapfigure}
-
 
 Il est pour l'instant possible d'utiliser trois canaux différents et donc d'utiliser trois marqueurs fluorescents différents.
 Ce microscope a été assemblé au Megason Lab à partir d'un microscope Zeiss 710 NLO.
 Une chambre environnementale a été créée, afin de contrôler le développement des embryons durant la capture d'informations.
 
-\TODO{check other microscope}
-Nous disposons aussi d'un microscope 
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/ConfocalPrinciple}
+\end{center}
+\caption{Principe du microscope confocal (source :\href{http://en.wikipedia.org/wiki/File:Confocalprinciple.svg}{Wikipedia})}
+\label{fig:ConfocalPrinciple}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/ConfocalZeissPrinciple}
+\end{center}
+\caption{Principe du microscope confocal 2 photons utilisé (Zeiss documentation)}
+\label{fig:Confocal2photonsPrinciple}
+\end{figure}
+
+\clearpage
+
 
 \input{ingenierie/Ingenierie}
 
 
-\input{recherche/Recherche}
+%\input{recherche/Recherche}
+
+
+\chapter{Projet professionnel}
+
+Ce PFE s'inscrit dans un projet professionnel construit durant ma scolarité à l'INSA de Lyon.
+Mon inscription à l'INSA de Lyon a été grandement motivée par l'ouverture de l'école à l'international. J'ai ainsi effectue mon stage ouvrier en Afrique du Sud. Profitant d'une première expérience professionnelle à l'international.
+
+Lors de ma seconde année a l'INSA de Lyon, j'ai choisi l'option SCiences et ANglais (SCAN).
+Cette filière regroupe les élèves ayant un niveau suffisant pour pouvoir suivre la formation généraliste en anglais.
+Elle s'accompagne d'une bourse pour un bref séjour linguistique dans une université étrangère.
+J'ai profite de ce financement pour aller au Trinity College en Irlande où
+j'ai pu avoir ma première expérience académique a l'étranger.
+
+J'ai ensuite choisi le département
+Génie Électrique qui permet de bénéficier d'un grand panel de compétences,
+notamment dans des domaines rattaches à l'électronique et l'informatique.
+
+
+Continuant l'expérience internationale, j'ai effectué mon stage industriel au
+Fraunhofer Institute, Center for Manufacturing Innovation, aux États Unis.
+J'ai été impliqué dans un projet de grande ampleur, financé par le département de la défense américain.
+Ce stage m'a énormément apporté en plus de l'expérience technique : il s'agissait d'une immersion dans la culture américaine, et j'ai eu une première expérience managériale en dirigeant une équipe d'ouvriers.
+C'est après ce stage que j'ai passé le test TOEIC validant un très bon niveau d'expression et de compréhension en anglais,
+avec un score de neuf cent quatre-vingt sur neuf cent quatre-vingt dix.
+
+
+Le PFE au Megason Lab possède des attraits indéniables :
+il s'agit d'un stage de recherche perfectionnant mes connaissances en traitement de l'image.
+Il s'agit aussi d'une expérience internationale dans une université renommée : Harvard Medical School.
+Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte à de nombreuses opportunités professionnelles.
+
+Comme je suis intéressé par les domaines techniques,
+je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées,
+au cours d'une thèse élaborée en collaboration avec le laboratoire CREATIS (INSA Lyon)
+et le laboratoire Megason (Harvard Medical School).
+Cette exceptionnelle opportunité professionnelle est financée en partie par Harvard Medical School
+et en partie par l'INSA de Lyon. Je passerai ainsi la moitié de mon temps en France, et l'autre moitié aux États Unis.
+En plus de pouvoir travailler sur un domaine passionnant,
+je pourrai ainsi bénéficier d'une équivalence avec un PhD (diplôme très reconnu à l'international). 
+
+Je compte ensuite mettre en valeur ma capacité a travailler dans un contexte international,
+dans des domaine à haute technicité pour trouver un emploi  dans le secteur privé.
+Je pourrai mettre en avant mes capacités en traitement du signal pour travailler dans le médical ou l'aéronautique.
+
+Mon ambition est de migrer vers des responsabilités managériales après avoir une très bonne maitrise de la technique.
+
+
+
 
 \appendix
 
