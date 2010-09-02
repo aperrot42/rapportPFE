@@ -24,7 +24,8 @@ Cependant, le Megason lab cherche au maximum à intégrer les avancées en trait
 J'ai ainsi commencé mon PFE en tant que membre de l'équipe de développement de {\gofigure}.
  Les objectifs étant d'utiliser les différentes librairies dont se sert le programme, pour mettre au point un système de plugins
  \footnote{En informatique, un plugin ou plug-in (aussi nommé module d'extension, greffon ou plugiciel au Québec) est un logiciel qui complète un logiciel hôte pour lui apporter de nouvelles fonctionnalités. Notamment, pour le logiciel \gofigure, les plugins seront des algorithmes de traitement d'images.}. 
- Ma mission était de créer une librairie de comparaison d'images, afin d'inclure aux plugins, un aperçu, de la même manière que Gimp par exemple, affiche un aperçu pour ses filtres.
+ Ma mission était de créer une librairie de comparaison d'images, afin d'inclure aux plugins, un aperçu, de la même manière que Gimp\footnote{Gimp vient de GNU Image Manipulation Program (GIMP). Gimp est un programme de retouche d'images gratuit et open-sources.
+ }, qui affiche un aperçu pour ses filtres.
 
 Dans le cadre de ma participation au développement de \gofigure,
  j'ai aussi proposé un protocole de travail avec un nouveau programme de gestion de versions : Git.
@@ -67,7 +68,7 @@ Il s'agit d'un programme utilisant le code source du projet {\gofigure},
 qui sera utilisé pour le développement des plugins de {\gofigure}.
 Une autre application de cette librairie complète le projet de débugueur graphique de 
 Matthiew MacCormick \cite{McCornic-VisualDebug}. Nous rendons ainsi cette librairie particulièrement utile
-aux sous ITK.
+aux développeurs.
 Ce programme permet aussi de visualiser les traitements appliqués aux données
 lors de l'exécution d'un algorithme de traitement d'images sous un environnement de debugging (gdb
 \footnote{Un débogueur, débugueur ou encore debugger (de l'anglais), est un logiciel qui aide un développeur à analyser les bugs d'un programme. Pour cela, il permet d'exécuter le programme pas-à-pas, d'afficher la valeur des variables à tout moment, de mettre en place des points d'arrêt sur des conditions ou sur des lignes du programme ...\\
@@ -87,7 +88,7 @@ Nous spécifions l'ensemble des tâches réalisées au cours du PFE avec la mét
 \label{fig:BACCompare}
 \end{figure}
 
-L'analyse de la Bête à cornes consiste en répondre aux questions :
+L'analyse de la Bête à cornes consiste à répondre aux questions :
 \begin{inparaenum}[(i)] 
   \item pourquoi cherche-t'on à atteindre ce but ?
   \item et qu'est ce qui pourrait faire disparaitre ou évoluer le projet ?
@@ -95,7 +96,7 @@ L'analyse de la Bête à cornes consiste en répondre aux questions :
 
 Le programme {\gofigure} va bientôt disposer d'une interface pour créer des plugins afin de traiter des images microscopiques.
 Le développement d'une librairie de visualisation et de comparaison est donc nécessaire
-pour contrôler les paramètres des algorithmes inclut dans les plugins.
+pour contrôler les paramètres des algorithmes inclus dans les plugins.
 
 De plus, lors du développement d'algorithmes,
 il est souvent nécessaire, lors de la phase de test et d'évaluation,
@@ -103,7 +104,7 @@ de visualiser l'état des données traitées, pendant l'exécution du programme.
 Les algorithmes sont la plupart du temps prototypés en \C++ au Megason Lab, et la visualisation de données n'est pas triviale.
 Il faut souvent ajouter une dizaine de lignes de codes pour pouvoir sauvegarder une image.
 Une telle tâche est fastidieuse, et ce projet permettrait de visualiser
-des données lors de l'exécution du programme, sans rajouter de code ni le recompiler !\\
+des données lors de l'exécution du programme, sans rajouter de code ni de le recompiler !\\
 
 De par mon implication dans l'équipe de {\gofigure} et
 comme je vais être amené à développer des algorithmes en {\C++},
@@ -149,7 +150,7 @@ Une analyse du diagramme pieuvre est ensuite donnée. Nous répondons aux questi
 \paragraph*{FP1} :\\ visualiser des données (fichiers ou en mémoire) provenant de VTK et ITK dans Qt
 \begin{itemize}
   \item Existe pour afficher les résultats des traitements réalisés par des plugins ITK/VTK dans {\gofigure}.
-  \item Existe à cause de la nécessité pour l'utilisateur d'avoir une visualisation dans une interface construite.
+  \item Existe à cause de la nécessité pour l'utilisateur d'avoir une visualisation dans une interface construite.\\
   Existe du fait de la complexité actuelle de l'utilisation d'ITK et VTK avec Qt. 
   \item Pourrait disparaitre si une librairie plus efficace et simple de visualisation était crée.
 \end{itemize}
@@ -269,10 +270,94 @@ Les outils utilisés quotidiennement, dans le processus de développement d'appl
 
 \subsection{Résultats et travail futur}
 
-La librairie créée est fonctionnelle. Elle remplit les fonctions présentées en introduction. Un exemple de code est donné, illustrant l'extrême simplicité d'utilisation de la librairie :\\
-Ce code permet d'ouvrir deux images : l'une provenant de la librairie ITK, et l'autre de VTK, et de synchroniser leur visualisation.
+\subsubsection*{Les difficultés rencontrées}
+
+Le travail mené pour créer cette librairie a été extrêmement formateur.
+Cette dernière a été recodée plusieurs fois durant l'apprentissage de VTK, ITK et Qt, afin d'utiliser au mieux leurs fonctionnalités.
+La principale difficulté a été le manque de documentation. J'ai dû utiliser des techniques d'ingénierie inverse pour comprendre l'utilisation des librairies utilisées.
+Il faut souvent passer par une phase d'expérimentation avant de pouvoir utiliser les fonctionnalités des librairies VTK et ITK.
+Les développeurs de {\gofigure} tentent aussi de maintenir une documentation de leur code, cependant, ils doivent aussi délivrer de nouvelles fonctionnalités aux biologistes, et malheureusement, la documentation est bien souvent la première chose négligée.
+
+Une autre difficulté a été la gestion de la mémoire : ITK et VTK utilisent des pointeurs intelligents (smart-pointers) à la place des pointeurs habituels en {\C++}. Ces pointeurs détruisent automatiquement l'objet qu'lis contiennent lorsqu'ils ne sont plus utilisés. Ces pointeurs peuvent se révéler très contraignant :
+\begin{itemize}
+  \item ils ne supportent pas le "downcasting"
+  \footnote{Le downcasting en \C++ est l'une des manière d'utiliser le polymorphisme : 
+  un pointeur vers une classe mère peut ainsi pointer vers une classe fille.},
+  \item il arrive bien souvent que les objets soient détruits pendant leur utilisation si ces derniers passent d'une fonction à l'autre.
+  Cela peut se produire aussi lors de l'utilisation des librairies de {\gofigure} car ces dernières utilisent tantôt des pointeurs normaux, tantôt des smart-pointers.
+\end{itemize}
+Il a donc fallu trouver des "astuces" pour créer des classes fiables.
+
+Le fait que les librairies que nous utilisons soient en constante évolution est aussi contraignant,
+il arrive qu'il faille modifier tout ou partie du code corrompue par un changement dans l'une de ces librairies.
+
+Nous rencontrons des difficultés avec l'intégration de notre librairie à gdb, à cause de la boucle évènementielle de Qt, qui rentre en concurrence avec celle de gdb. Cela nous force à mettre en œuvre une architecture complexe.
+
+\subsubsection*{Le travail délivré}
+La librairie répond bien aux fonctions de la figure~\ref{fig:PIEUVRECompare}, comme nous allons le montrer dans cette partie.
+
+Le {snippet~\ref{SimpleCodeCompare}}\footnote{Snippet est un terme de programmation informatique pour quelques lignes de code source réutilisables. Ils sont souvent donnés à titre d'exemple}, illustre l'utilisation de la librairie. Le résultat d'exécution du programme correspondant à ce code, sur un ordinateur fonctionnant sous Mac OsX version 10.6 est donné figure~\ref{fig:CompareQuad}.
+
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/CompareQuad}
+\end{center}
+\caption{Exemple du code donné snippet~\ref{SimpleCodeCompare} sur MacOsX 10.6. Ici, l'utilisateur compare deux jeux de données 3D.}
+\label{fig:CompareQuad}
+\end{figure}
+
+Le code crée donc une image au format utilisé par ITK, et une image au format utilisé par VTK. Il affiche ensuite deux QWidgets\ dans une application Qt\footnote{Qt propose une surcouche en {\C++}. C'est dans cette sur-couche que les processus de bas niveau, comme la gestion des interactions avec le système d'exploitation, ou le système signal/slot sont gérés.}. De plus, tous les objets créés dans cette librairie dérivent du "\href{http://doc.qt.nokia.com/4.6/qobject.html}{QObject}".
+Il est donc possible d'utiliser le système de paternité propre à Qt pour la destruction : chaque objet peut avoir un parent, (une fenêtre par exemple),
+et la destruction de ce parent entraine la destruction du QObject. Tous les objets graphiques sont des QWidgets, il est donc très facile de les intégrer à une application Qt, et d'ajouter des fonctions, et des éléments graphiques, comme l'illustre l'exemple figure~\ref{fig:CompareGUI}. Nous répondons donc à FP1.
+
+Comme {\gofigure} utilise des fonctionnalités de VTK et de Qt, afin de contrôler d'afficher des images, la synchronisation des visualisations a été réalisée avec ces deux librairies.
+Je suis parvenu à synchroniser dynamiquement des visualisation, et à proposer une hiérarchie de classes simples encapsulant le code nécessaire à cela, répondant ainsi à FP2.
+
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/CompareGUI}
+\end{center}
+\caption{Exemple d'interface simple en Qt, utilisant la librairie de comparaison d'images}
+\label{fig:CompareGUI}
+\end{figure}
+
+
+Afin de permettre à d'autres développeurs d'utiliser la librairie,
+j'ai créé une documentation à l'aide du programme Doxygen\footnote{Doxygen est un programme permettant de créer une documentation directement à partir du code source. La documentation est présente sous forme de commentaires dans le code source. Doxygen traite alors les fichiers sources pendant sa compilation pour extraire la structure du programme et générer la documentation sous un format choisit par l'utilisateur.} 
+Celle ci peut être compilée avec le code.
+Elle se présente sous forme d'un site internet.
+Elle inclut la description de touts les objets créés, les diagrammes d'héritage et de collaboration
+(fournissant ainsi les mêmes informations qu'un diagramme UML).
+Comme l'illustre le snippet~\ref{SimpleCodeCompare}, le code est aussi très simple d'utilisation
+et propose des fonctions de haut niveau.
+Il a enfin été intégré au code de {\gofigure},
+puis a été publié sur Github, à l'adresse :\\{\url{http://github.com/antonin07130/itkCompareProject}}.
+Nous avons donc un code visible sur internet, bien documenté, facilement modifiable et réutilisable,
+comme le spécifient FC2 et FC3.
+De plus, un article\cite{AntoCompare} détaillant l'utilisation de la librairie a été publié sur l'Insight Journal.
+
+Grâce à la collaboration avec Matthiew MacCormick, au travers de Github,
+la librairie est maintenant compatible avec Python, et est en voie d'intégration à gdb.
+Nous rencontrons des difficultés dues à la boucle d'évènements de Qt.
+Cela nous force à lancer plusieurs processus et à établir une liaison entre
+ces processus en utilisant un protocole de communication inter applications cross-platform proposé par Qt.
+Nous avons donc répondu à FC4, pour travailler sur FP3.
+
+Comme la librairie dépend d'ITK, VTK, Qt et {\gofigure}, il est essentiel de tester sa stabilité.
+Pour cela, nous utilisons le Programme CTest.
+Ce dernier Nous permet d'automatiser les tests afin de vérifier que notre librairie :
+\begin{itemize}
+  \item compile sans erreur,
+  \item respecte une mise en forme imposée,
+  \item s'execute sans planter,
+  \item fournit les résultats attendus, sur des données de test.
+\end{itemize}
+J'ai donc mis en place, avec l'aide de Nicolas Rannou, une procédure de tests automatiques pour l'ensemble du code de {\gofigure} (dont fait partie la librairie de comparaison d'images), sur un ordinateur sous Mac OsX 10.6.
+
 \large
-  \begin{lstlisting}[title={Utilisation simple de la librairie de comparaison d'images}, label=SimpleCodeCompare]{CompareCodeSimple}
+  \begin{lstlisting}[title={Utilisation simple de la librairie de comparaison d'images :\\Ce code permet d'ouvrir deux images : l'une provenant de la librairie ITK, et l'autre de VTK, et de synchroniser leur visualisation.}, label=SimpleCodeCompare]{CompareCodeSimple}
 #include "itkImageFileReader.h"
 #include "vtkMetaImageReader.h"
 #include "QGoSynchronizedViewManager.h"
@@ -325,25 +410,12 @@ int main(int argc, char** argv)
 }
   \end{lstlisting}
 \normalsize
-
 La librairie permet de charger une image en une ligne de code,
 et prend trois lignes pour afficher les images chargées d'une manière synchronisée.
-Cela passe simplement par la création d'un QObjet : le QGoSynchronizedViewManager !\\
+Cela passe simplement par la création d'un QObjet : le QGoSynchronizedViewManager !
 
-Une interface graphique basique a été créée pour illustrer les fonctionnalités de la librairie. La figure~\ref{fig:CompareQuad} est une capture d'écran de cet example.\\
-\begin{figure}[h]
-\center
-\includegraphics[width=1\textwidth]{pictures/CompareQuad}
-\caption{Exemple du code donné snippet~\ref{SimpleCodeCompare} sur MacOsX 10.6. Ici, l'utilisateur compare deux jeux de données 3D.}
-\label{fig:CompareQuad}
-\end{figure}
 
-En plus d'un article dans l'Insight Journal, d'un code abondamment commenté, et d'une panoplie d'exemples,
-la librairie est délivrée avec une documentation en ligne.
-
-Afin de prouver la robustesse des classes utilisées, une série de tests automatiques a été créée.
-La librairie a été intégrée au code de {\gofigure}, au seins de se librairie graphique (QGoGUI),
-et est également intégrée au débugueur graphique, en collaboration avec Matthiew MacCormick.
+\subsubsection*{Travail futur}
 
 La librairie de comparaison d'images est une très bonne base à laquelle on peut ajouter de nombreuses fonctionnalités :\begin{itemize}
   \item supporter des images vectorielles d'ITK,
@@ -354,7 +426,7 @@ La librairie de comparaison d'images est une très bonne base à laquelle on peu
 
 
 
-
+\clearpage
 
 %--------------------------------------------------
 %             Git
@@ -363,13 +435,13 @@ La librairie de comparaison d'images est une très bonne base à laquelle on peu
 
 \section{Migration de Gofigure de SVN à Git}
 
-Le projet \gofigure, suivant la plupart des grands projets open-sources, va bientôt utiliser Git comme programme de gestion de sources.
+Le projet {\gofigure}, suivant la plupart des grands projets open-sources, va bientôt utiliser Git comme programme de gestion de sources.
 Plus qu'un simple transfert, il s'agit d'un changement des méthodes de travail.
 Il a donc fallu définir un protocole de travail sur Git 
 afin d'effectuer certaines tâches d'une manière organisée et répétable. 
 
 Je suis donc passé par une phase de découverte et d'apprentissage pour écrire un tutoriel 
-afin d'expliquer le fonctionnement de Git a l'équipe informatique. J'ai ensuite travaillé sur la sélection et l'élaboration d'un "workflow"
+afin d'expliquer le fonctionnement de Git à l'équipe informatique. J'ai ensuite travaillé sur la sélection et l'élaboration d'un "workflow"
 pour l'équipe de développeurs de {\gofigure}.
 J'ai enfin automatisé le transfert du code de SVN à Git en utilisant un serveur du Megason Lab.
 
@@ -498,7 +570,7 @@ L'information donnée à l'équipe informatique devra évoluer en même temps qu
 FP1 : migrer le projet {\gofigure} de SVN à Git.\\
 FP2 : proposer un workflow aux programmeurs de l'équipe de {\gofigure}.\\
 \textbf{Fonctions contraintes :} \\
-FC1 : apporter une base de connaissance sur Git aux programmeurs de \gofigure.\\
+FC1 : apporter une base de connaissance sur Git aux programmeurs de {\gofigure}.\\
 FC2 : rester compatible avec SVN.{\gofigure}
 FC3 : donner la possibilité à d'autres informaticiens de participer au projet.}
 \label{fig:PIEUVREGit}
@@ -506,7 +578,7 @@ FC3 : donner la possibilité à d'autres informaticiens de participer au projet.
 
 \clearpage
 
-Voici l'analyse du diagramme pieuvre du projet de migration de {\gofigure} vers Git :
+Voici l'analyse du {\gofigure} pieuvre du projet de migration de {\gofigure} vers Git :
 
 \paragraph*{FP1} : migrer le projet {\gofigure} de SVN à git.
 \begin{itemize}
@@ -525,7 +597,7 @@ Voici l'analyse du diagramme pieuvre du projet de migration de {\gofigure} vers 
   Si une norme venait à apparaitre.
 \end{itemize}
 
-\paragraph*{FC1} : apporter une base de connaissance sur Git aux programmeurs de \gofigure.
+\paragraph*{FC1} : apporter une base de connaissance sur Git aux programmeurs de {\gofigure}.
 \begin{itemize}
   \item Existe pour permettre aux programmeurs d'utiliser Git.
   \item Existe car Git est relativement complexe à prendre en main 
@@ -550,9 +622,11 @@ Voici l'analyse du diagramme pieuvre du projet de migration de {\gofigure} vers 
 \end{itemize}
 
 
-\subsection{Écriture du tutoriel}
+\subsection{Résultats}
 
-Le tutoriel a été écrit sur le wiki de \gofigure. Il s'agit de l'emplacement de prédilection pour les informations 
+\subsubsection{Écriture du tutoriel}
+
+Le tutoriel a été écrit sur le wiki de {\gofigure}. Il s'agit de l'emplacement de prédilection pour les informations 
 concernant la programmation et l'utilisation de {\gofigure}. Le système du wiki, en plus de proposer une syntaxe simple 
 pour créer des pages web formatées, permet aux lecteurs autorisés de modifier le contenu. 
 Il existe aussi un système de feedback permettant aux lecteurs ayant mal compris le contenu, de contacter l'auteur.
@@ -571,7 +645,7 @@ Il détaille les principales difficultés et écueils rencontrés.
 Le tutoriel est présent à cette adresse : \\
 \url{http://sourceforge.net/apps/trac/gofigure2/wiki/GIT}
 
-\subsection{Proposition d'un protocole de travail}
+\subsubsection{Proposition d'un protocole de travail}
 Il a enfin fallu proposer un workflow (protocole de travail) 
 qui définit la manière dont les programmeurs
 doivent apporter des modifications au code source.
@@ -586,6 +660,14 @@ Afin de répondre aux fonctions FP2, FC2 et FC3 du diagramme pieuvre du cahier d
 Le workflow proposé a été détaillé par \href{http://nvie.com/about }{Vincent Driessen} sur son \href{http://nvie.com/Git-model}{blog}.
 Ce protocole découle assez naturellement de l'apprentissage de Git, il est donc simple.
 
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/Git_WorkflowSimple}
+\end{center}
+\caption{Diagramme simplifié du workflow proposé pour l'équipe de gofigure}
+\label{fig:WorkflowGitSimple}
+\end{figure}
 
 Ce workflow, en plus d'être précisément détaillé, est techniquement viable. 
 Voici le détail de l'organisation du projet {\gofigure} sous ce protocole.
@@ -602,43 +684,50 @@ Ces branches ont une durée de vie limitée, et doivent fusionner avec d'autres 
 Elles ne sont pas forcément présentes sur le serveur central, cela dépend des équipes travaillant sur les différentes parties du programme.
 \begin{description}
   \item[\emph{feature}] : cette branche contient le développement d'une fonction du programme. Elle est créée à partir de \emph{develop}, et une fois mature, refusionne avec \emph{develop}.
-  \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est créée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche develop et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
+  \item[\emph{release}] : cette branche permet aux développeurs de travailler sur la correction de bugs, l'interface graphique, l'ajout de tests... les touches de dernière minute, avant la publication d'une nouvelle version du programme. Elle est créée lorsque la branche \emph{develop} contient toutes les fonctions attendues pour la nouvelle version du programme. Elle est créée à partir de la branche \emph{develop} et une foi mature, fusionne avec la branche \emph{master}, et \emph{develop}.
   \item[\emph{hotfixes}] : cette branche particulière est créée à partir de la branche \emph{master}, lorsqu'une version publiée du programme contient un bug important qui ne peut attendre la prochaine version pour être corrigée. Elle refusionne avec la branche \emph{master} pour créer des "sous versions" (0.1.1 par exemple, est une sous version de 0.1.0). Cette branche particulière merge aussi avec la branche \emph{develop} pour appliquer la correction aux futures publications, et enfin, la branche \emph{release} si elle existe au moment de la réparation du bug.
 \end{description}
 
 Un cycle de développement simplifié est illustré figure~\ref{fig:WorkflowGitSimple}.
-\begin{figure}[h]
-\begin{center}
-\leavevmode
-\includegraphics[width=0.95\textwidth]{pictures/Git_WorkflowSimple}
-\end{center}
-\caption{Diagramme simplifié du workflow proposé pour l'équipe de gofigure}
-\label{fig:WorkflowGitSimple}
-\end{figure}
 Il est important de noter que bien souvent, les informaticiens travaillent sur plusieurs choses à la fois,
 et ce workflow permet ce genre d'organisation. 
 
-\subsection{Mise en ouvre de la Migration vers Git}
+\subsubsection{Mise en œuvre de la Migration vers Git}
 
-Maintenant le workflow définit, et l'aide mise en place, il faut mettre en œuvre la migration vers Git du projet. Nous devons choisir une plateforme pour héberger le projet, et mettre en place des liens entre le serveur SVN et le serveur Git.
+Maintenant le workflow défini, et l'aide mise en place, il faut mettre en œuvre la migration vers Git du projet afin de répondre à FP1 de la figure~\ref{fig:PIEUVREGit}. Nous devons choisir une plateforme pour héberger le projet, et mettre en place des liens entre le serveur SVN et le serveur Git.
 
-\subsubsection{Github : une plateforme de travail collaboratif}
+\subsubsection*{Github : une plateforme de travail collaboratif}
 
-Github propose d'héberger gratuitement les projets open-sources. Les serveurs github sont administrables par un site
+\href{https://github.com/}{Github} propose d'héberger gratuitement les projets open-sources. Les serveurs github sont administrables par un site
 internet : \url{http://github.com/}. L'originalité de l'interface réside dans le réseau social proposé par le site. Il est possible de consulter les profils des programmeurs, de voir en temps réel l'avancement des projets sur lesquels ils travaillent. Le "fork" (copie d'un projet open source en vue de le modifier/l'améliorer) se fait en un click. Les collaborations se mettent en place d'un manière totalement transparente.
-
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/GitGithub}
+\end{center}
+\caption{Network de Gofigure2 sur Github. Les points représentent des commits. Les branches sont clairement visibles.}
+\label{fig:GitGithub}
+\end{figure}
 Nous avons donc opté pour cette plateforme, qui est une autre raison de la montée de Git comme programme de gestion de sources. Les connections sur ce site sont sécurisées par un protocole crypté (ssh)... Il est donc nécessaire d'effectuer certaines opérations de configuration avant de pouvoir utiliser les serveurs Git de Github. Les détails de la création d'un compte ont été repris dans le tutoriel à destination de l'équipe de {\gofigure}.
 
-\subsubsection{Automatisation de la migration vers Git}
+\subsubsection*{Automatisation de la migration vers Git}
 
-Une fois l'organisation \gofigure créée sur Github, et les comptes des développeurs configurés, nous avons pu passer à la migration à proprement parler du projet.
+Une fois l'organisation {\gofigure} créée sur Github, et les comptes des développeurs configurés, nous avons pu passer à la migration à proprement parler du projet.
 Nous avons ensuite copié le contenu du serveur SVN de {\gofigure},
 pour le traduire en un projet Git, en respectant le workflow proposé.
 
 La figure~\ref{fig:MigrationGit} schématise la mise à jour du serveur Git avec les informations du serveur SVN.
-Pour l'instant cette mise a jour est journalière.
+Pour l'instant cette mise a jour est journalière. Le script correspondant à cette mis à jour est donné en annexe~\ref{AnnexeScriptGIT}. L'exécution de ce dernier est planifiée grâce à l'utilitaire "cron" (paramétrable avec "cronjob"), présent sur les plateformes unix.
 Nous pourrions aussi envisager une mise à jour automatique à chaque modification du projet.
-Un cycle de développement simplifie devient donc, pour un programmeur :
+Un cycle de développement simplifié devient donc, pour un programmeur :
+
+Le serveur du Megason Lab copie donc tous les jours les informations du serveur SVN.
+Il transforme ces informations pour qu'elles soient compatibles avec le protocole de Git,
+et conforme au protocole de travail proposé, puis les envoie sur le serveur de github.
+Pour l'instant, les modifications provenant du serveur de Github (flèches pointillées)
+sont manuellement intégrées au projet. Cependant, on peut facilement automatiser cette fusion des projets Git et SVN.
+La figure~\ref{fig:GitGithub} montre le projet {\gofigure} sur Github. L'importation de ce projet a été automatiquement résolue par le script montré en annexe~\ref{AnnexeScriptGIT}.
+
 \begin{figure}[h]
 \begin{center}
 \leavevmode
@@ -647,14 +736,29 @@ Un cycle de développement simplifie devient donc, pour un programmeur :
 \caption{Migration automatique de SVN vers Git via un serveur installé au Megason Lab}
 \label{fig:MigrationGit}
 \end{figure}
-Le serveur du Megason Lab copie donc tous les jours les informations du serveur SVN.
-Il transforme ces informations pour qu'elles soient compatibles avec le protocole de Git,
-et conforme au protocole de travail proposé, puis les envoie sur le serveur de github.
-Pour l'instant, les modifications provenant du serveur de Github (flèches pointillées)
-sont manuellement intégrées au projet. Cependant, on peut facilement automatiser cette fusion des projets Git et SVN.
 
-%for big figures in this chapter
 \clearpage
+
+\subsubsection*{Conclusion}
+
+\paragraph*{}
+Ce projet a encore une fois été extrêmement instructif.
+Il m'a permis de m'intéresser à la gestion de version et des outils existants pour cela.
+On se rend vite compte que ces programmes très performant vont bien plus loin que simplement archiver les modifications des projets.
+Ils permettent réellement de manager un projet en forçant une démarche de travail, et en gardant trace des modifications apportées par chacun.
+De plus Github a réellement transformé la manière de programmer en introduisant l'aspect réseau social dans les projets.
+
+\paragraph*{}
+Ce projet comportait bien-sûr des difficultés, notamment l'apprentissage de Git. Ce programme est très puissant et flexible, de fait, il est possible de faire la même chose de plusieurs manière. Différencier la "bonne" et la "mauvaise" façon de travailler peut être difficile. Cela s'est fait ressentir lors de l'écriture du tutoriel : au fur et à mesure que j'apprenais Git, je réécrivais des chapitres, afin de les simplifier.
+
+Il existe de nombreuses ressources sur internet, chacune proposant une utilisation du programme.
+Git est aussi totalement différent des programmes de gestion de versions centralisés. Cela bouleverse les habitudes que l'on peut avoir en utilisant SVN par exemple.
+
+Enfin, le choix d'un workflow n'est pas toujours évident, il faut savoir anticiper le futur de {\gofigure}, et choisir un protocole bien structuré. 
+
+La migration a été assez facile comme je maitrisais alors bien Git. Quelques difficultés liées à cronjob, et aux droits d'utilisateur pour les connections sécurisées sous unix sont apparues.
+
+
 
 
 %--------------------------------------------------
@@ -665,8 +769,10 @@ sont manuellement intégrées au projet. Cependant, on peut facilement automatis
 
 Ce projet part d'une initiative personnelle : ayant appris qu'il m'était possible de continuer à travailler au Megason Lab, sur des images acquises par le microscope confocal, je décidai d'améliorer la qualité des images acquises. En effet, ces données formeront la base de mes futures recherches, et trouver un moyen de les améliorer faciliterait d'autant mon travail.
 
-J'ai donc adressé un problème très courant dans ce type d'imagerie : 
+Je me suis penché sur un problème très courant dans ce type d'imagerie : 
 celui du mouvement incontrôlé du spécimen.
+Les poissons zèbre sont insérés manuellement dans des supports créés spécialement par le Megason Lab (figuresı\ref{fig:PICMounting}~et~\ref{fig:PICMount}). Ces support permettent aux poissons de grandir tout en les gardant dans une position statique. Cependant, ils ne peuvent restreindre totalement les mouvements des spécimens.
+
 Cela a des conséquences catastrophiques sur la qualité des images : 
 la région étudiée du spécimen peut être en dehors 
 du champ microscopique\footnote{Un champ microscopique ou champ d'observation est la zone d'observation éclairée qui apparait au manipulateur lors d'une observation au microscope}
@@ -674,6 +780,24 @@ après quelques heures d'acquisition,
 cela conduit aussi à des "sauts" violents causés par la remise en place manuelle de l'objectif.
 
 Je vais tout d'abord prouver la validité d'un tel projet (projet de recalage), pour ensuite détailler la réalisation technique qu'il a engendrée.
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/PICmount}
+\end{center}
+\caption{Les supports d'embryons de possons zèbres, spécialement créés au Meagson Lab pour permettre d'imager les spécimens pendant leur croissance.}
+\label{fig:PICmount}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/PICmounting}
+\end{center}
+\caption{Un biologiste en train d'insérer manuellement les embryons de poissons zèbre dans un support, en vue de les imager.}
+\label{fig:PICMounting}
+\end{figure}
+
 \subsection{Cahier des charges}
 Nous commençons par présenter la Bête à Cornes,
 pour clarifier le but principal du projet. Nous présentons ensuite le diagramme pieuvre qui permet de détailler les fonctions du projet.
@@ -821,7 +945,7 @@ Enfin, afin que notre algorithme soit robuste vis à vis du bruit, et des change
 nous moyennons les images, puis réduisons la résolution des images moyennées.
 Le facteur de réduction dépend de la taille du spécimen, des structures à analyser,
 et de la résolution initiale des images acquises par le microscope.
-\\
+
 Le choix de la métrique est basé sur plusieurs critères : la simplicité d'utilisation (peu de paramètres),
 la robustesse au bruit et aux changements d'illumination, et la robustesse aux changements de forme. Il faut enfin que cet algorithme soit rapide : le déplacement est calculé entre chaque acquisition, et doit prendre moins d'une minute au total. Ce choix est donc dicté par les contraintes FC2 à FC7 du diagramme pieuvre (figure\ref{fig:PIEUVRERecal}) !
 
@@ -869,25 +993,69 @@ Nous utilisons pour l'instant le critère des moindres carrés pour sa simplicit
 La stabilisation de l'acquisition est basée sur les mouvements précédents du spécimen :
 nous corrigeons simplement la dernière translation. Le microscope a donc un échantillon de retard.
 
-Afin de pouvoir intégrer la stabilisation au microscope, il a fallut programmer une extension du programme Megacapure.
+Afin de pouvoir intégrer la stabilisation au microscope, il a fallu programmer une extension du programme Megacapure.
 Megacapture est un programme spécialement développé pour capturer et stocker
-des vidéos tri-dimensionnelles de spécimen vivant.
-Il a donc fallut intégrer la nouvelle fonctionnalité à Megacapture. Le programme de recalage a été codé en {\C++},
-or Megacapture est une macro Visual Basic. il a donc fallu créer une interface.
+des vidéos tri-dimensionnelles de spécimens vivants.
+Il a donc fallu intégrer la nouvelle fonctionnalité à Megacapture. Le programme de recalage a été codé en {\C++},
+or Megacapture est une macro Visual Basic. Nous avons donc dû créer une interface.
 J'ai travaillé avec Paul Cowgill pour créer une interface générique afin de connecter
 Megacapture avec des programmes extérieurs. Cela permettant de respecter FC1 du diagramme pieuvre
 (figure\ref{fig:PIEUVRERecal}).
 
-\subsubsection{Avancement}
+\subsection{Résultats et travail futur}
 
-Nous sommes encore dans la phase d'intégration et de test sur ce projet.
-Le programme de recalage a été crée, et connecté à Megacapture.
+Afin d'expérimenter les techniques de recalage avec ITK, plusieurs programmes ont été crées, afin de pouvoir évaluer les métriques, et vérifier les temps de calcul. Ces programmes seront aussi utiles à Kishore Mosaliganti, qui travaille sur un projet impliquant du recalage d'images.
+
+Enfin, une interface en Visual Basic, associée à un programme en \C++ ont été créés. L'interaction entre les deux applications fonctionne, il ne reste plus qu'à Paul Cowgill d'implémenter le snippet Visual Basic dans Megacapture.
+
+Les figures~\ref{fig:CheckBoardRecalSimu}~et~\ref{fig:CheckBoardRecalReal}  donnent les résultats du programme de recalage, sur un déplacement simulé d'un spécimen statique, puis sur une séquence réelle (le spécimen change de forme).
+Le programme met en moyenne une minute trente secondes pour donner un résultat.
+Une minute est consacrée à la réduction de l'image, tandis que le recalage prends à peu près trente secondes.
+Ces test ont étés effectués sur une machine équipée d'un processeur intel "Core 2 Duo" cadencé à 2.53 GHz, et de 4GB de mémoire RAM DDR3. Le programme a été configurer pour être mono-thread\footnote{un programme mono-thread (mono-tâche), s'exécute séquentiellement sur un seul processeur, et n'utilise pas les capacités de calculs parallèles des nouveaux processeurs. Les programmes multi-thread sont souvent bien plus rapides que les programmes mono-thread, cependant, la non linéarité dans l'exécution entraine des difficultés lors du débuguage.}. Le "mutithreading" est déjà implémenté, mais pour les tests, nous préférons rester sur une architecture simple à débuguer.
+
+
+\begin{figure}[h]
+  \centering
+  \subfloat[Image du poisson zèbre fixe. La même image translatée d'une distance correspondant  rayon moyen du noyau d'une cellule, selon les deux dimensions de l'espace est utilisée comme image mobile.]{\label{fig:RecalFixBefore}\includegraphics[width=0.5\textwidth]{pictures/RecalSimuFix}}\\
+  \subfloat[Damier des images avant recalage.]{\label{fig:RecalSimuCheckBefore}\includegraphics[width=0.5\textwidth]{pictures/RecalCheckBeforeSimu}}                
+  \subfloat[Damier des images après recalage; Nous n'apercevons plus le damage, le recalage est donc précis.]{\label{fig:RecalSimuCheckAfter}\includegraphics[width=0.5\textwidth]{pictures/RecalCheckAfterSimu}}
+  \caption{Programme de recalage une image du poisson zèbre translatée artificiellement.}
+  \label{fig:CheckBoardRecalSimu}
+\end{figure}
+
+
+
+\begin{figure}[h]
+  \centering
+  \subfloat[Image du poisson zèbre à t=0.]{\label{fig:RecalRealFix}\includegraphics[width=0.5\textwidth]{pictures/RecalRealFix}}
+  \subfloat[Image du poisson zèbre à t=2minutes.]{\label{fig:RecalRealMobil}\includegraphics[width=0.5\textwidth]{pictures/RecalRealMobil}}\\
+  \subfloat[Damier des images avant recalage; des lignes rouges ont été tracées pour attirer l'attention vers les zones mal alignées.]{\label{fig:RecalRealCheckBefore}\includegraphics[width=0.5\textwidth]{pictures/RecalCheckBeforeReal}}                
+  \subfloat[Damier des images après recalage; des lignes rouges ont été tracées pour attirer l'attention vers les zones bien alignées après le recalage.]{\label{fig:RecalRealCheckAfter}\includegraphics[width=0.5\textwidth]{pictures/RecalCheckAfterReal}}
+  \caption{Programme de recalage sur une vidéo réelle du poisson zèbre durant son développement}
+  \label{fig:CheckBoardRecalReal}
+\end{figure}
+
+
+L'analyse de la figure~\ref{fig:CheckBoardRecalSimu} montre que le recalage s'effectue correctement sur un déplacement simulé. Le damier de vérification
+\footnote{Les damiers de vérification sont souvent utilisés en recalage, afin de visualiser le résultat d'une technique de recalage. L'image "fixe" et l'image "mobile" sont représentées dans le même repère. Le damier alterne l'image fixe et l'image mobile, si le damage est clairement visible, les images sont mal alignées. On présente en général un tel damier avant d'utiliser l'algorithme de recalage afin de montrer les mauvais alignements, puis après, en appliquant la transformation estimée par l'algorithme de recalage à l'image mobile.}
+montre que l'on obtient deux images identiques après l'exécution de l'algorithme.
+Cela prouve que la simplification de l'image (moyennage puis sous-échantillonnage)
+n'entraine pas de baisse de précision visible du recalage.
+
+L'analyse de la figure~\ref{fig:CheckBoardRecalReal} montre que le recalage s'effectue correctement,
+les caractéristiques importantes des images sont bien mieux alignées après le recalage.
+Grâce à la simplification des images, le recalage se focalise sur les caractéristiques importantes des images.
+
+
+
+
+
+Nous sommes donc encore dans la phase d'intégration et de test sur ce projet.
 Il faut maintenant faire des expériences. Nous comptons tout d'abord tester le projet
 sur des objets que nous bougerons manuellement, pour vérifier la réponse du Microscope.
 Nous voulons ensuite tester notre programme sur un poisson zèbre en développement, au cours d'une session d'imagerie.
 
-Il existe de nombreuses pistes pour étoffer les fonctionnalités de ce projet, en voici quelques unes :
-\begin{itemize}
+Il existe de nombreuses pistes pour étoffer les fonctionnalités de ce projet, en voici quelques unes :\begin{itemize}
   \item Nous envisageons dans le futur d'utiliser un filtre de Kalman afin d'estimer
   le déplacement qui aura lieu à la prochaine acquisition, en connaissant les déplacements passés. Ce filtre particulier incorpore un modèle évolutif du systèe et peut donc corriger(filtrer) les mesures précédentes pour estimer au mieux la 
   \item Plutôt que d'utiliser un recalage rigide, il pourrait être judicieux d'utiliser un recalage "souple",
@@ -896,17 +1064,22 @@ Il existe de nombreuses pistes pour étoffer les fonctionnalités de ce projet, 
   et le programme, à partir du champ de déplacement dans cette région, pourra calculer
   le déplacement moyen de l'organe visé.
   \item Le temps d'exécution peut être raccourci en modifiant le programme pour qu'il soit multi-tâches.
-  nous pouvons aussi améliorer la qualité du recalage en utilisant un débruitage et une réduction de la résolution
+  Nous pouvons aussi améliorer la qualité du recalage en utilisant un débruitage et une réduction de la résolution
   des images à recaler, par ondelettes
   Cela nous permettrait d'obtenir une meilleure image grossière sur laquelle baser l'algorithme.
-  \item Nous pouvons enfin utiliser un recalage "pyramidal" qui permet d'estimer tout premièrement un déplacement
+  \item Nous pouvons enfin utiliser un recalage "pyramidal" qui permet d'estimer tout d'abord un déplacement
   grossier (sur des images faible résolution), pour ensuite donner un recalage plus précis (sur des images haute résolution).
 \end{itemize}
 
 
+
+
+\clearpage
+
+
 \section{Conclusion de la partie ingénierie du PFE}
 
-Durant ce PFE, j'au travaillé sur des projets très variés.
+Durant ce PFE, j'ai travaillé sur des projets très variés.
 Ces projets étaient motivés par des objectifs scientifiques et nécessitaient chacun un haut niveau de technicité.
 
 J'ai eu l'occasion d'apprendre énormément,
@@ -918,7 +1091,7 @@ totalement différente de celle du milieu industriel.
 La hiérarchie, et les intérêts de chaque scientifique sont moins apparents que dans une entreprise et ce PFE a été riche en enseignements sur ce plan.
 Je suis parvenu à très bien m'intégrer dans l'équipe du Megason Lab en général,
 et à établir de bonnes relations de travail avec les divers scientifiques
-impliqués dans le projets sur lesquels j'ai travaillé, en particulier.
+impliqués dans les projets sur lesquels j'ai travaillé.
 
 Cela m'a permis d'acquérir une base solide pour mener des recherches dans ce domaine.
 Après une importante phase d'apprentissage, je maitrise maintenant des librairies de renom
@@ -927,4 +1100,6 @@ Après une importante phase d'apprentissage, je maitrise maintenant des librairi
 J'ai pu aussi établir des contacts dans la communauté
 des traiteurs d'image par le biais de collaborations
 (Matthiew MacCormick), ou de d'"ateliers" (workshops) internationaux
-(participation à la NAMIC summer project week, au MIT).
+(participation à la NAMIC
+\footnote{La National Alliance for Medical Image Computing (NAMIC), est un réseau de professionnels de traitement d'images médicales. Ce réseau organise des conférences et des ateliers de travail ("workshop"), durant lesquels les scientifiques peuvent collaborer.}
+summer project week, au Massachusetts Institute of Technologies).

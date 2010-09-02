@@ -3,15 +3,20 @@
 
 \begin{document}
 
-\title{Projet de Fin d'Étude}   % type title between braces
-\author{Antonin PERROT-AUDET}         % type author(s) between braces
-\date{Février-Septembre, 2010}    % type date between braces
+\title{Projet de Fin d'Étude} 
+\author{Antonin PERROT-AUDET
+  Institut National des Sciences Appliquées,\\
+  Lyon,\\
+  France,\\
+  \texttt{antonin.perrot-audet@insa-lyon.fr}}   
+\date{Février-Septembre, 2010} 
 \maketitle
 
-\begin{abstract}
-  Ce rapport présente le travail effectué pendant mon Projet de Fin d'Étude (PFE) au sein du Megason Lab, Harvard Medical School. Ce PFE conclut ma formation à l'Institut National des Sciences Appliquées de Lyon, au département Génie Électrique, pour acquérir le grade d'Ingénieur INSA. Il s'agit aussi d'un stage de recherche finalisant le master Génie Électrique et des Procédés, parcours Systèmes et Images à l'INSA de Lyon, l'École Centrale de Lyon, et l'Université Claude Bernard Lyon 1.
 
-  Le travail à pour thème le traitement d'images microscopiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Le laboratoire inclut une équipe d'informaticiens développant un programme a l'usage des biologistes : {\gofigure}\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
+\begin{abstract}
+  Ce rapport présente le travail effectué pendant mon Projet de Fin d'Étude (PFE) au sein du Megason Lab, Harvard Medical School, Boston MA, USA. Ce PFE conclut ma formation à l'Institut National des Sciences Appliquées de Lyon, au département Génie Électrique, pour acquérir le grade d'Ingénieur INSA. Il s'agit aussi d'un stage de recherche finalisant le master Génie Électrique et des Procédés, parcours Systèmes et Images à l'INSA de Lyon, l'École Centrale de Lyon, et l'Université Claude Bernard Lyon 1.
+
+  Le travail a pour thème le traitement d'images microscopiques. Il s'agit de vidéos tri-dimensionnelles du poisson zèbre durant sa phase de développement embryonnaire. Le laboratoire inclut une équipe d'informaticiens développant un programme à l'usage des biologistes : {\gofigure}\cite{refGofigure2}. A terme, les résultats théoriques devront être intégrés à ce logiciel .
   
   
 \tableofcontents  
@@ -65,7 +70,7 @@ les biologistes parviennent à identifier les acteurs intervenant dans le dével
 Les expériences sont réalisées sur des poissons zèbres.
 De la même manière qu'un informaticien introduit des "breakpoints" dans un programme pour intervenir dans son exécution,
 les biologistes créent des poissons mutants et analysent les effets des modifications du génome sur le développement.
-L'étape suivante consistera a créer un modèle du développement du poisson zèbre.
+L'étape suivante consistera à créer un modèle du développement du poisson zèbre.
 En ce moment, les centres d'intérêts de l'équipe de biologiste sont la formation du système nerveux, et des oreilles.
 
 Les biologistes recueillent d'énormes quantités de données
@@ -91,8 +96,8 @@ Pour mon PFE, je me suis plutôt intéressé aux dispositifs d'acquisition et de
 \subsubsection{Les dispositifs d'imagerie}
 
 
-Le Megason lab dipose de nombreux microscopes pour permettre aux biologistes de mener a bien leurs manipulations sur les poissons zèbres.
-L'équipe de traitement de l'image s'intéresse plutôt aux images produites par le microscope confocal deux photons à plateau automatisé. 
+Le Megason lab dipose de nombreux microscopes pour permettre aux biologistes de mener à bien leurs manipulations sur les poissons zèbres.
+L'équipe de traitement de l'image s'intéresse plutôt aux images produites par le microscope confocal deux-photons à plateau automatisé. 
 
 Les techniques d'imagerie au Megason Lab sont basées sur des marqueurs fluorescents fixés sur certaines molécules du spécimen (l'embryon de poisson zèbre à différentes étapes de son développement). Les atomes de ces phosphores doivent être excités afin d'émettre de la lumière.
 
@@ -110,7 +115,7 @@ Cette technique a plusieurs avantages :
 \end{itemize}
 
 Il est pour l'instant possible d'utiliser trois marqueurs fluorescents différents à la fois, que l'on stocke dans une image multicolore.
-Ce microscope a été assemblé au Megason Lab à partir d'un microscope Zeiss 710 NLO.
+Ce microscope a été assemblé au Megason Lab à partir d'un microscope Zeiss 710 NLO (figure~\ref{fig:MicMegason}).
 Une chambre environnementale a été créée, afin de contrôler le développement des embryons durant la capture d'informations.
 
 \begin{figure}[htb]
@@ -131,6 +136,15 @@ Une chambre environnementale a été créée, afin de contrôler le développeme
 \label{fig:Confocal2photonsPrinciple}
 \end{figure}
 
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[width=0.95\textwidth]{pictures/PICmicroscope}
+\end{center}
+\caption{Microscope confocal 2-photons Zeiss 710 NLO utilisé au Megason Lab}
+\label{fig:MicMegason}
+\end{figure}
+
 \clearpage
 
 
@@ -148,12 +162,12 @@ Mon inscription à l'INSA de Lyon a été grandement motivée par l'ouverture de
 Lors de ma seconde année a l'INSA de Lyon, j'ai choisi l'option SCiences et ANglais (SCAN).
 Cette filière regroupe les élèves ayant un niveau suffisant pour pouvoir suivre la formation généraliste en anglais.
 Elle s'accompagne d'une bourse pour un bref séjour linguistique dans une université étrangère.
-J'ai profite de ce financement pour aller au Trinity College en Irlande où
-j'ai pu avoir ma première expérience académique a l'étranger.
+J'ai profité de ce financement pour aller au Trinity College en Irlande où
+j'ai pu avoir ma première expérience académique à l'étranger.
 
 J'ai ensuite choisi le département
 Génie Électrique qui permet de bénéficier d'un grand panel de compétences,
-notamment dans des domaines rattaches à l'électronique et l'informatique.
+notamment dans des domaines rattachés à l'électronique et l'informatique.
 
 
 Continuant l'expérience internationale, j'ai effectué mon stage industriel au
@@ -167,7 +181,7 @@ avec un score de neuf cent quatre-vingt sur neuf cent quatre-vingt dix.
 Le PFE au Megason Lab possède des attraits indéniables :
 il s'agit d'un stage de recherche perfectionnant mes connaissances en traitement de l'image.
 Il s'agit aussi d'une expérience internationale dans une université renommée : Harvard Medical School.
-Ainsi, en plus de prendre plaisir a travailler en recherche, j'ouvre la porte à de nombreuses opportunités professionnelles.
+Ainsi, en plus de prendre plaisir à travailler en recherche, j'ouvre la porte à de nombreuses opportunités professionnelles.
 
 Comme je suis intéressé par les domaines techniques,
 je compte profiter de l'opportunité de poursuivre mes études pour obtenir un doctorat en mathématiques appliquées,

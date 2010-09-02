@@ -11,6 +11,7 @@
 %style of tex :
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex} %space between paragraphs
 
+
 % Code Formating
 \input{settings/TexCodeSet}
 
@@ -20,17 +21,19 @@
 %figures :
 \usepackage{graphicx}
 \usepackage{float}
-\floatstyle{boxed} %border around figures
+%\floatstyle{boxed} 
 \restylefloat{figure}
-\usepackage[format=plain,indention=.5cm,parskip=5pt,bf]{caption}
+\usepackage[format=plain,indention=0cm,parskip=5pt,bf]{caption}
 %import section
 \usepackage{wrapfig}
+\usepackage{subfig}
+ 
 
 %arays
 \usepackage{array}
 
 %
-\def \gofigure{{}Gofigure\raisebox{-0.2ex}{2}{}}
+\def \gofigure{Gofigure\raisebox{-0.2ex}{2}}
 
 %TODO macro
 \newcommand{\TODO}[1] {\marginpar{\colorbox{red}{\Huge \textbf{TODO}} } \colorbox{red}{\Huge \textbf{TODO}}\colorbox{green}{\normalsize #1  } } 
