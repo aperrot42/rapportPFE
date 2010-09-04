@@ -1,7 +1,6 @@
 % Chapitre sur le rapport d ingenierie :
 
-
-\chapter{Rapport d'ingénierie} 
+\chapter{Rapport d'ingénierie}
 
 
 \section*{Introduction}
@@ -53,7 +52,7 @@ Des objectifs, nous pouvons dégager des tâches, que nous plaçons dans un diag
 %--------------------------------------------------
 
 
-\section{Création d'une librairie\\ de comparaison d'images}
+\section{Création d'une librairie \\ de comparaison d'images}
 
 L'équipe d'informaticiens au Megason Lab est divisée en deux : deux ingénieurs travaillent sous la direction d'un docteur sur la
  création de l'outil de visualisation d'images microscopiques (\gofigure), tandis qu'un autre docteur travaille sur
@@ -333,7 +332,7 @@ Elle inclut la description de touts les objets créés, les diagrammes d'hérita
 Comme l'illustre le snippet~\ref{SimpleCodeCompare}, le code est aussi très simple d'utilisation
 et propose des fonctions de haut niveau.
 Il a enfin été intégré au code de {\gofigure},
-puis a été publié sur Github, à l'adresse :\\{\url{http://github.com/antonin07130/itkCompareProject}}.
+puis a été publié sur Github, à l'adresse :\\{\url{http://github.com/antonin07130/itkCompareProject}}.\\
 Nous avons donc un code visible sur internet, bien documenté, facilement modifiable et réutilisable,
 comme le spécifient FC2 et FC3.
 De plus, un article\cite{AntoCompare} détaillant l'utilisation de la librairie a été publié sur l'Insight Journal.
@@ -512,12 +511,12 @@ plus simple mais disposant de moins de fonctionnalités, et Subversion, qui adop
 Cependant, en plus d'être l'un des programme de gestion de versions les plus utilisé,
  il possède de nombreux avantages dont les principaux sont:
 \begin{description}
-  \item[rapidité] : Git utilise un protocole de communication bien plus efficace que SVN (a peu près 5 fois plus rapide). 
+  \item[Rapidité] : Git utilise un protocole de communication bien plus efficace que SVN (a peu près 5 fois plus rapide). 
   De plus, les commits peuvent être sauvegardés sans connexion au serveur central.
-  \item[économie] : Git utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
-  \item[développement en commun] : chacun peut travailler sur une sous partie du programme. La création de "branches" est facile et
+  \item[Économie] : Git utilise un algorithme de compression très performant : le code prend ainsi très peu de place.
+  \item[Développement en commun] : chacun peut travailler sur une sous partie du programme. La création de "branches" est facile et
   rapide. La mise en commun des changements est bien mieux gérée que sur des programmes concurrents comme SVN.
-  \item[développement décentralisé] : chacun possède une copie du code et peut travailler sans connexion internet. 
+  \item[Développement décentralisé] : chacun possède une copie du code et peut travailler sans connexion internet. 
   Si le serveur subit une panne ou est indisponible, tout le monde peut continuer à travailler, et la recréation d'un serveur est triviale.
   \item[Souplesse] : Git permet de travailler sur un projet utilisant SVN (contrôle de version centralisée)
   en bénéficiant des avantages de la gestion de versions de projet décentralisée.
@@ -699,7 +698,7 @@ Maintenant le workflow défini, et l'aide mise en place, il faut mettre en œuvr
 \subsubsection*{Github : une plateforme de travail collaboratif}
 
 \href{https://github.com/}{Github} propose d'héberger gratuitement les projets open-sources. Les serveurs github sont administrables par un site
-internet : \url{http://github.com/}. L'originalité de l'interface réside dans le réseau social proposé par le site. Il est possible de consulter les profils des programmeurs, de voir en temps réel l'avancement des projets sur lesquels ils travaillent. Le "fork" (copie d'un projet open source en vue de le modifier/l'améliorer) se fait en un click. Les collaborations se mettent en place d'un manière totalement transparente.
+internet : \url{http://github.com/}. L'originalité de l'interface réside dans le réseau social proposé par le site. Il est possible de consulter les profils des programmeurs, de voir en temps réel l'avancement des projets sur lesquels ils travaillent. Le "fork" (copie d'un projet open source en vue de le modifier/l'améliorer) se fait en un click. Les collaborations se mettent en place d'une manière totalement transparente.
 \begin{figure}[h]
 \begin{center}
 \leavevmode
@@ -717,7 +716,7 @@ Nous avons ensuite copié le contenu du serveur SVN de {\gofigure},
 pour le traduire en un projet Git, en respectant le workflow proposé.
 
 La figure~\ref{fig:MigrationGit} schématise la mise à jour du serveur Git avec les informations du serveur SVN.
-Pour l'instant cette mise a jour est journalière. Le script correspondant à cette mis à jour est donné en annexe~\ref{AnnexeScriptGIT}. L'exécution de ce dernier est planifiée grâce à l'utilitaire "cron" (paramétrable avec "cronjob"), présent sur les plateformes unix.
+Pour l'instant cette synchronisation est journalière. Le script correspondant est donné en annexe~\ref{AnnexeScriptGIT}. L'exécution de ce dernier est planifiée grâce à l'utilitaire "cron" (paramétrable avec "cronjob"), présent sur les plateformes unix.
 Nous pourrions aussi envisager une mise à jour automatique à chaque modification du projet.
 Un cycle de développement simplifié devient donc, pour un programmeur :
 
@@ -744,12 +743,12 @@ La figure~\ref{fig:GitGithub} montre le projet {\gofigure} sur Github. L'importa
 \paragraph*{}
 Ce projet a encore une fois été extrêmement instructif.
 Il m'a permis de m'intéresser à la gestion de version et des outils existants pour cela.
-On se rend vite compte que ces programmes très performant vont bien plus loin que simplement archiver les modifications des projets.
+On se rend vite compte que ces programmes très performants vont bien plus loin que simplement archiver les modifications des projets.
 Ils permettent réellement de manager un projet en forçant une démarche de travail, et en gardant trace des modifications apportées par chacun.
 De plus Github a réellement transformé la manière de programmer en introduisant l'aspect réseau social dans les projets.
 
 \paragraph*{}
-Ce projet comportait bien-sûr des difficultés, notamment l'apprentissage de Git. Ce programme est très puissant et flexible, de fait, il est possible de faire la même chose de plusieurs manière. Différencier la "bonne" et la "mauvaise" façon de travailler peut être difficile. Cela s'est fait ressentir lors de l'écriture du tutoriel : au fur et à mesure que j'apprenais Git, je réécrivais des chapitres, afin de les simplifier.
+Ce projet comportait bien-sûr des difficultés, notamment l'apprentissage de Git. Ce programme est très puissant et flexible, de fait, il est possible de faire la même chose de plusieurs manières. Différencier la "bonne" et la "mauvaise" façon de travailler peut être difficile. Cela s'est fait ressentir lors de l'écriture du tutoriel : au fur et à mesure que j'apprenais Git, je réécrivais des chapitres, afin de les simplifier.
 
 Il existe de nombreuses ressources sur internet, chacune proposant une utilisation du programme.
 Git est aussi totalement différent des programmes de gestion de versions centralisés. Cela bouleverse les habitudes que l'on peut avoir en utilisant SVN par exemple.
@@ -771,7 +770,7 @@ Ce projet part d'une initiative personnelle : ayant appris qu'il m'était possib
 
 Je me suis penché sur un problème très courant dans ce type d'imagerie : 
 celui du mouvement incontrôlé du spécimen.
-Les poissons zèbre sont insérés manuellement dans des supports créés spécialement par le Megason Lab (figuresı\ref{fig:PICMounting}~et~\ref{fig:PICMount}). Ces support permettent aux poissons de grandir tout en les gardant dans une position statique. Cependant, ils ne peuvent restreindre totalement les mouvements des spécimens.
+Les poissons zèbre sont insérés manuellement dans des supports créés spécialement par le Megason Lab (figuresı\ref{fig:PICMounting}~et~\ref{fig:PICMount}). Ces supports permettent aux poissons de grandir tout en les gardant dans une position statique. Cependant, ils ne peuvent restreindre totalement les mouvements des spécimens.
 
 Cela a des conséquences catastrophiques sur la qualité des images : 
 la région étudiée du spécimen peut être en dehors 
@@ -785,8 +784,8 @@ Je vais tout d'abord prouver la validité d'un tel projet (projet de recalage), 
 \leavevmode
 \includegraphics[width=0.95\textwidth]{pictures/PICmount}
 \end{center}
-\caption{Les supports d'embryons de possons zèbres, spécialement créés au Meagson Lab pour permettre d'imager les spécimens pendant leur croissance.}
-\label{fig:PICmount}
+\caption{Les supports d'embryons de poissons zèbres, spécialement créés au Meagson Lab pour permettre d'imager les spécimens pendant leur croissance.}
+\label{fig:PICMount}
 \end{figure}
 
 \begin{figure}[h]
@@ -1000,18 +999,18 @@ Il a donc fallu intégrer la nouvelle fonctionnalité à Megacapture. Le program
 or Megacapture est une macro Visual Basic. Nous avons donc dû créer une interface.
 J'ai travaillé avec Paul Cowgill pour créer une interface générique afin de connecter
 Megacapture avec des programmes extérieurs. Cela permettant de respecter FC1 du diagramme pieuvre
-(figure\ref{fig:PIEUVRERecal}).
+(figure~\ref{fig:PIEUVRERecal}).
 
 \subsection{Résultats et travail futur}
 
 Afin d'expérimenter les techniques de recalage avec ITK, plusieurs programmes ont été crées, afin de pouvoir évaluer les métriques, et vérifier les temps de calcul. Ces programmes seront aussi utiles à Kishore Mosaliganti, qui travaille sur un projet impliquant du recalage d'images.
 
-Enfin, une interface en Visual Basic, associée à un programme en \C++ ont été créés. L'interaction entre les deux applications fonctionne, il ne reste plus qu'à Paul Cowgill d'implémenter le snippet Visual Basic dans Megacapture.
+Enfin, une interface en Visual Basic, associée à un programme en \C++ a été créée. L'interaction entre les deux applications fonctionne, il ne reste plus qu'à Paul Cowgill d'implémenter le snippet Visual Basic dans Megacapture.
 
 Les figures~\ref{fig:CheckBoardRecalSimu}~et~\ref{fig:CheckBoardRecalReal}  donnent les résultats du programme de recalage, sur un déplacement simulé d'un spécimen statique, puis sur une séquence réelle (le spécimen change de forme).
 Le programme met en moyenne une minute trente secondes pour donner un résultat.
-Une minute est consacrée à la réduction de l'image, tandis que le recalage prends à peu près trente secondes.
-Ces test ont étés effectués sur une machine équipée d'un processeur intel "Core 2 Duo" cadencé à 2.53 GHz, et de 4GB de mémoire RAM DDR3. Le programme a été configurer pour être mono-thread\footnote{un programme mono-thread (mono-tâche), s'exécute séquentiellement sur un seul processeur, et n'utilise pas les capacités de calculs parallèles des nouveaux processeurs. Les programmes multi-thread sont souvent bien plus rapides que les programmes mono-thread, cependant, la non linéarité dans l'exécution entraine des difficultés lors du débuguage.}. Le "mutithreading" est déjà implémenté, mais pour les tests, nous préférons rester sur une architecture simple à débuguer.
+Une minute est consacrée à la réduction de l'image, tandis que le recalage prend à peu près trente secondes.
+Ces test ont été effectués sur une machine équipée d'un processeur intel "Core 2 Duo" cadencé à 2.53 GHz, et de 4GB de mémoire RAM DDR3. Le programme a été configuré pour être mono-thread\footnote{un programme mono-thread (mono-tâche), s'exécute séquentiellement sur un seul processeur, et n'utilise pas les capacités de calculs parallèles des nouveaux processeurs. Les programmes multi-thread sont souvent bien plus rapides que les programmes mono-thread, cependant, la non linéarité dans l'exécution entraine des difficultés lors du débuguage.}. Le "mutithreading" est déjà implémenté, mais pour les tests, nous préférons rester sur une architecture simple à débuguer.
 
 
 \begin{figure}[h]
@@ -1057,7 +1056,7 @@ Nous voulons ensuite tester notre programme sur un poisson zèbre en développem
 
 Il existe de nombreuses pistes pour étoffer les fonctionnalités de ce projet, en voici quelques unes :\begin{itemize}
   \item Nous envisageons dans le futur d'utiliser un filtre de Kalman afin d'estimer
-  le déplacement qui aura lieu à la prochaine acquisition, en connaissant les déplacements passés. Ce filtre particulier incorpore un modèle évolutif du systèe et peut donc corriger(filtrer) les mesures précédentes pour estimer au mieux la 
+  le déplacement qui aura lieu à la prochaine acquisition, en connaissant les déplacements passés. Ce filtre particulier incorpore un modèle évolutif du système et peut donc corriger(filtrer) les mesures précédentes pour estimer au mieux la 
   \item Plutôt que d'utiliser un recalage rigide, il pourrait être judicieux d'utiliser un recalage "souple",
   qui donne un champ de déformation (déplacement de chaque point).
   Ainsi, le chercheur pourra sélectionner une zone d'intérêt sur un spécimen,
@@ -1076,30 +1075,3 @@ Il existe de nombreuses pistes pour étoffer les fonctionnalités de ce projet, 
 
 \clearpage
 
-
-\section{Conclusion de la partie ingénierie du PFE}
-
-Durant ce PFE, j'ai travaillé sur des projets très variés.
-Ces projets étaient motivés par des objectifs scientifiques et nécessitaient chacun un haut niveau de technicité.
-
-J'ai eu l'occasion d'apprendre énormément,
-notamment dans le domaine des sciences informatiques,
-et du traitement de l'image.
-
-J'ai aussi découvert le milieu de la recherche, dont l'organisation est
-totalement différente de celle du milieu industriel.
-La hiérarchie, et les intérêts de chaque scientifique sont moins apparents que dans une entreprise et ce PFE a été riche en enseignements sur ce plan.
-Je suis parvenu à très bien m'intégrer dans l'équipe du Megason Lab en général,
-et à établir de bonnes relations de travail avec les divers scientifiques
-impliqués dans les projets sur lesquels j'ai travaillé.
-
-Cela m'a permis d'acquérir une base solide pour mener des recherches dans ce domaine.
-Après une importante phase d'apprentissage, je maitrise maintenant des librairies de renom
-(ITK, VTK,Qt), les systèmes unix, et la gestion de versions.
-
-J'ai pu aussi établir des contacts dans la communauté
-des traiteurs d'image par le biais de collaborations
-(Matthiew MacCormick), ou de d'"ateliers" (workshops) internationaux
-(participation à la NAMIC
-\footnote{La National Alliance for Medical Image Computing (NAMIC), est un réseau de professionnels de traitement d'images médicales. Ce réseau organise des conférences et des ateliers de travail ("workshop"), durant lesquels les scientifiques peuvent collaborer.}
-summer project week, au Massachusetts Institute of Technologies).
