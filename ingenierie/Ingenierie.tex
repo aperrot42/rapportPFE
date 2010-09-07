@@ -388,7 +388,7 @@ int main(int argc, char** argv)
     new QGoSynchronizedViewManager();
 
   syncViewManage->newSynchronizedView
-    ("VisualisationA", filter13D->GetOutput());
+    ("VisualisationA", reader3D->GetOutput());
 
   syncViewManage->newSynchronizedView<InputPixelType>
     ( "VisualisationB", itkReader->GetOutput() );
